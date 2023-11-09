@@ -1,0 +1,1832 @@
+PREFIX, NUMBER, TITLE 
+T ACCT 210 Financial Accounting I: Users Approach to Accounting (5)
+T ACCT 220 Financial Accounting II: The Reporting Process (5)
+T ACCT 230 Managerial Accounting (5)
+T ACCT 301 Intermediate Accounting I (5)
+T ACCT 302 Intermediate Accounting II (5)
+T ACCT 303 Intermediate Accounting III (5)
+T ACCT 311 Cost Accounting (5)
+T ACCT 330 Introduction to Accounting Information Systems (5)
+T ACCT 401 Forensic Accounting (5)
+T ACCT 404 Advanced Financial Accounting (5)
+T ACCT 411 Auditing Standards and Principles (5)
+T ACCT 431 Financial Statement Analysis (5)
+T ACCT 451 Individual Income Taxation (5)
+T ACCT 453 Advanced Taxation (5)
+T ACCT 468 Cooperative Field Experience (1-5, max. 5)
+T ACCT 469 Undergraduate Research in Accounting (1-5, max. 5)
+T ACCT 471 Internal Auditing (3)
+T ACCT 475 Introduction to Enterprise Resource Planning and Accounting Analytics (5)
+T ACCT 480 Government and Non-Profit Accounting (5)
+T ACCT 485 International Accounting (5)
+T ACCT 490 Special Topics in Accounting (1-6, max. 6)
+T ACCT 501 Intermediate Accounting I (5)
+T ACCT 502 Intermediate Accounting II (5)
+T ACCT 503 Intermediate Accounting III (5)
+T ACCT 507 Auditing Standards and Principles (5)
+T ACCT 508 Individual Income Taxation (5)
+T ACCT 509 Business Finance (5)
+T ACCT 511 Cost Accounting (5)
+T ACCT 513 Managerial Accounting for Decision Making and Control (4)
+T ACCT 520 International Accounting Seminar (4)
+T ACCT 521 International Accounting (4)
+T ACCT 530 Accounting Information Systems (5)
+T ACCT 531 Financial Statement Analysis (4)
+T ACCT 532 Leadership and Professional Communication for Accountants (4)
+T ACCT 533 Advanced Financial Statement Analysis (4)
+T ACCT 538 Business Regulation, Research, and Communication (4)
+T ACCT 541 Advanced Strategic Cost Management (4)
+T ACCT 544 Advanced Topics in Financial Accounting (4)
+T ACCT 545 Financial Accounting Theory (4)
+T ACCT 550 Governmental and Not-for-Profit Accounting (4)
+T ACCT 551 Advanced Forensic Accounting (4)
+T ACCT 553 Tax Research and Analysis (4)
+T ACCT 554 Tax Planning and Strategy (4)
+T ACCT 561 Advanced Topics in Auditing (4)
+T ACCT 565 Accounting Information Systems and Enterprise Technology Integration (4)
+T ACCT 566 Analytics for Accounting (4)
+T ACCT 590 Special Topics in Accounting (1-5, max. 5)
+T ACCT 600 Independent Study or Research (1-5, max. 5)
+T ACCT 601 Internship (1-5, max. 5)
+T BGEN 111 Freshman Leadership Seminar (2)
+T BGEN 200 Introduction to Statistics in Business (5) NSc, RSN
+T BGEN 210 Computer-Based Business Problem Solving (5)
+T BGEN 212 Introduction to Corporate Responsibility (5) SSc
+T BGEN 218 Introduction to Business Law (5) SSc
+T BGEN 250 Personal Finance (5) RSN
+T BGEN 312 Communicating Corporate Responsibility (5) SSc
+T BGEN 322 Measuring Corporate Responsibility (5) SSc
+T BGEN 360 Marketing Yourself in Business (2)
+T BGEN 370 Essentials of Sports Enterprise Management (5)
+T BGEN 422 Corporate responsibility Capstone (3) SSc
+T BGEN 468 International Business Field Experience (4-10, max. 10) SSc
+T BGEN 485 Seminar in Sports Enterprise Management (5)
+T BGEN 490 Special Topics (1-5, max. 15)
+T BGEN 492 Special Topics in Sports Enterprise Management (1-5, max. 5)
+T BUS 101 Introduction to Business (5) SSc
+T BUS 102 Business and Society (5) SSc
+T BUS 300 Managing People (5) SSc
+T BUS 301 Quantitative Analysis for Business (5) NSc, RSN
+T BUS 310 Effective Managerial Communications (5) A&H/SSc
+T BUS 320 Introduction to Marketing Management (5) SSc
+T BUS 330 Introduction to Information Technology (5)
+T BUS 350 Business Finance (5)
+T BUS 400 Business Policy and Strategic Management (5)
+T BUS 468 Internship (3-10, max. 10)
+T BUS 469 Undergraduate Research (1-5, max. 15)
+T BUS 490 Special Topics (1-5, max. 15)
+T BUS 500 Quantitative Methods in Business (4)
+T BUS 501 Financial Theory (4)
+T BUS 503 Financial Reporting and Analysis (4)
+T BUS 504 Marketing Management (4)
+T BUS 506 Strategic Management (4)
+T BUS 507 Individual and Team Dynamics (4)
+T BUS 508 Integrated Systems (4)
+T BUS 512 Introduction to Health Policy (4)
+T BUS 520 Microeconomics for Managers (4)
+T BUS 530 Operations Management in Action (4)
+T BUS 569 Analytical Research (2-4, max. 4)
+T BUS 570 Organization Change (4)
+T BUS 590 Special Topics in Business (1-4, max. 12)
+TBANLT 411 Data Management (5)
+TBANLT 433 Programming for Data Analytics (5)
+TBANLT 450 Decision Modeling (5)
+TBANLT 460 Predictive Analytics (5)
+TBANLT 480 Social Media Management and Analytics (5)
+TBANLT 485 Business Intelligence (5)
+TBANLT 490 Special Topics in Business Data Analytics (1-5, max. 5)
+TBANLT 510 Business Analytics (4)
+TBANLT 520 Analytics Strategy and Big Data Management (4)
+TBANLT 530 Business Process and Workflow Analysis (4)
+TBANLT 540 Applied Regression Models (4)
+TBANLT 541 Advanced Modeling for Data Analytics (4)
+TBANLT 550 Analytical Decision Making (4)
+TBANLT 560 Data Mining (4)
+TBANLT 570 Text Mining (4)
+TBANLT 580 Social Media Analytics (4)
+TBANLT 585 Cognitive Analytics (4)
+TBANLT 590 Special Topics in Business Analytics (2-4, max. 4)
+TBANLT 591 Applied Project: Digital Transformation Lab I (2)
+TBANLT 592 Applied Project: Digital Transformation Lab II (2)
+TBANLT 593 Applied Project: Digital Transformation Lab III (2)
+TBANLT 594 Applied Project: Digital Transformation Lab IV (2)
+TBANLT 600 Independent Study or Research (2-4, max. 4)
+TBANLT 601 Internship (2-4, max. 4)
+TBECON 220 Introduction to Microeconomic Theory (5) SSc, RSN
+TBECON 221 Introduction to Macroeconomic Theory (5) SSc, RSN
+TBECON 420 Intermediate Microeconomic Theory (5) RSN
+TBECON 421 Intermediate Macroeconomic Theory (5)
+TBECON 422 Econometrics (5)
+TBECON 423 Financial Markets and Institutions (5)
+T FIN 420 Visual Basic Programming of Excel-based Financial Models (5)
+T FIN 422 Investment Valuation (5)
+T FIN 425 Finance and Investment (5)
+T FIN 426 Portfolio Management (5)
+T FIN 427 Derivatives (5)
+T FIN 430 Intermediate Business Finance (5)
+T FIN 431 Financial Statement Analysis (5)
+T FIN 440 International Finance (5)
+T FIN 457 Entrepreneurial Finance (5)
+T FIN 490 Special Topics in Finance (1-5, max. 10)
+T FIN 526 Portfolio Management (4)
+T FIN 530 Corporate Finance (4)
+T MGMT 314 Interpersonal Skills (5) SSc/A&H
+T MGMT 418 Legal Issues for Business (3-5, max. 10) SSc
+T MGMT 420 Managing Corporate Responsibility (5)
+T MGMT 430 Human Resources Management (5)
+T MGMT 433 Building a Diversity, Equity and Inclusion Mindset in the Workplace (5) SSc, DIV
+T MGMT 452 The Dynamics of Leadership (5) SSc
+T MGMT 455 Managing Work Teams (5) SSc
+T MGMT 457 Negotiation and Conflict Management (5) SSc
+T MGMT 465 Board Governance I (2) SSc
+T MGMT 466 Board Governance II (5) SSc
+T MGMT 474 Entrepreneurship: Idea Development (5)
+T MGMT 475 Organizational Change (5)
+T MGMT 478 International Business (5)
+T MGMT 480 International Management (5)
+T MGMT 490 Special Topics in Management (5, max. 15)
+T MGMT 512 Business Ethics and Social Responsibility (4)
+T MGMT 516 Business Communication (4)
+T MGMT 518 Business Law (4)
+T MGMT 557 Negotiations (4)
+T MGMT 574 New Business Ventures (4)
+T MKTG 355 Professional Sales (5)
+T MKTG 425 Advertising (5)
+T MKTG 430 Retailing (5) A&H, RSN
+T MKTG 440 Business Marketing (5)
+T MKTG 445 Service Marketing (5)
+T MKTG 448 Sales Management (5)
+T MKTG 450 Consumer Marketing (5) SSc
+T MKTG 460 Research Methods (5)
+T MKTG 470 Sports Marketing (5)
+T MKTG 471 Ecommerce (5)
+T MKTG 475 Marketing Strategy (5)
+T MKTG 480 International Marketing (5)
+T MKTG 490 Special Topics in Marketing (5, max. 15)
+T MKTG 560 Managerial and Marketing Research (4)
+T MKTG 580 International Marketing (4)
+T CORE 100 Introduction to Interdisciplinary Study (2)
+T CORE 101 Introduction to Academic Writing (5) C
+T CORE 102 Introduction to Science (5) NSc
+T CORE 103 Introduction to Social Science (5) SSc
+T CORE 104 Introduction to Humanities (5) A&H
+T CORE 110 Introduction to Educational Equity and College Access (2)
+T CORE 112 Introduction to Science (5) NSc
+T CORE 113 Introduction to Social Science (5) SSc
+T CORE 114 Introduction to Humanities (5) A&H
+T CORE 122 Introduction to Science (5) NSc
+T CORE 123 Introduction to Social Science (5) SSc
+T CORE 124 Introduction to Humanities (5) A&H
+T CORE 133 Many Ways of Knowing: Introduction to Research (5) SSc
+T UNIV 101 Introduction to Interdisciplinary Study (2)
+T UNIV 110 Introduction to Educational Equity and College Access (2)
+T UNIV 190 Undergraduate Seminar for Success in STEM (1, max. 6)
+T UNIV 200 The Social-Digital: Tools and Activism for the 21st Century (2)
+T UNIV 250 Husky Success Quest (2)
+T EDUC 290 Introduction to Teaching (5)
+T EDUC 292 Applied Urban Education (5) SSc
+T EDUC 301 Community Education: Learning Beyond the Classroom (5) SSc
+T EDUC 310 Racism and Schools in the U.S.: Critical Race Theory and the Maintenance of Societal Inequality (5) DIV
+T EDUC 402 Learning About Learning (3)
+T EDUC 410 Science Methods: K-8 (3)
+T EDUC 419 Linguistics for Teachers (3)
+T EDUC 426 Arts in the Schools (3)
+T EDUC 441 Reading Methods and Interventions (3)
+T EDUC 448 Classroom Management with Empathy, Equity and Justice (3)
+T EDUC 449 Teaching and Learning in Inclusive Settings (3)
+T EDUC 460 Math Methods I (3)
+T EDUC 461 Math Methods II (3)
+T EDUC 462 Social Studies Methods (3)
+T EDUC 463 Cultural and Linguistic Contexts for Instructing English Language Learners (3)
+T EDUC 464 Methods and Curricula in Literacy Instruction for English Language Learners (3)
+T EDUC 465 Research and Methods in Mathematics and Science Instruction for English Language Learners (3)
+T EDUC 469 Testing and Evaluation of English Language Learners (3)
+T EDUC 471 Diversity and Equity in Schools and Curriculum (5) DIV
+T EDUC 473 Math, Power, and Society (5) DIV
+T EDUC 474 Native American Education and Centering Tribal Sovereignty (3)
+T EDUC 482 Foundations of Education: Policy, Ethics, and Philosophy (5)
+T EDUC 485 South Africa in Transition: Community Development and Education As Transformation (5) SSc
+T EDUC 487 Field Experience I (1-3, max. 3)
+T EDUC 488 Field Experience II (1-10, max. 10)
+T EDUC 489 Field Experience III (1-3, max. 3)
+T EDUC 490 Reflective Seminar: Essentials of Teaching Practice (1, max. 3)
+T EDUC 491 Tutoring Internship (3-5, max. 15)
+T EDUC 501 Foundations of Education: Policy, Ethics, and Philosophy (3)
+T EDUC 502 Learning About Learning (3)
+T EDUC 503 Assessment Foundations (3)
+T EDUC 504 Understanding Educational Research (3)
+T EDUC 510 Science Methods: K-8 (3)
+T EDUC 519 Linguistics for Teachers (2-3)
+T EDUC 520 Equity and Justice in Educational Practice (3)
+T EDUC 521 Decolonizing and Indigenizing Healing Spaces for Policy and Praxis (3)
+T EDUC 523 Culture of Secondary Schools (3)
+T EDUC 524 Secondary Students with Disabilities (3)
+T EDUC 526 Arts in the Schools (3)
+T EDUC 527 Content Literacy (3)
+T EDUC 530 Curriculum Inquiry (3)
+T EDUC 531 Curricular Uses of Children's and Young Adult Literature (3)
+T EDUC 533 Managing Secondary Classrooms with Empathy, Equity and Justice (3)
+T EDUC 535 Literacy in Secondary Schools (3)
+T EDUC 539 Principles of Teaching in Secondary Schools (3)
+T EDUC 540 Multitiered Systems of Prevention and Support (3)
+T EDUC 541 Reading Methods and Interventions (3)
+T EDUC 542 Classroom and School Behavior Support Systems (3)
+T EDUC 543 Math Methods and Interventions (3)
+T EDUC 548 Classroom Management with Empathy, Equity and Justice (3)
+T EDUC 549 Teaching Students with Special Needs (3)
+T EDUC 554 Language Arts (3)
+T EDUC 555 Literature and Content Reading (3)
+T EDUC 556 Social and Emotional Learning (3)
+T EDUC 560 Mathematics Methods I (3)
+T EDUC 561 Mathematics Methods II (3)
+T EDUC 562 Social Studies Methods (3)
+T EDUC 563 Cultural and Linguistic Contexts for Instructing English Language Learners (2-3)
+T EDUC 564 Methods and Curricula in Literacy Instruction for English Language Learners (2-3)
+T EDUC 565 Research and Methods in Mathematics and Science Instruction for English Language Learners (2-3)
+T EDUC 569 Testing and Evaluation for English Language Learners (2-3)
+T EDUC 583 Induction Seminar II (3)
+T EDUC 584 Induction Seminar III (3)
+T EDUC 587 Field Experience I (1-12, max. 12)
+T EDUC 588 Field Experience II (1-12, max. 12)
+T EDUC 589 Field Experience III (1-12, max. 12)
+T EDUC 590 Reflective Seminar: Essentials of Teaching Practice (1-3, max. 3)
+T EDUC 591 Special Topics in Education (1-9, max. 9)
+T EDUC 592 Independent Study (1-9, max. 9)
+T EDUC 599 Culminating Project (1-13, max. 13)
+TEDADM 570 Curriculum and Instruction (4-)
+TEDADM 571 Introduction to Leadership (2-)
+TEDADM 572 School Law for Educational Administrators (3-)
+TEDADM 573 Supervision of Instruction (3-)
+TEDADM 574 Equity Focused Leadership (3)
+TEDADM 575 Leadership in a Changing Society (3-)
+TEDADM 576 School-Wide Assessment (3-)
+TEDADM 577 School Finance and Educational Policy (3-)
+TEDADM 578 Group Leadership in Educational Administration (3-)
+TEDADM 579 Human Resources (4-)
+TEDADM 580 Reflective Seminar for Administrators (1-, max. 4)
+TEDADM 581 Internship for Administrators ([2-4]-, max. 14)
+T EDLD 570 Revolutionizing Leadership (5)
+T EDLD 571 Community Grounded Systems Leadership (5)
+T EDLD 572 Anti-racist and De-Colonial Frameworks in Education (5)
+T EDLD 573 Critical Pedagogies and Leadership (5)
+T EDLD 574 De-Colonizing Writing and Oral Praxis (5)
+T EDLD 575 Human Resources in Educational Institutions (3)
+T EDLD 576 Education Law and Governance (3)
+T EDLD 577 Funding, Budgets, and Inequities (5)
+T EDLD 581 Introduction to De-Colonizing Research (5)
+T EDLD 582 Applied Educational Research II (3)
+T EDLD 583 De-Constructing Knowledges, Part 1 (5)
+T EDLD 584 Re-Constructing Knowledges, Part 2 (5)
+T EDLD 585 Proposing Relational Research (5)
+T EDLD 587 Challenges in Practice I: Curriculum (3)
+T EDLD 588 Relational Learning and Healing in Praxis (5)
+T EDLD 589 Leadership for Healing (5)
+T EDLD 590 Critical Approaches to Student Development (5)
+T EDLD 591 Indigenous Leadership in Education and Community Contexts (5)
+T EDLD 593 Critical Elements in Literacy (3)
+T EDLD 594 School District Leadership (1-3, max. 3)
+T EDLD 595 Equity-Focused District Leadership (3)
+T EDLD 596 District Level Instructional Leadership (3)
+T EDLD 600 Independent Study or Resarch (1-4, max. 4)
+T EDLD 602 Community Grounded Praxis (1-6, max. 18)
+T EDLD 801 Dissertation in Practice (*-, max. 75)
+T EDLD 802 Dissertation in Practice Seminar (1-3, max. 3)
+T SPSY 501 Principles and Ethics in School Psychology Practice (3)
+T SPSY 548 Applied Child and Adolescent Development (3)
+T SPSY 549 Cognitive Assessment of Children and Adolescents (4)
+T SPSY 550 Introduction to Counseling in Schools (3)
+T SPSY 551 Social, Emotional, and Behavioral Assessment (4)
+T SPSY 552 Specially Designed Instruction (3)
+T SPSY 553 Group Interventions in the Schools (3)
+T SPSY 554 Trauma-Informed Crisis Prevention and Response in Schools (3)
+T SPSY 555 Applied Research Design and Analysis (3)
+T SPSY 560 Practicum and Reflective Seminar I (4)
+T SPSY 561 Practicum and Reflective Seminar II (4)
+T SPSY 562 Practicum and Reflective Seminar III (4)
+T SPSY 601 Internship, Portfolio and Reflective Seminar (5, max. 15)
+T EDSM 517 Secondary Math Methods I (3)
+T EDSM 519 Secondary Math Methods II (3)
+T EDSS 511 Secondary Science Methods I (3)
+T EDSS 512 Secondary Science Methods II (3)
+T EDSP 441 Reading Methods and Interventions (3)
+T EDSP 443 Math Methods and Interventions (3)
+T EDSP 444 Special Education Assessment and Evaluation (3)
+T EDSP 447 Special Education And The Law (3)
+T EDSP 448 Special Education Classroom Management with Empathy, Equity and Justice (3)
+T EDSP 450 Special Education Principles and Practices I (3)
+T EDSP 451 Special Education Principles and Practices II (3)
+T EDSP 513 Issues in Autism for Educators (3)
+T EDSP 520 Multicultural Issues in Special Education (3)
+T EDSP 539 Introduction to Exceptionalities (3)
+T EDSP 541 Reading Methods and Interventions (3)
+T EDSP 542 Classroom and School Behavior Support Systems (3)
+T EDSP 543 Math Methods and Interventions (3)
+T EDSP 544 Special Education Assessment and Evaluation (3)
+T EDSP 545 Individualized Supports for Students with Emotional and Behavioral Challenges (3)
+T EDSP 546 Collaborative Consultation with Schools, Communities, and Families (3)
+T EDSP 547 Special Education And The Law (3)
+T EDSP 548 Special Education Classroom Management with Empathy, Equity and Justice (3)
+T EDSP 550 Special Education Principles and Practices I (3)
+T EDSP 551 Special Education Principles and Practices II (3)
+T EDSP 556 Social and Emotional Learning (3)
+T EDSP 583 Induction Seminar II (3)
+T EDSP 584 Induction Seminar III (3)
+T EDSP 587 Special Education Field Experience and Reflective Seminar I (1-5, max. 5)
+T EDSP 588 Special Education Field Experience and Reflective Seminar II (1-5, max. 5)
+T EDSP 589 Special Education Field Experience and Reflective Seminar III (1-12, max. 12)
+T EDSP 590 Special Education Reflective Seminar (1-3, max. 3)
+T EDSP 591 Special Topics in Education (1-9, max. 9)
+T EDSP 592 Independent Study (1-9, max. 9)
+T EDSP 594 Special Education Seminar II: Collaboration In The Education Community (3)
+T EDSP 595 Induction Seminar For Special Educators (3)
+TCE 304 Civil Engineering Systems (3)
+TCE 305 Computer Aided Design for Civil Engineers (3)
+TCE 307 Construction Engineering (5)
+TCE 309 Geographic Information Systems for Civil Engineers (4)
+TCE 327 Transportation Engineering (5)
+TCE 337 Construction Materials (5)
+TCE 347 Fluid Mechanics (5)
+TCE 357 Environmental Engineering (5)
+TCE 367 Geotechnical Engineering (5)
+TCE 377 Introduction to Structural Analysis (5)
+TCE 390 Undergraduate Seminar in Civil Engineering (2)
+TCE 401 Engineering Project Management (3)
+TCE 402 Fundamentals of Engineering Exam Review (1)
+TCE 411 Traffic Engineering (4)
+TCE 416 Urban Transportation Modeling (4)
+TCE 417 Geometric Design of Highways and Streets (4)
+TCE 429 Sustainability in Building Infrastructure (4)
+TCE 436 Foundation Design (4)
+TCE 451 Design of Metal Structures (4)
+TCE 452 Design of Reinforced Concrete Structures (4)
+TCE 473 Hydraulic Engineering and Hydrology (5)
+TCE 480 Air Pollution Control (4)
+TCE 482 Water Quality Engineering (4)
+TCE 484 Sustainable Environmental Systems (4)
+TCE 488 Senior Project I (2)
+TCE 489 Senior Project II (5)
+TCE 490 Topics in Civil Engineering (1-5, max. 5)
+TCE 497 Internship in Civil Engineering (1-5, max. 5)
+TCE 498 Directed Readings in Civil Engineering (1-5, max. 5)
+TCE 499 Undergraduate Research in Civil Engineering (1-5, max. 5)
+TCSS 101 Computer Science Principles (5) NSc, RSN
+TCSS 141 Programming for All (5)
+TCSS 142 Programming Principles (5) NSc, RSN
+TCSS 143 Fundamentals of Object-Oriented Programming Theory and Application (5) NSc, RSN
+TCSS 241 Python Programming (2)
+TCSS 242 JavaScript Programming (2)
+TCSS 243 C# Programming (2)
+TCSS 244 C++ Programming (2)
+TCSS 305 Programming Practicum (5) NSc, RSN
+TCSS 321 Discrete Structures I (5) NSc, RSN
+TCSS 322 Discrete Structures II (5)
+TCSS 325 Computers, Ethics, and Society (5) SSc/A&H
+TCSS 333 C for System Programming (5)
+TCSS 342 Data Structures (5) RSN
+TCSS 343 Design and Analysis of Algorithms (5) NSc
+TCSS 360 Software Development and Quality Assurance Techniques (5) NSc
+TCSS 371 Machine Organization (5)
+TCSS 372 Computer Architecture (5)
+TCSS 380 Fundamentals of Programming Language Concepts (5)
+TCSS 390 Undergraduate Seminar in CSS (2, max. 12)
+TCSS 421 Compiler Construction (5)
+TCSS 422 Computer Operating Systems (5) RSN
+TCSS 430 Networking and Distributed Systems (5)
+TCSS 431 Network Security (5)
+TCSS 435 Artificial Intelligence and Knowledge Acquisition (5)
+TCSS 437 Mobile Robotics (5)
+TCSS 440 Formal Models in Computer Science (5)
+TCSS 445 Database Systems Design (5) RSN
+TCSS 446 Database Systems Internals (5)
+TCSS 450 Mobile Application Programming (5)
+TCSS 452 Human-Computer Interaction (5)
+TCSS 455 Introduction to Machine Learning (5)
+TCSS 456 Introduction to Natural Language Processing (5)
+TCSS 458 Computer Graphics (5) NSc
+TCSS 460 Client/Server Programming for Internet Applications (5)
+TCSS 461 Advanced Software Engineering (5)
+TCSS 462 Cloud Computing (5)
+TCSS 465 Embedded Real-Time System Programming (5)
+TCSS 478 Fundamentals in Bioinformatics (5)
+TCSS 480 Comparative Programming Languages (5)
+TCSS 481 Computer Security (5)
+TCSS 483 Secure Coding Principles (5)
+TCSS 487 Cryptography (5)
+TCSS 488 Coding Theory (5)
+TCSS 490 Special Topics in Computing and Software Systems (5, max. 10) RSN
+TCSS 491 Game and Simulation Design (5)
+TCSS 496 Portfolio Based Learning (1-3, max. 6)
+TCSS 497 Internship in Computing and Software Systems (1-10, max. 10)
+TCSS 498 Directed Readings in Computing and Software Systems (1-5, max. 10)
+TCSS 499 Undergraduate Research in Computing and Software Systems (1-10, max. 10)
+TCSS 501 Analysis of Algorithms and Data Structures (3)
+TCSS 502 Object Oriented Programming (3)
+TCSS 503 Algorithms and Problem Solving for Software Developers (3)
+TCSS 504 Software Engineering and Development Techniques (3)
+TCSS 505 Systems Programming (3)
+TCSS 506 Practical Full Stack Development (3)
+TCSS 510 Enterprise Architecture Foundations (5)
+TCSS 511 Advanced Enterprise Architecture (5)
+TCSS 531 Cloud and Virtualization Systems Engineering (5)
+TCSS 535 Artificial Intelligence and Knowledge Acquisition (5)
+TCSS 540 Theory of Computing (5)
+TCSS 543 Advanced Algorithms (5)
+TCSS 544 Applied Linear Algebra (5)
+TCSS 545 Database Systems Design (5)
+TCSS 551 Big Data Analytics (5)
+TCSS 552 Interaction Design (5)
+TCSS 554 Information Retrieval and Web Search (5)
+TCSS 555 Machine Learning (5)
+TCSS 556 Advanced Topics in Machine Learning (5)
+TCSS 558 Applied Distributed Computing (5)
+TCSS 559 Services Computing (5)
+TCSS 562 Software Engineering for Cloud Computing (5)
+TCSS 564 Database Systems Internals (5)
+TCSS 565 Spatial Databases with Applications in Geographic Information Systems (5)
+TCSS 569 Introduction to Cyber-Physical Systems (5)
+TCSS 570 Introduction to Parallel Computing (5)
+TCSS 571 Wireless and Mobile Networking (5)
+TCSS 573 Internet of Things (5)
+TCSS 574 Cyber Electromagnetics (5)
+TCSS 575 Control of Cyber-physical Systems (5)
+TCSS 576 Wireless and System Security (5)
+TCSS 578 Virtual Reality (5)
+TCSS 580 Information Theory (5)
+TCSS 581 Cryptology (5)
+TCSS 582 Cryptographic Protocols (5)
+TCSS 583 Post-Quantum Cryptosystems (5)
+TCSS 584 Testing VLSI Circuits and Hardware Security (5)
+TCSS 588 Bioinformatics (5)
+TCSS 590 Special Topics in Computing and Software Systems (1-5, max. 30)
+TCSS 591 Research Seminar in Distributed Systems (1-3, max. 5)
+TCSS 592 Research Seminar in Bioinformatics (1-3, max. 5)
+TCSS 593 Research Seminar in Data Science (1-3, max. 5)
+TCSS 594 Research Seminar in Geographic Information Systems (1-3, max. 5)
+TCSS 595 Research Seminar in Cybersecurity (1-3, max. 5)
+TCSS 597 Research Seminar in Cyber Physical System (1-3, max. 5)
+TCSS 598 Masters Seminar in CSS ([1-5]-, max. 5)
+TCSS 600 Independent Study or Research (*-)
+TCSS 700 Master's Thesis (*-)
+TCSS 701 INTERNSHIP (1-10, max. 10)
+TCSS 702 Design Project in Computing and Software Systems ([1-10]-, max. 10)
+TCSS 800 Doctoral Dissertation (*)
+TCES 101 Introduction to Engineering I (1)
+TCES 102 Introduction to Engineering II (1)
+TCES 103 Introduction to Engineering III (1)
+TCES 203 Programming Practicum (5)
+TCES 215 Electrical Circuits (5)
+TCES 230 Introduction to Logic Design (5) RSN
+TCES 279 Modern Fabrication (2) NSc
+TCES 310 Signals and Systems (5) NSc
+TCES 312 Electronic and Analog Circuits (5)
+TCES 330 Digital Systems Design (5)
+TCES 372 Machine Organization and Architecture for Computer Engineers (5)
+TCES 380 Stochastic Signal Theory for Engineers (5) RSN
+TCES 390 Undergraduate Seminar in Computer Engineering and Systems (2, max. 12)
+TCES 420 Principles of Operating Systems (5)
+TCES 421 Digital Integrated Circuit Design (5)
+TCES 425 Introduction to Computer Communication Networks (5)
+TCES 430 Microprocessor System Design (5)
+TCES 431 Essentials of VLSI Circuit Testing and Hardware Security (5)
+TCES 450 Machine Learning for Engineers (5)
+TCES 455 Devices and Controls (5)
+TCES 460 Embedded Systems Design (5)
+TCES 461 Hardware for Cryptography (5)
+TCES 480 Senior Project I (2)
+TCES 481 Senior Project II (4)
+TCES 482 Senior Project III (4)
+TCES 490 Special Topics (1-5, max. 10)
+TCES 497 Internship (1-10, max. 10)
+TCES 498 Directed Readings (1-10, max. 10)
+TCES 499 Undergraduate Research (1-10, max. 10)
+T CSL 510 Principles of Cybersecurity (5)
+T CSL 520 Business Essentials (5)
+T CSL 530 Cyber Risk Management (4)
+T CSL 540 Leadership and Team Dynamics (4)
+T CSL 550 Network and Internet Security (5)
+T CSL 560 Organizational Change and Strategy (5)
+T CSL 570 Cyber Forensics and Security Management (4)
+T CSL 580 Project Management (5)
+T CSL 591 Capstone Project I (2)
+T CSL 592 Capstone Project II (2)
+T CSL 600 Independent Study or Research (5)
+T CSL 601 Internship (5)
+TECE 510 Advanced Computer Architecture (5)
+TECE 512 Advanced Embedded Systems (5)
+TECE 514 Distributed Systems (5)
+TECE 516 Graphics Processing Unit Architecture (5)
+TECE 521 Advanced VLSI for Communication Systems (5)
+TECE 523 Wireless Integrated Circuit Design (5)
+TECE 531 Advanced Power System Operation (5)
+TECE 533 Renewable Energy Systems (5)
+TECE 535 Power Distribution Systems (5)
+TECE 537 Generalized Theory of Electrical Machines (5)
+TECE 539 Advanced Power Electronics (5)
+TECE 551 Control Systems Design (5)
+TECE 553 Digital Control Systems (5)
+TECE 555 Nonlinear Systems (5)
+TECE 557 Optimal and Robust Control (5)
+TECE 563 Modern Signal Processing (5)
+TECE 565 Advanced Random Signal Processing (5)
+TECE 567 Digital Communications (5)
+TECE 569 Wireless Communications (5)
+TECE 572 Microwave Engineering (5)
+TECE 573 Advanced Electromagnetics (5)
+TECE 590 Special Topics in Electrical and Computer Engineering (1-5, max. 5)
+TECE 598 Master's Seminar (1-5, max. 5)
+TECE 599 Capstone (1-5, max. 5)
+TECE 600 Independent Study or Research (1-5, max. 5)
+TECE 601 Internship (1-5, max. 10)
+TECE 700 Master's Thesis (1-15, max. 15)
+TEE 225 Engineering Ethics (5) A&H/SSc
+TEE 315 Electrical Circuits II (4)
+TEE 316 Electronics and Analog Circuits II (5)
+TEE 317 Electric Machines (5)
+TEE 331 Applied Electromagnetics (4)
+TEE 341 Communication Theory (4)
+TEE 372 Computer Architecture for Electrical Engineers (3)
+TEE 390 Undergraduate Seminar in Electrical Engineering (2)
+TEE 417 Power Electronics (5)
+TEE 431 Power Systems (5)
+TEE 433 Sustainable Energy for Future Power Grid (5)
+TEE 451 Control Systems (5)
+TEE 453 Digital Signal Processing (5)
+TEE 454 Digital Communication (5)
+TEE 456 Wireless Communication/RF Electronics (5)
+TEE 461 Image Processing (5)
+TEE 480 Senior Project I (2)
+TEE 481 Senior Project II (4)
+TEE 482 Senior Project III (4)
+TEE 490 Special Topics in Electrical Engineering (1-5, max. 5)
+TEE 497 Internship (1-5, max. 5)
+TEE 498 Directed Readings in Electrical Engineering (1-5, max. 5)
+TEE 499 Undergraduate Research in Electrical Engineering (1-5, max. 5)
+TEE 225 Engineering Ethics (5) A&H/SSc
+TEE 315 Electrical Circuits II (4)
+TEE 316 Electronics and Analog Circuits II (5)
+TEE 317 Electric Machines (5)
+TEE 331 Applied Electromagnetics (4)
+TEE 341 Communication Theory (4)
+TEE 372 Computer Architecture for Electrical Engineers (3)
+TEE 390 Undergraduate Seminar in Electrical Engineering (2)
+TEE 417 Power Electronics (5)
+TEE 431 Power Systems (5)
+TEE 433 Sustainable Energy for Future Power Grid (5)
+TEE 451 Control Systems (5)
+TEE 453 Digital Signal Processing (5)
+TEE 454 Digital Communication (5)
+TEE 456 Wireless Communication/RF Electronics (5)
+TEE 461 Image Processing (5)
+TEE 480 Senior Project I (2)
+TEE 481 Senior Project II (4)
+TEE 482 Senior Project III (4)
+TEE 490 Special Topics in Electrical Engineering (1-5, max. 5)
+TEE 497 Internship (1-5, max. 5)
+TEE 498 Directed Readings in Electrical Engineering (1-5, max. 5)
+TEE 499 Undergraduate Research in Electrical Engineering (1-5, max. 5)
+T INFO 110 Introduction to Cybersecurity (5) NSc, RSN
+T INFO 200 Programming II for Information Technology and Systems (5) NSc, RSN
+T INFO 210 Foundations of Information Management (5) RSN
+T INFO 220 Foundations of Human Computer Interaction for Information Technology and Systems (5) SSc
+T INFO 230 Foundations of Web Design and Programming (5) NSc, RSN
+T INFO 240 Discrete Math for Information Technology (5)
+T INFO 250 Foundations of Information Networking (5) RSN
+T INFO 310 Foundations of Information Assurance (5) RSN
+T INFO 320 Hardware and Software Systems (5) RSN
+T INFO 360 Information Systems Analysis and Design (5) RSN
+T INFO 370 Managing Technical Teams (5) SSc
+T INFO 390 Undergraduate Seminar in Information Technology and Systems (2, max. 12)
+T INFO 410 Database Design (5)
+T INFO 411 Information Technology Career Preparation (3)
+T INFO 431 Server Side Web Applications (5)
+T INFO 441 Network Security (5) RSN
+T INFO 442 Computer Security (5)
+T INFO 443 Digital Forensics (5) NSc
+T INFO 444 Mobile Digital Forensics I (5)
+T INFO 445 Mobile Digital Forensics II (5)
+T INFO 446 Mobile Digital Forensics III (5)
+T INFO 451 Routing and Switching (5)
+T INFO 452 Windows System Administration (5)
+T INFO 453 Wireless Networking (5)
+T INFO 457 Unix/Linux System Administration (5)
+T INFO 458 Advanced Unix/Linux System Administration (5)
+T INFO 461 Organizational Information Assurance (5) SSc
+T INFO 462 Building an Information Risk Management Toolkit (5) SSc
+T INFO 463 Establishing and Managing Information Assurance Strategies (5) SSc
+T INFO 470 Information Technology for Future Leaders (5)
+T INFO 473 Applied Data Structures and Algorithms (5)
+T INFO 475 Fundamentals of Privacy Engineering (5)
+T INFO 476 Threat Modeling (5)
+T INFO 480 Research Methods (5) SSc, RSN
+T INFO 481 Information Technology Design Project (5)
+T INFO 482 Senior Project (5)
+T INFO 490 Special Topics in Information Technology and Systems (1-5, max. 10)
+T INFO 497 Internship in Information Technology and Systems (1-10, max. 10)
+T INFO 498 Directed Readings (1-5, max. 10)
+T INFO 499 Undergraduate Research (1-5, max. 10)
+T INFO 501 Data Structures and Algorithms for Information Technology I (5)
+T INFO 502 Data Structures and Algorithms for Information Technology II (3)
+T INFO 503 Computer Networks for Information Technology (5)
+T INFO 504 Information Technology Project Management (5)
+T INFO 510 Cloud Computing (5)
+T INFO 520 Cyber Forensics (5)
+T INFO 530 Machine Learning for Information Technology Professionals (5)
+T INFO 540 Wireless and Mobile Security (5)
+T INFO 550 Human-Computer Interaction (5)
+T INFO 560 Internet of Things (5)
+T INFO 570 Information Technology Automation (5)
+T INFO 580 Homeland Security (5)
+T INFO 590 Development and Operations (5)
+T INFO 598 Master's Seminar (2)
+T INFO 600 Independent Study or Research (5)
+T INFO 601 Internship (5)
+T INFO 700 Master's Thesis (1-10, max. 10)
+T INFO 702 Capstone (1-10, max. 10)
+T INST 101 Fluency in Information Technology (5) RSN
+T INST 207 Living and Working in a Virtual World: Technologies of the World Wide Web (3) SSc
+T INST 310 Computational Problem Solving (5) RSN
+T INST 311 Database Management and Data Analysis (5) RSN
+T INST 312 Computer Networks and the Internet (5) RSN
+T INST 401 Technology in the Service of Society: A Seminar in the Integration of Technology and Social Interests (5) SSc
+T INST 475 Entrepreneurship in Computing and Software Systems (5)
+T INST 490 Special Topics in Applied Computing (5, max. 15)
+T INST 493 Technology and Society: a Global Perspective Study Abroad (12) SSc/A&H
+T INST 498 Directed Readings in Applied Computing (1-5, max. 10)
+T INST 499 Research in Applied Computing (1-5, max. 10)
+TME 221 Statics (4)
+TME 222 Mechanics of Materials (4)
+TME 223 Dynamics (4)
+TME 310 Computational Physical Modeling I (2)
+TME 311 Computational Physical Modeling II (2)
+TME 315 Introduction to 3D Modeling, Design, and Analysis (5) A&H
+TME 320 Fundamentals of Material Science (4)
+TME 331 Thermodynamics (5)
+TME 332 Fluid Mechanics (5)
+TME 341 Mechanical Design I (5)
+TME 342 Mechanical Design II (5)
+TME 345 Machining Fundamentals (3)
+TME 351 Engineering Probability and Statistics (3)
+TME 373 System Dynamics and Controls (5)
+TME 390 Undergraduate Seminar in Mechanical Engineering (1/2, max. 12)
+TME 402 Engineering License Exam Review (1, max. 3)
+TME 403 Engineering Economics (2)
+TME 411 Transport Phenomena for Biomedical Engineering (4)
+TME 412 Introduction to Cryo-Biomedical Engineering (4)
+TME 415 Sustainable Engineering and Design (4)
+TME 416 Life-Cycle Assessment (4)
+TME 425 Energy Efficiency in Buildings (4)
+TME 426 Renewable Energy Systems (4)
+TME 433 Heat Transfer (5)
+TME 435 Thermal System Design (4)
+TME 436 Power Plant Systems (4)
+TME 441 Mechatronics (5)
+TME 444 Mechanical Vibrations (4)
+TME 445 Manufacturing Processes (4)
+TME 447 Advanced Mechatronics (4)
+TME 449 Robotics (4)
+TME 478 Finite Element Analysis (4)
+TME 479 Computational Fluid Dynamics (4)
+TME 480 Senior Project I (2)
+TME 481 Senior Project II (3)
+TME 482 Senior Project III (4)
+TME 489 Engineering Research Methods (4)
+TME 490 Topics in Mechanical Engineering (1-5, max. 5)
+TME 491 Seminar in Mechanical Engineering (1-3, max. 3)
+TME 497 Internship in Mechanical Engineering (1-5, max. 8)
+TME 498 Directed Readings in Mechanical Engineering (1-5, max. 5)
+TME 499 Undergraduate Research in Mechanical Engineering (1-5, max. 5)
+T INTL 300 Foreign Study (*, max. 15)
+T INTL 399 Foreign Study (*, max. 15)
+T INTL 500 Foreign Study (*, max. 15)
+T AMST 101 American Art, Place & Space (5) SSc/A&H
+T AMST 120 Mythic America (5) A&H/SSc
+T AMST 210 American Cultures and Perspectives: Class, Ethnicity, Gender, and Race (5) A&H/SSc, DIV
+T AMST 220 Introduction to Popular Culture (5) A&H
+T AMST 250 Science Fiction in American Culture (5) SSc/A&H
+T AMST 260 Introduction to Queer Studies (5) SSc, DIV
+T AMST 333 American Mama: Childbirth and Motherhood (5) SSc
+T AMST 350 American Food Studies (5) SSc
+T AMST 410 Studies in U.S. Popular Culture (5) A&H
+T AMST 420 Drugs and U.S. Culture (5) SSc
+T AMST 430 Queer Performances (5) A&H, DIV
+T AMST 440 Gender and American Childhood (5) SSc
+T AMST 450 Monstrous Imagination (5) A&H
+T AMST 490 American Studies Capstone (5)
+T AMST 101 American Art, Place & Space (5) SSc/A&H
+T AMST 120 Mythic America (5) A&H/SSc
+T AMST 210 American Cultures and Perspectives: Class, Ethnicity, Gender, and Race (5) A&H/SSc, DIV
+T AMST 220 Introduction to Popular Culture (5) A&H
+T AMST 250 Science Fiction in American Culture (5) SSc/A&H
+T AMST 260 Introduction to Queer Studies (5) SSc, DIV
+T AMST 333 American Mama: Childbirth and Motherhood (5) SSc
+T AMST 350 American Food Studies (5) SSc
+T AMST 410 Studies in U.S. Popular Culture (5) A&H
+T AMST 420 Drugs and U.S. Culture (5) SSc
+T AMST 430 Queer Performances (5) A&H, DIV
+T AMST 440 Gender and American Childhood (5) SSc
+T AMST 450 Monstrous Imagination (5) A&H
+T AMST 490 American Studies Capstone (5)
+T ANTH 101 Introduction to Anthropology (5) SSc
+T ANTH 201 Principles of Biological Anthropology (5) NSc
+T ANTH 354 History of the Concept of Culture (5) SSc
+T ANTH 365 North American Indian Traditions (5) SSc
+T ANTH 453 Health, Illness, and Culture (5) SSc
+T ANTH 454 Seminar on Health and Culture (5) SSc
+T ANTH 480 Linguistics Method and Theory (5) A&H/SSc
+T ARTS 101 Play and Place: Introduction to Creative Practices (5) A&H
+T ARTS 102 World Voices Vocal Ensemble I (1, max. 5) A&H
+T ARTS 103 World Voices Vocal Ensemble II (1, max. 5) A&H
+T ARTS 110 Music in Culture (1, max. 3) A&H
+T ARTS 115 Beginning Piano (3) A&H
+T ARTS 120 Music Appreciation (5) A&H
+T ARTS 125 Introduction to Western Music Theory (5) A&H
+T ARTS 150 Introduction to Theatre (5) A&H
+T ARTS 151 Fundamentals of Acting (5) A&H
+T ARTS 160 Introduction to American Musical Theater (5) A&H
+T ARTS 200 Studio Foundation I: Contemporary Art Strategies (5, max. 15) A&H
+T ARTS 203 Body Image and Art (5) A&H
+T ARTS 210 The African Diaspora through Music: The Rhythm, the Blues, and Beyond (5) A&H/SSc
+T ARTS 220 Exploring Classical Music in our Community (2) A&H
+T ARTS 225 Musical History of Tacoma (5) A&H
+T ARTS 230 Issues in the Arts (5) A&H
+T ARTS 240 Landscape in Contemporary Art (5) A&H
+T ARTS 251 Intermediate Acting: Scene Study (5) A&H
+T ARTS 252 Introduction to Stage Directing (5) A&H
+T ARTS 266 The Artist as Visionary and Dreamer (5) A&H
+T ARTS 280 3-Dimensional Art and Contemporary Approaches to Sculpture (5, max. 15) A&H
+T ARTS 281 Art and Culture in India (5) A&H/SSc
+T ARTS 282 Art and Culture in China (5) A&H/SSc
+T ARTS 283 Art and Culture in Japan (5) A&H/SSc
+T ARTS 284 Art and Culture in the Pacific (5) A&H/SSc
+T ARTS 311 History of Rock and Roll (5) A&H
+T ARTS 314 Rap Music, Identity, and Culture (5) A&H/SSc
+T ARTS 315 Music and Crisis (5) A&H
+T ARTS 320 Improvisational Theater and Performance in Everyday Life (5) A&H
+T ARTS 335 History of Photography (5) A&H
+T ARTS 336 Glass Arts (5) A&H
+T ARTS 351 Theatre Practicum (1-5, max. 15) A&H
+T ARTS 360 Women Artists from the Renaissance to the Present (5) A&H
+T ARTS 364 Feminist Drama (5) A&H, DIV
+T ARTS 367 Ideas Through Objects: A Conceptual Approach to Art (5) A&H
+T ARTS 368 Human Figure in Contemporary Art (5) A&H
+T ARTS 371 Theatre History: Ancient Drama (5) A&H
+T ARTS 372 Theatre History: World Drama through French Neoclassicism (5) A&H
+T ARTS 373 Theatre History: Modern Drama (5) A&H
+T ARTS 386 Contemporary Art and Studio Drawing (5) A&H
+T ARTS 390 Site Specificity in Art (5) A&H
+T ARTS 391 Reconstructing Self in Art (5) A&H
+T ARTS 393 Urban Walking as Creative Practice (5) A&H
+T ARTS 395 Community-Based Arts Practice (5) A&H
+T ARTS 402 Eco-Art: Art Created in Response to the Environmental Crisis (5) A&H
+T ARTS 404 Art in a Time of War (5) A&H
+T ARTS 405 Cultural Identity and Art (5) A&H
+T ARTS 406 Labor, Globalization, and Art (5) A&H
+T ARTS 407 Art and the Public (5) A&H
+T ARTS 410 Community and the Public Arts (5) A&H
+T ARTS 411 History of Jazz (5) A&H
+T ARTS 469 Art Theories, Methods, Philosophies (5) A&H
+T ARTS 471 Culture and Meaning in the Visual Arts (5) A&H
+T ARTS 480 Contemporary Art and Society-1945 to Present (5)
+T BIOL 102 Infectious Diseases in the 21st Century (5) NSc
+T BIOL 110 General Biology (6) NSc
+T BIOL 119 Biology Collaborative Learning Seminar (1, max. 3)
+T BIOL 120 Introductory Biology I (6) NSc
+T BIOL 130 Introductory Biology II (6) NSc
+T BIOL 140 Introductory Biology III (6) NSc
+T BIOL 202 Plant Biology and Ecology (5) NSc
+T BIOL 203 History and Ecology of Biological Invasions (5) NSc
+T BIOL 204 Tropical Ecology and Sustainability (5) NSc
+T BIOL 222 Evolution and Its Implications (5) NSc
+T BIOL 232 Issues in Biological Conservation (5) NSc
+T BIOL 234 Biology, History, and Politics of Salmon in the Pacific Northwest (5) NSc
+T BIOL 236 Sustainable Agriculture (5) NSc
+T BIOL 240 Human Biology and Environmental Interactions (5/6) NSc
+T BIOL 242 Aging and Biology (5) NSc
+T BIOL 252 The Nature of Human Diversity (5) NSc, DIV
+T BIOL 270 Genetics and Society (5) NSc
+T BIOL 301 General Microbiology (6) NSc
+T BIOL 302 Human Physiology (5) NSc
+T BIOL 303 Cellular Biology (6) NSc
+T BIOL 304 Molecular Biology (6) NSc
+T BIOL 305 Genetics and Genomics (6) NSc
+T BIOL 306 Animal Behavior (5) NSc
+T BIOL 307 Applied Entomology (6/7) NSc
+T BIOL 312 Sensory and Systems Neuroscience (5/6) NSc, RSN
+T BIOL 318 Biogeography (5/6) NSc
+T BIOL 320 Vertebrate Anatomy and Diversity (6) NSc
+T BIOL 340 Ecology and Its Applications (6) NSc
+T BIOL 350 Introduction to Epidemiology (5) NSc, RSN
+T BIOL 362 Introduction to Restoration Ecology (7) NSc
+T BIOL 401 Microbial Physiology (6) NSc
+T BIOL 404 Neotropical Field Studies Abroad: Ecology and Community (12, max. 24) NSc/SSc
+T BIOL 414 Immunology (5) NSc
+T BIOL 422 Evolution (5/6) NSc
+T BIOL 432 Forest Ecology Field Studies (7/12)
+T BIOL 434 Conservation Biology in Practice (6) NSc
+T BIOL 436 Systems Biology (5)
+T BIOL 438 Environmental Biology: Marine Invertebrates (6) NSc
+T BIOL 442 Marine Ecology (7) NSc
+T BIOL 452 Plants, Insects, and their Interactions (7) NSc
+T BIOL 455 Ecotoxicology (5) NSc
+T BIOL 456 Urban Animal Ecology (7) NSc
+T BIOL 462 Restoration Ecology Capstone: Introduction (2-) NSc
+T BIOL 463 Restoration Ecology Capstone: Proposal and Plan (-3-) NSc
+T BIOL 464 Restoration Ecology Capstone: Field Site Restoration (-5) NSc
+T BIOL 478 Environmental Microbiology (6) NSc
+TBIOMD 199 Preparation for Careers in Biomedical Sciences Seminar (1)
+TBIOMD 201 Introduction to Public Health (5) NSc/SSc
+TBIOMD 310 Foundational Skills in Biomedical Sciences (5) NSc
+TBIOMD 410 Biomedical Sciences Senior Seminar (3)
+TBIOMD 490 Context for Global Health Experiential Learning (1) SSc/NSc
+TBIOMD 491 Global Health Experiential Learning Program (2-4) NSc/SSc
+TBIOMD 492 Critical Reading in Biomedical Sciences Literature (3) NSc
+TBIOMD 494 Biomedical Science Community Engagement Internship (1-10, max. 15)
+TBIOMD 495 Biomedical Research Experience (3) NSc
+TBIOMD 496 Biomedical Sciences Research Internship ([1-10]-, max. 10) NSc
+TBIOMD 499 Undergraduate Research in the Biomedical Sciences ([1-10]-, max. 10) NSc
+T CHEM 105 Chemistry of Cooking (6) NSc
+T CHEM 131 Chemistry and Society (6) NSc
+T CHEM 139 Preparation for General Chemistry (3)
+T CHEM 142 General Chemistry I (6) NSc
+T CHEM 152 General Chemistry II (6) NSc
+T CHEM 162 General Chemistry III (6) NSc
+T CHEM 164 Chemistry Collaborative Learning Seminar (1, max. 3)
+T CHEM 245 Chemistry through History (5) NSc
+T CHEM 251 Organic Chemistry I (6) NSc
+T CHEM 261 Organic Chemistry II (6) NSc
+T CHEM 271 Organic Chemistry III (6) NSc
+T CHEM 333 Environmental Chemistry (6) NSc
+T CHEM 405 Biochemistry I (5/6) NSc
+T CHEM 406 Biochemistry II (5/6) NSc
+T CHEM 439 Analytical Chemistry with Environmental Applications (7)
+TCHIN 101 First-Year Chinese (5)
+TCHIN 102 First-Year Chinese (5)
+TCHIN 103 First-Year Chinese (5)
+TCHIN 201 Second-Year Chinese (5) A&H
+TCHIN 202 Second-Year Chinese (5) A&H
+TCHIN 203 Second-Year Chinese (5) A&H
+TCOM 101 Critical Media Literacy (5) SSc
+TCOM 201 Media and Society (5) SSc
+TCOM 220 Social Media (5) SSc
+TCOM 230 Media Globalization and Citizenship (5) SSc
+TCOM 247 Television Studies (5) SSc
+TCOM 250 Media Activism (5) SSc
+TCOM 254 Communication History (5) SSc
+TCOM 257 Ethical Issues in Mass Communication (5) A&H/SSc
+TCOM 258 Children and Media (5) SSc
+TCOM 275 Writing, Reporting, and Editing for the Mass Media (5) A&H
+TCOM 310 Contemporary Environmental Issues and the Media (5) SSc
+TCOM 312 Ecology, Inequality, and Popular Culture (5) SSc, DIV
+TCOM 320 Principles of Web Design (5) A&H
+TCOM 330 Mobile Communication and Social Practice (5) SSc
+TCOM 340 Global TV: Format, Genre, and Reception (5) SSc
+TCOM 343 Global Music Video (5) A&H
+TCOM 347 Television Criticism and Application (5) A&H
+TCOM 348 Non-fiction Writing for Television (5) A&H
+TCOM 349 News Writing (5) A&H
+TCOM 350 Editing and Design for Print Media (5) A&H
+TCOM 351 Video Production (5, max. 10) A&H
+TCOM 380 Political Economy of the Media (5) SSc
+TCOM 387 Writing for Public Relations (5) A&H
+TCOM 420 Advanced Web Design (5) A&H
+TCOM 430 Global Networks, Local Identities (5) SSc
+TCOM 440 Advertising and Consumer Culture (5) SSc
+TCOM 444 Gender, Ethnicity, Class, and the Media (5) SSc, DIV
+TCOM 453 Critical Approaches to Mass Communication (5) SSc
+TCOM 454 Communications Law (5) SSc
+TCOM 460 Communication for Development and Social Change (5) A&H/SSc
+TCOM 461 Media and Identity in Asia (5) SSc
+TCOM 464 Field Research in Communication (5) SSc
+TCOM 465 Contemporary Free Speech Issues (5) SSc
+TCOM 470 Documentary Production and Critique (5) A&H
+TCOM 471 Advanced Video Production (5) A&H
+TCOM 480 Critical Media Industry Studies (5, max. 10) SSc
+TCOM 481 Communication Regulation and Policy (5) SSc
+TCOM 482 Investigative Reporting (5) SSc
+TCOM 484 Opinion Writing for Mass Media (5) SSc
+TCOM 486 Feature Writing for Print Media (5) A&H
+TCOM 490 Communication Capstone Internship (5-10)
+TCOM 495 Communication Capstone Thesis (5)
+TCOM 498 Study Abroad in Communication (5-15, max. 15) SSc
+TCOM 499 Special Topics in Communication (5, max. 10) A&H
+TECON 101 Understanding Economics (5) SSc, RSN
+TECON 200 Introduction to Microeconomics (5) SSc, RSN
+TECON 201 Introduction to Macroeconomics (5) SSc, RSN
+TECON 305 Ethics and Economics (5) SSc
+TECON 310 Research Seminar in Economics (5) SSc
+TECON 316 Current Issues in U.S. Public Policy (5) SSc
+TECON 320 Gender and Development (5) SSc
+TECON 321 Economics of Education (5) SSc
+TECON 325 Contemporary Issues in International Political Economy (5) SSc
+TECON 350 Law and Economics (5)
+TECON 360 Poverty in Developing Countries (5) SSc
+TECON 361 Current Issues in the Chinese Economy (5) SSc
+TECON 362 China's Rise and its Global Economic Implications (5) SSc
+TECON 370 Economics and Social Mobility (5) SSc
+TECON 410 Economics of Public Policy (5) SSc
+TECON 418 Urban Problems and Policies (5) SSc
+TECON 421 Environmental Policy (5) SSc/NSc
+TECON 430 Behavioral Economics (5) SSc
+TECON 441 International Economics (5) SSc
+TECON 450 Labor Economics and Policy (5) SSc
+TECON 470 Economics of Health and Health Policy (5) SSc
+TECON 480 Seminar in Economic Analysis (5) SSc
+TECON 496 Internship in Economics and Policy Analysis (5-15, max. 15) SSc
+TESC 102 Aquatic Ecosystems in Urban Areas (5) NSc
+TESC 200 Environmental Seminar (2, max. 6) NSc
+TESC 201 The Science of Environmental Sustainability (5) NSc
+TESC 210 Introductory Research Experience in the Sciences (6) NSc
+TESC 239 Energy and the Environment (5) NSc
+TESC 279 Science and Mathematics Study Abroad (3-15, max. 15) SSc, RSN
+TESC 301 Sustainability in Action (3) NSc
+TESC 303 Sustainable Development in Africa - Study Abroad (12) SSc/NSc
+TESC 310 Environmental Research Seminar (3) NSc
+TESC 345 Pollution and Public Policy (5) NSc
+TESC 410 Environmental Science Senior Seminar (3) NSc
+TESC 430 Environmental Modeling (6) NSc, RSN
+TESC 433 Pollutant Fate and Transport in the Environment (6)
+TESC 435 Limnology (7) NSc
+TESC 437 Stream Ecology (7) NSc
+TESC 490 Special Topics in Environmental Science (5-7, max. 13) NSc
+TESC 494 Environmental Science Community Engagement Internship (1-10, max. 15)
+TESC 495 Environmental Research Experiences (3) NSc
+TESC 496 Environmental Sciences Research Internship (1-10, max. 10) NSc
+TESC 497 Senior Thesis (5) NSc
+TESC 498 Directed Readings (1-5, max. 5) NSc
+TESC 499 Undergraduate Research (1-10, max. 10) NSc
+TEST 200 Fundamentals of Environmental Sustainability (5) SSc
+TEST 295 Valuing Ecosystems Services and Natural Capital (5) NSc
+TEST 332 A Natural History of Garbage (5) SSc/NSc
+TEST 337 Natural Resources Policy: America's Public Forests and Parks (5) SSc
+TEST 343 Water Quality Regulation (5) SSc
+TEST 345 Investing in the Environment (5) SSc
+TEST 495 Environmental Studies Experience (3) NSc
+T EGL 101 Introduction to Ethnic, Gender, and Labor Studies (5) SSc, DIV
+T EGL 110 Introduction to Diversity (3) DIV
+T EGL 112 Introduction to Indigenous Studies (5) A&H, DIV
+T EGL 201 Introduction to Indigenous Philosophy (5) SSc, DIV
+T EGL 202 Introduction to American Indian Contemporary Issues (5) SSc, DIV
+T EGL 210 Introduction to Qualitative Methodology and Research Ethics (5) SSc
+T EGL 266 Introduction to Labor Studies (5) SSc, DIV
+T EGL 271 American Indians in Film (5) A&H, DIV
+T EGL 301 Introduction to Indigenous Women and Feminism (5) SSc, DIV
+T EGL 302 Tribal Critical Race Theory and Critical Race Theory (5) SSc, DIV
+T EGL 303 Introduction to American Indian Education (5) SSc, DIV
+T EGL 304 Indigenous Ethnoecology (5) SSc, DIV
+T EGL 305 The American Indian Movement (5) SSc, DIV
+T EGL 306 Indigenous Peoples of the Pacific (5) SSc, DIV
+T EGL 310 Intersectional Feminisms (5) SSc, DIV
+T EGL 340 Intersections: Race, Gender, and Sexuality in a Global Perspective (5) SSc, DIV
+T EGL 365 Indigenous Ethnobiology (5) SSc, DIV
+T EGL 380 Gender and Sexuality Across Cultural and Historical Contexts (5) SSc, DIV
+T EGL 401 Critical and Indigenous Methodologies (5) SSc, DIV
+T EGL 419 African-American Culture and Consciousness (5) SSc, DIV
+T EGL 435 Migration in the Modern World: Migrants, Immigrants, and Refugees (5) SSc, DIV
+T EGL 464 Indigenous Health, Political Ethnoecology and Governance (5, max. 15) SSc, DIV
+T EGL 498 Study Abroad: Intersections (5-12)
+T FILM 201 Introduction to Film Studies (5) A&H
+T FILM 220 Film and the Arts (5) A&H
+T FILM 348 Film and Human Values (5, max. 10) A&H/SSc
+T FILM 350 Screenwriting (5) A&H
+T FILM 377 Spanish Film (5) A&H
+T FILM 380 Hollywood Cinema I: Hollywood's Golden Age 1930-1959 (5) A&H
+T FILM 381 Hollywood Cinema II: Post-Classical Hollywood 1960-2000 (5) A&H
+T FILM 386 Silent Cinema (5) A&H
+T FILM 387 World Film 1927-1959 (5) A&H
+T FILM 388 World Film 1960-2000 (5) A&H
+T FILM 420 Contemporary World Cinema (5) A&H
+T FILM 434 Disability in Film (5) A&H, DIV
+T FILM 436 Feminist Perspectives in Film and Literature (5) A&H, DIV
+T FILM 438 Gender and Sexuality in Film (5) A&H, DIV
+T FILM 440 Writing Film Criticism (5) A&H
+T FILM 444 Crime Narratives and Society (5) SSc/A&H
+T FILM 481 Film Theory and Aesthetics (5) A&H
+T FILM 483 Film Directors (5, max. 10) A&H
+T FILM 485 Media Genres (5, max. 10) A&H
+T FILM 487 Cinema, Time, and Memory (5) A&H
+T FILM 489 Screendance (5) A&H
+T FILM 499 Special Topics in Film Studies (5, max. 10) A&H
+T GEOG 101 Introduction to Geography (5) SSc
+T GEOG 210 Geographies of Global Change (3) SSc
+T GEOG 321 Urban Geography (5) SSc
+T GEOG 349 Geography and International Trade (5) SSc
+T GEOG 352 Cultural Geography (5) SSc
+T GEOG 403 Geography of the United States of America and Canada (5) NSc
+T GEOG 420 Gender, Space and Culture (5) SSc, DIV
+T GEOG 435 Contemporary Geopolitics (5) SSc
+T GEOG 440 Political Geography: Territory, State and Society (5) SSc
+T GEOS 107 Geohazards and Natural Disasters (5) NSc
+T GEOS 117 Physical Geology (6) NSc
+T GEOS 215 Meteorology (5/6) NSc
+T GEOS 216 Pacific Northwest Geology (5) NSc
+T GEOS 226 Pacific Northwest Geology Field Trip (1) NSc
+T GEOS 227 Earth History (5) NSc
+T GEOS 241 Oceanography (5/6) NSc
+T GEOS 243 Geography of the Physical Environment (5-6) NSc
+T GEOS 319 From Mountains to Sea: Comparative Volcanoes (7) NSc
+T GEOS 335 Introduction to Geomorphology (6) NSc
+T GEOS 337 Environmental Geology (6) NSc
+T GEOS 341 Climate Change (5) NSc
+T GEOS 343 The Atmosphere and Air Pollution (6) NSc
+T GEOS 347 Environmental Earth Materials (6) NSc
+T GEOS 415 Sedimentology (6) NSc
+T GEOS 417 Field Geology (7/12) NSc
+T GEOS 419 Environmental Field Geophysics (7) NSc
+T GEOS 445 Estuarine Field Studies (7) NSc
+T GH 101 Introduction to Global Honors (2)
+T GH 203 Themes in Global Honors (5)
+T GH 300 Re-Orienting the Global (2) SSc
+T GH 301 Global Interactions (5) SSc
+T GH 302 Global Imaginations (5) A&H
+T GH 303 Global Challenges (5) SSc
+T GH 399 Global Honors Study Abroad (3-15, max. 15)
+T GH 490 Research Methods Seminar (2)
+T GH 491 Thesis Symposium (1)
+T GH 494 Thesis or Project for Global Honors - (4-5, max. 10)
+T GH 495 Independent Study (1-5, max. 10)
+T GH 496 Experiential Learning in Global Honors (5)
+T HIST 101 Introduction to History Methods (5) SSc
+T HIST 102 Introduction to Global Studies (5) SSc
+T HIST 111 The Ancient World (5) SSc
+T HIST 112 The Medieval World (5) SSc
+T HIST 150 World History: Prehistory to 1500 (5) SSc
+T HIST 151 World History II 1500 to Present (5) SSc
+T HIST 200 American History I, 1607-1877 (5) SSc
+T HIST 201 American History II, 1877-present (5) SSc
+T HIST 202 Global Theories and Methods (5) A&H/SSc
+T HIST 203 Modern Europe in Global History (5) SSc
+T HIST 212 American Military History I (5) SSc
+T HIST 213 American Military History II (5) SSc
+T HIST 220 African American History 1619-1865 (5) SSc, DIV
+T HIST 221 African-American History 1865-1945 (5) SSc, DIV
+T HIST 222 African-American History 1945-Present (5) SSc, DIV
+T HIST 231 The Ancient Mediterranean World (5) SSc
+T HIST 251 The Global Twentieth Century (5) A&H/SSc
+T HIST 260 Empires and Imperialism in World History (5) SSc
+T HIST 270 Premodern East Asia (5) SSc
+T HIST 271 Modern East Asia (5) SSc
+T HIST 280 German Cultural History (5) A&H
+T HIST 290 A World History of Food (5) SSc
+T HIST 315 Industrialization and Reform (5) SSc
+T HIST 320 Asian American History (5) SSc
+T HIST 322 American Labor Since the Civil War (5) SSc
+T HIST 333 Early American Music, Art, Literature, and Theater (5) A&H
+T HIST 336 Black, Labor, and Protest Music in Historical Perspective (5) A&H/SSc
+T HIST 340 History of United States-American Indian Relations (5) SSc
+T HIST 341 African-American History (5) SSc
+T HIST 343 Vietnam and the 1960s (5) SSc
+T HIST 349 Minorities and Higher Education in American History (5) SSc
+T HIST 350 Modern Germany Since 1848 (5) SSc
+T HIST 356 History of Christianity (5) SSc
+T HIST 363 Making of Russia (5) SSc
+T HIST 364 Modern Russia (5) SSc
+T HIST 365 Europe in the Twentieth Century (5) SSc
+T HIST 366 Europe in the Twenty-First Century (5) SSc
+T HIST 372 Comparative Perspectives on East Asian and Latin American Development (5) SSc
+T HIST 375 British Empire (5) SSc
+T HIST 376 Global Diasporas, Borders, and Refugees in Visual Culture (5) SSc/A&H
+T HIST 377 Art of the Americas (5) A&H
+T HIST 378 American Architecture (5) A&H
+T HIST 379 Modern Architecture (5) A&H
+T HIST 380 History Methods Research and Writing Seminar (5)
+T HIST 385 Russian Civilization (5) A&H/SSc
+T HIST 410 Early American Politics, Constitution, and Law (5, max. 10) SSc
+T HIST 411 History of Religion in America (5) SSc
+T HIST 413 Civil Rights, Civil Liberties (5, max. 10) SSc
+T HIST 416 Life and Thought: Martin Luther King, Malcolm X, and Angela Davis (5) SSc, DIV
+T HIST 417 United States History 1945-Present (5) SSc, DIV
+T HIST 420 African-American Religious History (5) SSc, DIV
+T HIST 430 Introduction to Public History (5) A&H/SSc
+T HIST 437 Doing Community History (5, max. 10) SSc
+T HIST 440 Black Labor in America (5) SSc, DIV
+T HIST 441 Black Freedom Movement in Perspective (5) SSc, DIV
+T HIST 442 History of African American Education (5) SSc
+T HIST 444 The Pacific Northwest (5) SSc
+T HIST 445 History of Tacoma (5) SSc
+T HIST 451 Renaissance Europe (5) SSc
+T HIST 452 Art, Culture, and History of the Eternal City (12) A&H/SSc
+T HIST 456 North American Regions I&S (5, max. 10) SSc
+T HIST 457 Anti-Semitism and the Holocaust (5) SSc
+T HIST 462 History of Vietnam (5) SSc
+T HIST 463 Premodern Japan (5) SSc
+T HIST 464 Modern China (5) SSc
+T HIST 465 Modern Japan (5) SSc
+T HIST 466 Modern Korea (5) SSc
+T HIST 467 Siberia and the Russian Far East (5) SSc
+T HIST 470 The Material World: Art and Artifacts (5/7) A&H
+T HIST 474 Imperial China (5) SSc
+T HIST 475 Twentieth-Century Britain (5) SSc
+T HIST 477 Reformation and Counter-Reformation Europe (5) A&H
+T HIST 478 Europe in the Nineteenth Century (5) A&H
+T HIST 479 Modern European Culture (5) A&H
+T HIST 480 Eastern Europe in Transition, 1940-2000 (5)
+T HIST 484 The Pacific War (5) SSc
+T HIST 486 Contemporary Chinese Culture and Society (5) SSc
+T HIST 487 Technology in the Modern World (5) SSc
+T HIST 488 History of Urbanization and the Environment (5) SSc
+T HIST 490 Medieval Technology (5) SSc
+T HIST 491 Advanced Topics in the Ancient and Medieval Mediterranean World (5, max. 10) SSc
+T HIST 495 The Metropolis (5, max. 10) SSc
+T HIST 497 Senior Thesis (5)
+T HIST 498 History Capstone (5) SSc
+TIAS 109 Elementary Intensive German Study Abroad (6)
+TIAS 209 Intermediate Intensive German Study Abroad (6) A&H
+TIAS 299 Classroom to Career (3)
+TIAS 300 The Making of America (5) SSc
+TIAS 305 Seminar in Interdisciplinary Arts and Sciences (2, max. 10)
+TIAS 309 Advanced Intensive German Study Abroad (6) A&H
+TIAS 328 The American Environment: Literature, Culture, and Social Policy (5) SSc
+TIAS 330 German Culture, History, and Philosophy: Frankfurt am Main (6) A&H/SSc
+TIAS 340 Development and Wellness in Africa (5)
+TIAS 396 Internships and Career Development (2)
+TIAS 443 Ethnicity and the Urban Landscape (5) SSc
+TIAS 480 Experiencing China (5/10) SSc
+TIAS 485 Study Abroad in the Social Sciences (5-15, max. 24) SSc
+TIAS 486 Art and the Evolution of Consciousness (5-12) SSc/A&H
+TIAS 490 Special Topics (3-5, max. 15)
+TIAS 491 Professional Portfolio Design (2)
+TIAS 492 Independent Creative Project (1-5)
+TIAS 493 Contemporary Spanish Culture (5) SSc/A&H
+TIAS 494 Honors Thesis/Project (1-5, max. 10)
+TIAS 496 Internship (1-15, max. 15)
+TIAS 497 Senior Thesis (5)
+TIAS 498 Directed Readings (1-5, max. 15)
+TIAS 499 Undergraduate Research (1-5, max. 15)
+TIAS 501 Models and Critical Inquiry (5)
+TIAS 502 Culture and Public Problems (5)
+TIAS 503 Evidence and Action (5)
+TIAS 504 Values and Action (5)
+TIAS 505 IAS M.A. Capstone (5)
+TIAS 513 Graduate Research and Writing (5)
+TIAS 515 Themes in the Interpretation of Culture (5)
+TIAS 520 Critical Analyses of Foundational Texts (5)
+TIAS 530 German Culture, History, and Philosophy: Frankfurt am Main (6)
+TIAS 548 Cultural Administration and Policy (5)
+TIAS 590 Independent Study (1-10, max. 20)
+TIAS 596 Internship (1-10, max. 10)
+TIAS 598 Directed Readings (1-10, max. 20)
+TIAS 599 Directed Research (1-10, max. 20)
+TIAS 605 Degree Project (1-10, max. 30)
+TIAS 700 Thesis ([1-10]-)
+T LAX 225 Latinx/a/o Cultural Expressions (5) A&H, DIV
+T LAX 238 Latinos in the United States (5) A&H/SSc, DIV
+T LAX 250 Latinos/as in the Media (5) A&H, DIV
+T LAX 267 Introduction to Chicano/a Literature (5) A&H, DIV
+T LAX 277 Latin American Literature (5) A&H
+T LAX 290 Latinx Social Movements (5) SSc, DIV
+T LAX 333 US Latino Histories (5) SSc, DIV
+T LAX 340 Religions in Las Americas (5) SSc, DIV
+T LAX 355 Migration and the Transnational Family in Latino Literature and Film (5) A&H/SSc, DIV
+T LAX 356 Latinx Urban Communities (5) SSc, DIV
+T LAX 360 Latinx Performance Histories (5) A&H, DIV
+T LAX 376 Latin American Film (5) A&H
+T LAX 380 Latinx Sexualities (5) SSc, DIV
+T LAX 400 Afro-Hispanic Culture (5) A&H
+T LAX 410 Caribbean Basin: Selected Topics (5, max. 10) SSc
+T LAX 435 Popular Movements in Latin America (5) SSc
+T LAX 441 Mexican Cinema and Society (5) SSc/A&H
+T LAX 461 Contemporary Mexican Culture (5) A&H
+T LAX 462 Women in Latin America (5) A&H/SSc, DIV
+T LAX 463 Contemporary Cuban Culture (5) A&H
+T LAX 465 Latin American Visual Arts (5) A&H
+T LAX 476 Latin American Women Writers (5) A&H
+T LAW 150 Introduction to the American Legal System (5) SSc
+T LAW 200 Pre-Law Seminar (2)
+T LAW 215 Introduction to International Organizations (5) SSc
+T LAW 300 Street Law (2, max. 4) SSc
+T LAW 320 American Constitutional Law: Institutional Powers and Constraints (5) SSc
+T LAW 339 Washington Environmental Law (5)
+T LAW 348 Gender and Law (5) SSc, DIV
+T LAW 361 American Constitutional Law: Rights and Liberties (5) SSc
+T LAW 363 Law in Society (5) SSc
+T LAW 367 Comparative Law and Courts (5) SSc
+T LAW 422 International Humanitarian Law (5) SSc
+T LAW 423 International Law (5) SSc
+T LAW 424 The Politics and Law of International Human Rights (5) SSc
+T LAW 438 Federal Environmental Law (5) SSc
+T LAW 452 Race, Ethnicity, and the Law (5) SSc, DIV
+T LAW 465 Law and Public Policy in the United States (5) SSc
+T LAW 486 Field Work in Law and Policy (5) SSc
+T LAW 496 Law and Policy Internship (5-15, max. 15) SSc
+T LIT 101 Understanding Literature (5) A&H
+T LIT 210 Studies in American Literature (5) A&H
+T LIT 220 Literature and the Arts (5) A&H
+T LIT 230 Multi-Ethnic American Literature (5) A&H, DIV
+T LIT 237 Introduction to Literature and Environment (5) A&H
+T LIT 240 Studies in English Literature (5) A&H
+T LIT 251 Ancient Literature of Western Civilization (5) A&H
+T LIT 252 Medieval and Renaissance Literature of Western Civilization (5) A&H
+T LIT 253 Modern Literature of Western Civilization (5) A&H
+T LIT 305 American Literary Movements, Genres, and Historical Periods (5, max. 10) A&H
+T LIT 306 Studies in Selected American Writers (5) A&H
+T LIT 311 Themes in American Literature (5, max. 10) A&H
+T LIT 313 American Poetry (5) A&H
+T LIT 320 African American Literature from Slavery to the Present (5) A&H, DIV
+T LIT 324 African American Women's Literature (5) A&H, DIV
+T LIT 325 Medical and Ethical Issues in Literature and Culture (5) A&H
+T LIT 331 Immigrant and Ethnic Literature (5) A&H
+T LIT 332 Asian American Literature (5) A&H
+T LIT 335 Middle Eastern American Literature (5) A&H, DIV
+T LIT 338 Writing in the Pacific Northwest (5) A&H
+T LIT 343 Shakespeare (5, max. 10) A&H
+T LIT 344 Oregon Shakespeare Festival (2) A&H
+T LIT 351 Ancient Greek Tragedy (5) A&H
+T LIT 352 Medieval Quests (5) A&H
+T LIT 371 The World Stage (5, max. 10) A&H
+T LIT 380 Myth and Literary Sagas in Creative Expression (5) A&H
+T LIT 388 Cross Cultural Studies in Contemporary Women's Fiction (5) A&H, DIV
+T LIT 390 Varieties of Literary Criticism (5) A&H
+T LIT 391 Science Fiction Literature (5) A&H
+T LIT 406 Children's and Young Adult Literature (5) A&H
+T LIT 425 Literature of the Harlem Renaissance (5) A&H, DIV
+T LIT 431 Contemporary Native American Women's Literature (5) A&H, DIV
+T LIT 432 American Indian Literature (5, max. 10) A&H
+T LIT 433 Native American Literature and Federal Indian Law (5) SSc/A&H, DIV
+T LIT 437 Topics in Literature and Environment (5) A&H
+T LIT 458 Modern Novel (5) A&H
+T LIT 476 American Women's Literature: Nineteenth and Twentieth Century Texts (5) A&H, DIV
+T LIT 481 Postcolonial Fiction (5) A&H
+T LIT 487 African Folklore and Literature (5) SSc
+TMATH 098 Intermediate Algebra (0)
+TMATH 105 Mathematics Through Puzzles and Games (5) RSN
+TMATH 106 Spatial and Geometric Reasoning (5) RSN
+TMATH 109 Financial and Mathematical Foundations (5) RSN
+TMATH 110 Introductory Statistics with Applications (5) NSc, RSN
+TMATH 115 Pre-calculus I: Functions (5) RSN
+TMATH 116 Pre-calculus II: Trigonometry (5) NSc, RSN
+TMATH 120 Precalculus (5) NSc, RSN
+TMATH 124 Calculus with Analytic Geometry I (5) NSc, RSN
+TMATH 125 Calculus with Analytic Geometry II (5) NSc
+TMATH 126 Calculus with Analytic Geometry III (5) NSc
+TMATH 158 Pre-Calculus Collaborative Learning Seminar (1, max. 2)
+TMATH 159 Calculus I Collaborative Learning Seminar (1, max. 3)
+TMATH 160 Calculus II Collaborative Learning Seminar (1, max. 3)
+TMATH 171 Mathematics for Teachers I: Number Systems and Algebraic Concepts (5) RSN
+TMATH 172 Mathematics for Teachers II: Statistics and Modeling (5) RSN
+TMATH 173 Mathematics for Teachers III: Geometry and Measurement (5) RSN
+TMATH 207 Introduction to Differential Equations (5) NSc, RSN
+TMATH 208 Matrix Algebra with Applications (5) NSc, RSN
+TMATH 210 Intermediate Statistics with Applications (5) NSc, RSN
+TMATH 300 Foundations of Mathematical Reasoning (5) NSc, RSN
+TMATH 316 Financial Mathematics (5) RSN
+TMATH 324 Multivariable Calculus (5) NSc, RSN
+TMATH 342 Applied Topology (5) RSN
+TMATH 344 Fundamentals of Geometry (5) NSc, RSN
+TMATH 350 Foundations of Mathematical Research (3) RSN
+TMATH 351 Mathematics Seminar (1, max. 2)
+TMATH 390 Probability and Statistics in Engineering and Science (5) NSc, RSN
+TMATH 393 Introduction to Probability Models (5) NSc, RSN
+TMATH 402 Introduction to Abstract Algebra I (5) NSc
+TMATH 403 Abstract Algebra II (5) NSc, RSN
+TMATH 410 Regression Modeling with Applications (5) RSN
+TMATH 412 Cryptography: Theory and Practice (5) RSN
+TMATH 413 Coding Theory (5) RSN
+TMATH 420 History of Mathematics (5) SSc, RSN
+TMATH 424 Introduction to Real Analysis I (5) NSc, RSN
+TMATH 425 Introduction to Real Analysis II (5) RSN
+TMATH 427 Complex Analysis (5) RSN
+TMATH 450 Mathematics Capstone (4) RSN
+TMATH 490 Special Topics in Quantitative Studies (1-7, max. 21) NSc, RSN
+TMATH 495 Collaborative Mathematics Research Experience (3) RSN
+TMATH 496 Mathematics Internship (1-5, max. 10)
+TMATH 498 Directed Readings in Mathematics (1-5, max. 10)
+TMATH 499 Undergraduate Research in Mathematics (1-5, max. 10) RSN
+TNPRFT 231 Introduction to Nonprofit Sector (5) SSc
+TNPRFT 432 Organizational Development (5) SSc
+TNPRFT 448 Cultural Administration and Policy (5) SSc
+TNPRFT 449 Museum Studies (5) SSc
+TNPRFT 450 Methods of Museum Interpretation (5) A&H
+TNPRFT 451 Essentials of Grant Writing (5) SSc
+TNPRFT 453 Nonprofit Financial Literacy (5) SSc
+TNPRFT 455 Philanthropy and Social Change (5)
+TNPRFT 457 Nonprofit Capstone (5) SSc
+TNPRFT 490 Nonprofit Internship/Capstone (5) SSc
+TNPRFT 531 Community Organizations and the Nonprofit Sector (5)
+TNPRFT 532 Organizational Development (5)
+TNPRFT 551 Essentials of Grant Writing (5)
+TNPRFT 553 Nonprofit Financial Literacy (5)
+TNPRFT 555 Philanthropy and Social Change (5)
+TNPRFT 590 Nonprofit Internship/Capstone (5)
+TNPRFT 601 Internship (1-10, max. 15)
+T PHIL 101 Introduction to Philosophy (5) SSc
+T PHIL 200 Introduction to the Philosophy of Human Rights (5) SSc
+T PHIL 240 Introduction to Ethics (5) A&H/SSc
+T PHIL 250 Practical Reasoning (5) SSc, RSN
+T PHIL 251 Data and Discourse (5) SSc
+T PHIL 270 Case Studies in Medical Ethics (2, max. 4) SSc
+T PHIL 310 Chinese Philosophy (5) SSc
+T PHIL 314 Philosophy of Crime and Punishment (5) SSc
+T PHIL 315 Chinese Philosophy and Religions Today (5)
+T PHIL 350 Contemporary Search for Meaning (5) SSc
+T PHIL 353 The End of the Modern World: 1600 - 2000 (5) SSc
+T PHIL 354 American Modes of Thought and Experience (5) SSc
+T PHIL 355 The Modern Mind (5) A&H/SSc
+T PHIL 356 Themes in American Philosophy (5, max. 10) SSc
+T PHIL 358 History of Philosophy: Medieval and Modern (5) SSc
+T PHIL 359 Themes in Existentialism (5, max. 10)
+T PHIL 360 History of Philosophy: Modern and Contemporary (5) SSc
+T PHIL 361 Ethics in Society (5) A&H/SSc
+T PHIL 362 The Beautiful and the Good: Philosophy's Quest for Value (5) SSc
+T PHIL 364 Topics in the Philosophy of Science (5, max. 10) SSc
+T PHIL 367 Utopias (5)
+T PHIL 410 Social Philosophy (5) SSc
+T PHIL 414 Philosophy of Law (5) SSc
+T PHIL 451 The Enlightenment (5) SSc
+T PHIL 453 Political Theory of Human Rights (5) SSc
+T PHIL 455 Medicine and Morality: Issues in Biomedical Ethics (5) A&H/SSc
+T PHIL 456 Environmental Ethics (5) A&H/SSc
+T PHIL 460 The Meaning of the Person (5) SSc
+T PHIL 466 Philosophy of the Future (5, max. 10) SSc
+T PHYS 111 Introduction to Astronomy (5) NSc, RSN
+T PHYS 120 Physics Collaborative Learning Seminar (1, max. 3)
+T PHYS 121 Physics - Mechanics (6) NSc
+T PHYS 122 Physics - Electromagnetism and Oscillatory Motion (6) NSc
+T PHYS 123 Physics - Waves (6) NSc
+T PHYS 215 History and Science of Space Exploration (5) NSc
+T PHYS 315 Applied Physics with Environmental Applications (6) NSc
+TPOL S 123 Introduction to Globalization (5) SSc
+TPOL S 201 Introduction to Political Values and Ideas (5) SSc
+TPOL S 202 Introduction to American Politics (5) SSc
+TPOL S 203 Introduction to International Relations (5) SSc
+TPOL S 204 Introduction to Comparative Politics (5) SSc
+TPOL S 210 Debate (2) SSc
+TPOL S 230 International Human Rights (5) SSc
+TPOL S 251 Cultural Studies (5, max. 10) SSc
+TPOL S 260 American Political Theory (5) SSc, DIV
+TPOL S 270 Introduction to Political Economy (5) SSc
+TPOL S 275 Political Rhetoric (5) SSc
+TPOL S 300 Mass Media and U.S. Politics (5) SSc
+TPOL S 305 Campaigns and Elections (5) SSc
+TPOL S 310 Modern European Political Theory (5) SSc
+TPOL S 317 The Politics of Race and Ethnicity in the United States (5) SSc, DIV
+TPOL S 319 Theories of Political Violence (5) SSc
+TPOL S 321 American Foreign Policy (5) SSc
+TPOL S 322 War and Politics (5) SSc
+TPOL S 323 The Practice of War (5) SSc
+TPOL S 324 War, Activism, and Ethics (5) SSc
+TPOL S 325 Issues in Local Government (5) SSc
+TPOL S 329 Making of Modern Africa (5) SSc
+TPOL S 340 Middle East Politics (5) SSc
+TPOL S 341 Conflict and Cooperation in the Middle East (5) SSc
+TPOL S 343 Community and Labor Organizing: A Multicultural Perspective (5) SSc, DIV
+TPOL S 350 Politics and Film in the Middle East (5) A&H/SSc
+TPOL S 353 United States Congress (5) SSc
+TPOL S 355 Reproductive Politics, Law, and Justice (5) SSc
+TPOL S 360 Genocide (5) SSc
+TPOL S 371 The Politics of Security (5) SSc
+TPOL S 382 State Government (5) SSc
+TPOL S 400 The American Presidency (5) SSc
+TPOL S 405 Advanced Campaigns and Elections (5) SSc
+TPOL S 410 Labor Rights and Human Rights (5) SSc, DIV
+TPOL S 411 Human Rights and Violence in the Third World (5) SSc
+TPOL S 425 Comparative Social Policy (5) SSc
+TPOL S 426 World Politics (5) SSc
+TPOL S 450 Contemporary Theories of Culture (5, max. 10) SSc
+TPOL S 451 Human Rights and the Use of Force (5) SSc
+TPOL S 480 Politics: Philosophy and Public Affairs Seminar (5, max. 10) SSc
+TPOL S 485 Study Abroad in Politics, Philosophy, and Economics (5-15, max. 24) SSc
+TPOL S 496 Politics, Philosophy, and Public Affairs Internship (5-15, max. 20)
+TPOL S 497 Political Internship in State Government (1-15, max. 20)
+TPSYCH 101 Introduction to Psychology (5) SSc
+TPSYCH 202 Human Sexuality (5) SSc
+TPSYCH 209 Fundamentals of Psychological Research I (5) SSc
+TPSYCH 210 Abnormal Psychology (5) SSc
+TPSYCH 220 Lifespan Development (5) SSc
+TPSYCH 230 Educational Psychology (5) SSc
+TPSYCH 240 Social Psychology (5) SSc
+TPSYCH 250 Human Cognition (5) SSc
+TPSYCH 260 Biopsychology (5) SSc/NSc
+TPSYCH 300 History and Systems of Psychology (5) SSc
+TPSYCH 306 Community Psychology, Research, and Action (5) SSc
+TPSYCH 308 Conscience, Nature and Technology (5) SSc
+TPSYCH 309 Fundamentals of Psychological Research II (5) SSc
+TPSYCH 310 Controversies in Clinical Psychology (5) SSc
+TPSYCH 311 Personality Theory (5) SSc
+TPSYCH 312 Mental Illness Across Cultures (5) SSc, DIV
+TPSYCH 313 Personalities Disorders (5) SSc
+TPSYCH 314 Tests and Measurements (5)
+TPSYCH 315 Introduction to Counseling Psychology (5) SSc
+TPSYCH 319 Community Engaged Child Development (5) SSc
+TPSYCH 320 Race, Class, and Gender Contexts of Child Development (5) SSc, DIV
+TPSYCH 321 Adolescent Psychology (5) SSc
+TPSYCH 322 Adult Development (5) SSc
+TPSYCH 344 Self and Society (5) SSc
+TPSYCH 345 Stereotyping, Prejudice, and Discrimination (5) SSc, DIV
+TPSYCH 346 Skepticism and Critical Thinking (5) SSc
+TPSYCH 347 Attitudes and Persuasion (5) SSc
+TPSYCH 349 Sexual Identities (5) SSc
+TPSYCH 350 Human Memory (5) SSc
+TPSYCH 352 Judgment and Decision-Making (5) SSc
+TPSYCH 360 Health Psychology (5) SSc
+TPSYCH 361 Psychopharmacology (5) SSc/NSc
+TPSYCH 362 Psychophysiology of Stress and Stress Management (5) SSc
+TPSYCH 400 Psychology of Gender (5) SSc, DIV
+TPSYCH 401 Family Violence (5) SSc
+TPSYCH 402 Friends, Enemies, and Intimates (5) SSc
+TPSYCH 403 Psychology of Black Women (5) SSc, DIV
+TPSYCH 404 Psychology of Food and Culture (5) SSc
+TPSYCH 405 Body Image and the Psychology of Appearance (5) SSc
+TPSYCH 406 Chemical Dependency (5) SSc
+TPSYCH 407 The Cultural Context of Developmental Psychology (5) SSc
+TPSYCH 409 Group Counseling and Dynamics (5, max. 15) SSc
+TPSYCH 410 Existential Psychology (5) SSc
+TPSYCH 411 Psychology and the Arts (5) SSc/A&H
+TPSYCH 416 Freud and His Critics (5) SSc
+TPSYCH 417 Ethical and Legal Issues in Psychology (5) SSc
+TPSYCH 418 Lifespan Imaginative Play (5) SSc
+TPSYCH 420 Attachment and Interpersonal Relations (5) SSc
+TPSYCH 421 Social Psychology, Law, and Society (5) SSc
+TPSYCH 422 Psychology and the Legal System (5) SSc
+TPSYCH 424 Autism: History and Treatment (5) SSc
+TPSYCH 431 Sexual Deviance (5) SSc
+TPSYCH 432 Sex Crimes and Sexual Violence (5) SSc
+TPSYCH 441 Diversity and Health Psychology (5) SSc, DIV
+TPSYCH 445 Psychology of Superheroes: An Exploration of Good and Evil (5) SSc
+TPSYCH 450 Meditation, Mindfulness, and Health (5) SSc
+TPSYCH 455 Immigrant Youth and Families (5) SSc, DIV
+TPSYCH 460 Sport Psychology (5) SSc
+TPSYCH 461 Asian American Psychology (5) SSc, DIV
+TPSYCH 471 Applied Issues in Cognition (4-5, max. 10) SSc
+TPSYCH 472 Cross-Cultural Studies in Social Sciences (5) A&H/SSc
+TPSYCH 496 Psychology Internship (1-5, max. 10) SSc
+TPSYCH 498 Directed Readings in Psychology (1-5, max. 15) SSc
+TPSYCH 499 Undergraduate Psychology Research (1-5, max. 15) SSc
+TRELIG 105 Introduction to Religious Studies (5) SSc/A&H
+TRELIG 210 Modern Theories of Religion (5) SSc
+TRELIG 310 Religious Diversity in America (5) SSc, DIV
+TRELIG 321 Comparative Religion (5) SSc
+TRELIG 333 Buddhist Thought (5) SSc
+TRELIG 345 Christian Thought and Ethical Practice (5) SSc
+TRELIG 350 Philosophy, Religion, and the Environment (5) SSc/NSc
+TRELIG 365 Hinduism and Buddhism (5) SSc
+TRELIG 366 Islam (5) SSc
+TRELIG 467 PHILOSOPHY OF RELIGION (5, max. 10) SSc
+T SOC 165 Introduction to Sociology: Developing the Sociological Imagination (5) SSc, DIV
+T SOC 265 Race and Ethnicity in the United States (5) SSc, DIV
+T SOC 270 Introduction to Asian American: Sociological and Interdisciplinary Perspectives (5) SSc, DIV
+T SOC 335 Social Class and Inequality (5) SSc, DIV
+T SOC 346 The History of Childhood and the Family in the United States (5) SSc
+T SOC 365 Advanced Sociological Theories of Race and Ethnicity (5) SSc
+T SOC 369 Diversity in Adulthood (5) SSc
+T SOC 432 Schooling in the United States (5) SSc
+T SOC 433 Household and Family in Comparative Perspective (5) SSc
+T SOC 434 Women, Race, and Class: Identity and Intergroup Relations (5) SSc, DIV
+T SOC 436 History of Social Welfare Policy in the United States (5) SSc
+T SOC 437 Immigration Today (5) SSc
+T SOC 439 Fieldwork and Interviewing in Communities (5) SSc
+T SOC 446 Family Relationships and Diverse Family Forms in the United States (5) SSc
+T SOC 447 AIDS and American Society (5) SSc
+T SOC 455 The Sociology of Gender (5) SSc, DIV
+T SOC 456 Rural Societies and Development (5) SSc
+T SOC 460 Demographic Methods: Analyzing Race, Class, and Gender (5) SSc, DIV
+T SOC 465 Asian and Asian American Laborers in the U.S.: Citizenship, Immigrant Rights and the Welfare State (5) SSc, DIV
+T SOC 470 Qualitative Research: Inquiry and Methods (5)
+T SOC 534 Women, Race, and Class: Identity and Intergroup Relations (5)
+T SOC 555 Sociology of Gender (5)
+T SOC 560 Demographic Methods: Analyzing Race, Class, and Gender (5)
+T SOC 570 Qualitative Research: Inquiry and Methods (5)
+TSPAN 101 Elementary Spanish (5)
+TSPAN 102 Elementary Spanish (5)
+TSPAN 103 Elementary Spanish (5)
+TSPAN 199 Foreign Study - Elementary (2-16, max. 16)
+TSPAN 201 Intermediate (5) A&H
+TSPAN 202 Intermediate (5) A&H
+TSPAN 203 Intermediate (5) A&H
+TSPAN 210 Accelerated Intermediate Spanish (5) A&H
+TSPAN 299 Foreign Study - Intermediate (2-16, max. 16) A&H
+TSPAN 301 Spanish Grammar and Lexicon (5, max. 10) A&H
+TSPAN 302 Spanish Conversation (5, max. 10) A&H
+TSPAN 303 Spanish Stylistics and Composition (5, max. 10) A&H
+TSPAN 312 Culture and Language for Spanish Heritage Speakers (5) DIV
+TSPAN 315 Business Communication in Spanish (5) A&H
+TSPAN 335 Hispanic Linguistics (5) A&H
+TSPAN 345 Spanish for Community Engagement (5) SSc, DIV
+TSPAN 348 Writing and the Research Process (5) A&H
+TSPAN 351 Introduction to Hispanic Literary Studies (5) A&H
+TSPAN 352 Introduction to Hispanic Cultural Studies (5) A&H
+TSPAN 361 Mexican Film (5) A&H
+TSPAN 371 The Hispanic Caribbean (5) A&H
+TSPAN 374 Hispanic Culture Through Film (5) A&H
+TSPAN 376 Hispanic Film Directors (5) A&H
+TSPAN 388 Contemporary United States Latina/o Literature (5) A&H, DIV
+TSPAN 393 Foreign Study (2-10, max. 20) A&H
+TSPAN 420 Advanced Spanish Grammar (5) A&H
+TSPAN 425 Advanced Communication Skills (5) A&H
+TSPAN 430 Translation Techniques and Practices (5) A&H
+TSPAN 451 Hispanic Women Writers (5) A&H
+TSPAN 464 Mexican Literature and Culture (5) A&H
+TSPAN 480 Contemporary Spanish Culture (5) A&H
+TSPAN 496 Experiential Learning in Spanish (1-10, max. 10)
+T UNIV 101 Introduction to Interdisciplinary Study (2)
+T UNIV 110 Introduction to Educational Equity and College Access (2)
+T UNIV 190 Undergraduate Seminar for Success in STEM (1, max. 6)
+T UNIV 200 The Social-Digital: Tools and Activism for the 21st Century (2)
+T UNIV 250 Husky Success Quest (2)
+T WOMN 101 Introduction to Women's Studies (5) SSc, DIV
+T WOMN 205 Introduction to Masculinities (5) SSc
+T WOMN 211 Women in Science (5) SSc, DIV
+T WOMN 250 Seminar in Service Learning: A Feminist Approach (5) SSc
+T WOMN 251 Popular Culture and Gender (5) SSc, DIV
+T WOMN 302 Research Methods in Women Studies (5) SSc
+T WOMN 345 Women and Work in the United States (5) SSc
+T WOMN 347 History of Women in the United States (5) SSc
+T WOMN 420 Women in the Global Economy (5) SSc
+T WOMN 434 Women's Voices: Transnational Testimonials (5) SSc
+T WOMN 455 Contemporary Theories in Gender and Sexuality Studies (5) SSc, DIV
+T WOMN 460 Men, Masculinities, and Emotions (5) SSc
+TWRT 101 Writing Ready (2)
+TWRT 111 Discourse Foundations (2, max. 8)
+TWRT 120 Academic Writing I (5)
+TWRT 121 Academic Writing II (5) C
+TWRT 200 Introduction to Creative Writing (5) A&H
+TWRT 201 Creative Writing in the Global Context (5) A&H
+TWRT 211 Argument and Research in Writing (5) C
+TWRT 270 Poetry Writing (5) A&H
+TWRT 274 Spoken Word Poetry (5) A&H, DIV
+TWRT 280 Fiction Writing (5) A&H
+TWRT 287 Creative Nonfiction Writing (5) A&H
+TWRT 291 Technical Communication in the Workplace (5) C
+TWRT 292 Power, Privilege, and Bias in Technology Design (3) DIV
+TWRT 320 Rhetoric, Public Life, and Civic Engagement (5)
+TWRT 330 Written and Visual Rhetoric (5) A&H
+TWRT 331 Writing in the Natural Sciences (5) A&H, C
+TWRT 333 Writing Through Comics (5) A&H
+TWRT 340 Asian American Rhetorics, Literacies, and Activism (5) DIV
+TWRT 350 Principles of User Centered Design (5) SSc
+TWRT 353 User Experience Writing (5)
+TWRT 355 Usability Testing and Research (5) SSc
+TWRT 360 PLAYWRITING (5) A&H
+TWRT 362 Writing and War (5) A&H/SSc
+TWRT 364 Food Writing for Cultural Exploration (5) A&H, DIV
+TWRT 365 Literary Editing and Publishing (5) A&H
+TWRT 372 Writing Eco-Poetry (5) A&H
+TWRT 382 WRITING POPULAR FICTION (5) A&H
+TWRT 384 WRITING HISTORICAL FICTION (5) A&H
+TWRT 388 Writing for Social Change (5) A&H
+TWRT 389 Nature Writing (5) A&H
+TWRT 391 Advanced Technical Communication (5) A&H
+TWRT 420 Rhetoric and the City: Composing Urban Landscapes (5) SSc
+TWRT 440 Cross-Cultural Communication Design (5) SSc
+TWRT 450 Principles of Accessible Design (5) SSc
+TWRT 464 Teaching Writing (5) A&H
+TWRT 470 Advanced Poetry Writing (5, max. 10) A&H
+TWRT 480 Advanced Fiction Writing (5, max. 10) A&H
+TWRT 487 Advanced Creative Nonfiction (5, max. 10) A&H
+TWRT 492 Special Topics in Rhetoric and Composition (5, max. 10) SSc
+TWRT 499 Advanced Topics in Creative Writing (1-5, max. 15) A&H
+T HLTH 215 Innovation, Wireless and Digital Healthcare (5) SSc
+T HLTH 285 Introduction to Global Health (5) SSc
+T HLTH 290 Special Topics in the Foundations of Health (3-5, max. 10)
+T HLTH 310 Health, Illness, and Society (5) SSc, DIV
+T HLTH 320 Promoting Health Through Social Marketing (5) SSc
+T HLTH 325 Medical and Ethical Issues in Literature and Culture (5) A&H
+T HLTH 330 Representations of Adolescents in Film (5) A&H
+T HLTH 340 Addiction, Mental Health and Mental Illness in Film and Media (5) A&H
+T HLTH 355 HIV/AIDS: Global and National Issues (5) SSc
+T HLTH 372 Environmental Health: Local to Global (5) SSc
+T HLTH 405 Photovoice and the Art of Documentary Photography: An Aesthetic Lens on Human Health (5) A&H
+T HLTH 410 Environmental Equity (5) SSc
+T HLTH 412 Applying Positive Psychology to Health Promotion (5) SSc
+T HLTH 415 Representations of Health Policy and Ethics in Film (5) A&H
+T HLTH 420 Holistic Health (5)
+T HLTH 430 Adolescent Health in Context (5) SSc
+T HLTH 440 Business of Health Care (5)
+T HLTH 455 Knowing Health and Illness Through The Arts (5) A&H
+T HLTH 465 Integrative Health and Wellness Coaching (5)
+T HLTH 470 Challenges and Controversies in US Health Care (2-5, max. 5) SSc
+T HLTH 475 Aging Explored through the Arts (5) A&H
+T HLTH 480 Death and American Society (5) A&H/SSc
+T HLTH 485 Critical Issues in Global Health (5) SSc
+T HLTH 490 Special Topics (2-5, max. 15)
+T HLTH 498 Special Project in Health (1-12, max. 12)
+T HLTH 499 Undergraduate Research (1-5, max. 12)
+T HLTH 511 INTRODUCTION TO EPIDEMIOLOGY (3-4)
+T HLTH 520 Health and Human Rights (3)
+T HLTH 590 Independent Study (1-6, max. 6)
+THLEAD 350 Critical Analysis and Writing (5)
+THLEAD 360 Healthcare Leadership Strategies (5) SSc
+THLEAD 380 Healthcare Budgetary Analysis and Financial Decision Making (5) SSc
+THLEAD 403 Introduction to Research in Healthcare (5)
+THLEAD 405 Health Informatics I: Fundamentals (5)
+THLEAD 406 Health Informatics II: Health Data Analytics (5) NSc
+THLEAD 407 Diversity, Health, and Inequities (3/5) SSc, DIV
+THLEAD 410 Ethical Issues in Healthcare (5) SSc
+THLEAD 420 Healthcare Accreditation and Legal Issues (5) SSc
+THLEAD 430 Interpersonal Communication (1-3, max. 3) SSc
+THLEAD 460 Personnel Management in Healthcare (5)
+THLEAD 480 Healthcare Leadership Fieldwork (5)
+THLEAD 496 Internship (1-10, max. 10)
+T NURS 340 Clinical Nursing Phenomena (3)
+T NURS 345 Genetics, Genomics, and Nursing Practice (1)
+T NURS 350 Critical Analysis and Writing (3)
+T NURS 360 Critical Analysis and Nursing Scholarship (5) RSN
+T NURS 402 Families and Chronic Conditions across the Life Span (3) SSc
+T NURS 403 Introduction to Research in Nursing and Healthcare (3) RSN
+T NURS 407 Diversity, Health, and Inequities (3/5) SSc, DIV
+T NURS 410 Ethical Issues in Healthcare (5) SSc
+T NURS 412 Health Care Systems (3)
+T NURS 414 Health, Communities, and Populations (5) SSc
+T NURS 420 Care Coordination and Person-Centered Care (5)
+T NURS 430 Interpersonal Communication (1-3, max. 3) SSc
+T NURS 435 Nursing Leadership (3)
+T NURS 440 Interprofessional Collaboration and Communication (5)
+T NURS 450 Transition to Baccalaureate Education (1, max. 9)
+T NURS 451 Portfolio Completion (1)
+T NURS 460 Leading Health Care System Quality and Safety (5)
+T NURS 497 Selected Topics in Nursing (1-12, max. 12)
+T NURS 498 Special Project in Nursing (1-12, max. 12)
+T NURS 499 Undergraduate Research (1-5, max. 12)
+T NURS 503 Advanced Nursing Practicum I (3)
+T NURS 505 Advanced Nursing Practicum II (3)
+T NURS 510 Ethical and Equitable Care (5)
+T NURS 511 Curriculum Development in Nursing and Health Education (3)
+T NURS 512 Facilitating Learning for Healthcare Practice (5)
+T NURS 513 Theories and Methods of Teaching and Learning (3)
+T NURS 523 Assessment and Planning for Healthcare Leaders (3)
+T NURS 527 Healthcare Systems, Policy, and Improvement (5)
+T NURS 539 The Science and Art of Leading and Managing in Healthcare (5)
+T NURS 545 Essential Skills for Healthcare Leaders (3)
+T NURS 548 Biopsychosocial Interventions for Advanced Nursing Practice (5)
+T NURS 550 Seminar on Professional Issues in Nursing Education (3)
+T NURS 551 Applying Research for Evidence-Based and Innovative Practice (5)
+T NURS 552 Organizational and Systems Leadership (3)
+T NURS 554 Healthcare Informatics, Quality, and Safety (5)
+T NURS 556 Quality and Safety in Healthcare Settings (3)
+T NURS 557 Population Health, Health Promotion, and Clinical Prevention (3)
+T NURS 558 Individual Health Assessment (3)
+T NURS 561 Program Design, Implementation, and Evaluation (3)
+T NURS 590 Special Topics in Nursing (2-3, max. 9)
+T NURS 596 Scholarly Inquiry: Course Work Option (1)
+T NURS 597 Scholarly Inquiry: Project Seminar Option (1)
+T NURS 598 Scholarly Inquiry (6)
+T NURS 599 Selected Readings in Nursing Science (1-3, max. 18)
+T NURS 600 Independent Study or Research (*-)
+T NURS 700 Master's Thesis (*-)
+T CRIM 101 Introduction to Criminal Justice (5) SSc
+T CRIM 155 Media, Crime, and Justice (5) SSc
+T CRIM 156 Criminal Justice and the War on Drugs (5) SSc
+T CRIM 157 Miscarriages of Justice (5) SSc
+T CRIM 158 Hate Crime and Organized Hate in America (5) SSc
+T CRIM 222 United States Federal Law Enforcement (5)
+T CRIM 225 Diversity and Social Justice in Criminology (5) SSc, DIV
+T CRIM 271 Introduction to the Sociology of Deviance and Social Control (5) SSc
+T CRIM 272 Restorative Justice (5) SSc
+T CRIM 275 White Collar Crime (5) SSc
+T CRIM 352 Women in the Criminal Justice System (5) SSc
+T CRIM 360 Youth and Juvenile Justice Systems (5) SSc
+T CRIM 361 Mental Health, Substance Use and the Criminal Justice System (5) SSc
+T CRIM 362 Criminological Theory (5) SSc
+T CRIM 363 The Criminalization of Immigration (5) SSc, DIV
+T CRIM 364 Criminal Justice and the LGBTQ Experience (5) SSc, DIV
+T CRIM 365 Facing Harm: Victim Offender Dialogue (5) SSc
+T CRIM 370 Police and Society (5) SSc
+T CRIM 371 Helping Skills in Criminal Justice (5) SSc
+T CRIM 372 Adult Corrections (5) SSc
+T CRIM 373 Criminal Evidence and Investigation (5) SSc
+T CRIM 374 Human Trafficking (5) SSc
+T CRIM 375 Men, Masculinities, and Criminal Justice (5) SSc
+T CRIM 390 Introduction to Criminal Justice Research (5)
+T CRIM 395 American Criminal Courts (5) SSc
+T CRIM 409 Advanced Readings in Criminal Justice (1-5, max. 15)
+T CRIM 427 Disproportionality Across Systems (5) SSc
+T CRIM 428 Policy and Practice with Sexual Offenders (5) SSc
+T CRIM 430 Children of Incarcerated Parents (5) SSc
+T CRIM 433 Crisis and Trauma Interventions with Crime Victims (5) SSc
+T CRIM 434 Criminal Homicide (5) SSc
+T CRIM 435 Terrorism and Criminal Justice Systems (5) SSc
+T CRIM 436 Contemporary Social Work in Criminal Justice Settings (5) SSc
+T CRIM 437 Abolitionism and Revolutionary Criminology (5) SSc
+T CRIM 440 Fundamental of Criminal Law (5) SSc
+T CRIM 441 Senior Seminar: Professionalism and Ethical Issues in Criminal Justice (5) SSc
+T CRIM 450 Comparative Criminal Justice Systems (1-15, max. 15) SSc
+T CRIM 490 Independent Research in Criminal Justice (1-3, max. 12)
+T CRIM 498 Criminal Justice Internship (5) SSc
+TSOCWF 101 Introduction to Social Work (5) SSc
+TSOCWF 150 Suicide: Individual and Community Responses (2) SSc
+TSOCWF 202 Perspectives on Doing Service (5) SSc
+TSOCWF 250 Interpersonal Effectiveness (5) SSc
+TSOCWF 300 Historical Approaches to Social Welfare (5) SSc
+TSOCWF 301 Professionalism in Social Welfare Practice (2)
+TSOCWF 310 Social Welfare Practice I: Individials and Families (5)
+TSOCWF 311 Social Welfare Practice II: Groups (3)
+TSOCWF 312 Social Welfare Practice III: Organizations and Communities (5)
+TSOCWF 320 Social Welfare: Contemporary Approaches (5) SSc
+TSOCWF 350 Biopsychosocial Human Services (5) SSc/NSc
+TSOCWF 351 Applied Statistics for Social and Human Services (5) NSc, RSN
+TSOCWF 353 Mental Illness and Recovery (5) SSc
+TSOCWF 354 Sexual Orientation and Gender Identity (5) SSc
+TSOCWF 355 HIV/AIDS: Global and National Issues (5) SSc
+TSOCWF 356 Disabilities: Individual and Community Perspectives (5) SSc
+TSOCWF 361 Mental Health, Substance Use and the Criminal Justice System (5) SSc
+TSOCWF 363 The Criminalization of Immigration (5) SSc, DIV
+TSOCWF 374 Human Trafficking (5) SSc
+TSOCWF 390 Introduction to Social Welfare Research (5)
+TSOCWF 402 Human Behavior and the Social Environment I (5) SSc
+TSOCWF 404 Cultural Diversity and Social Justice (5) SSc, DIV
+TSOCWF 405 Field Seminar I (3)
+TSOCWF 406 Field Seminar II (3)
+TSOCWF 409 Readings in Social Welfare (1-5, max. 15)
+TSOCWF 414 Introduction to Field (1)
+TSOCWF 415 Practicum (3/4, max. 11)
+TSOCWF 420 Interpersonal Violence and Society (5) SSc
+TSOCWF 421 Cross-Cultural Grieving (5) SSc
+TSOCWF 422 Aging in American Society (5) SSc
+TSOCWF 425 Comparative Social Policy (5) SSc
+TSOCWF 427 Disproportionality Across Systems (5) SSc
+TSOCWF 428 Policy and Practice with Sexual Offenders (5) SSc
+TSOCWF 430 Children of Incarcerated Parents (5) SSc
+TSOCWF 433 Crisis and Trauma Interventions with Crime Victims (5) SSc
+TSOCWF 436 Contemporary Social Work in Criminal Justice Settings (5) SSc
+TSOCWF 490 Research in Social Welfare (1-3, max. 10)
+T SOCW 501 Social Policy and Economic Security (3)
+T SOCW 502 Human Behavior and the Social Environment I (3)
+T SOCW 503 Human Behavior and the Social Environment II (3)
+T SOCW 504 Cultural Diversity and Societal Justice (3)
+T SOCW 505 Introduction to Social Welfare Research (3)
+T SOCW 510 Social Work Practice I - Introduction to Social Work Practice (3)
+T SOCW 511 Social Work Practice II - Intermediate Direct Service Practice (3)
+T SOCW 512 Practice III: Community and Organizational Practice (3)
+T SOCW 514 Social Work Practice V - Assessment of Mental Disorders (3)
+T SOCW 524 Generalist Practicum (1-3, max. 10)
+T SOCW 525 Specialization Practicum (3-5, max. 17)
+T SOCW 531 Integrative Policy Analysis (3)
+T SOCW 532 Integrative Practice I (3)
+T SOCW 533 Integrative Practice II (3)
+T SOCW 535 Research for Integrative Practice (3)
+T SOCW 540 Professional Practice in Public Child Welfare (3)
+T SOCW 541 Adult and Adolescent Interpersonal Violence and Treatment (3)
+T SOCW 542 Social Work in Schools (3)
+T SOCW 543 Supervision and Leadership in Social Work (3)
+T SOCW 544 Gerontological Social Work: Health and Mental Health in Older Adults (3)
+T SOCW 545 Group Interventions in Social Work Practice (3)
+T SOCW 546 Multicultural Theory and Social Work Practice (3)
+T SOCW 547 Chemical Dependency: Drug Affects, Assessment, and Treatment Referral Issues (3)
+T SOCW 548 Spirituality and Social Work Practice (3)
+T SOCW 549 Crisis Intervention in Mental Health (3)
+T SOCW 550 Social Work in Health Care (3)
+T SOCW 551 Social Work with Military Personnel and Veterans (3)
+T SOCW 552 American Indian Child Welfare (3)
+T SOCW 553 Critical Disability Frameworks for Social Work Practice and Policy (3)
+T SOCW 554 Cognitive Behavioral Therapy for Advanced Social Work Practice (3)
+T SOCW 555 Integrative Mind Body Mental Health (3)
+T SOCW 590 Independent Research in Social Work (3, max. 6)
+T SOCW 597 Social Welfare Research (2)
+T SOCW 598 Advanced Standing Integrative Seminar (5)
+T SOCW 599 Readings in Social Work (1-5, max. 5)
+TCMP 521 Planning Theory and Practice (5)
+TCMP 525 Property and Capital (5)
+TCMP 546 Strategic Influence (5)
+TCMP 554 Community Development (5)
+TCMP 557 Urban Spatial Design (5)
+TCMP 566 Analyzing Community (5)
+TCMP 571 Legal Urbanism (5)
+TCMP 572 Planning for Equity (5)
+TCMP 573 Power and Decentralization (5)
+TCMP 582 Movements and Organizing (5)
+TCMP 590 Community Planning Studio I (5)
+TCMP 591 Community Planning Studio II (5, max. 10)
+TCMP 595 Special Topics in Community Planning (1-15, max. 15)
+T GIS 311 Maps and GIS (6) NSc, RSN
+T GIS 312 Intermediate GIS (6) NSc
+T GIS 313 Applied GIS and Project Design (3) NSc
+T GIS 350 Remote Sensing (5)
+T GIS 414 Advanced Applications of GIS (5) NSc
+T GIS 415 Critical Theory and GIS Practicum (5) NSc
+T GIS 450 Participatory Mapping (5)
+T GIS 460 Cartography and Data Visualization (5) RSN
+T GIS 470 GIS Scripting and Automation (5) RSN
+T GIS 501 GIS Customization and Automation (5)
+T GIS 502 Introduction to Geospatial Technology (5)
+T GIS 503 Web-Based GIS (5)
+T GIS 504 Mobile Geospatial Application Development (5)
+T GIS 505 Cartography and Data Visualization (5)
+T GIS 506 Environmental Planning Applications (5)
+T GIS 507 Practicum I: Planning and Design (5)
+T GIS 508 Practicum II: Implementation (5)
+T GEOG 101 Introduction to Geography (5) SSc
+T GEOG 210 Geographies of Global Change (3) SSc
+T GEOG 321 Urban Geography (5) SSc
+T GEOG 349 Geography and International Trade (5) SSc
+T GEOG 352 Cultural Geography (5) SSc
+T GEOG 403 Geography of the United States of America and Canada (5) NSc
+T GEOG 420 Gender, Space and Culture (5) SSc, DIV
+T GEOG 435 Contemporary Geopolitics (5) SSc
+T GEOG 440 Political Geography: Territory, State and Society (5) SSc
+T SUD 222 Introduction to Sustainability (5) SSc
+T SUD 240 The City and Nature (5) SSc
+T SUD 425 Social Justice and Urban Sustainability (3) SSc
+T SUD 444 Green Internationalism and the City (5) SSc
+T SUD 445 Urban Ecology (5) SSc
+T SUD 475 Community and Economy (5) SSc
+T SUD 494 Sustainable Urban Development Research (1-5, max. 15)
+T SUD 498 Sustainable Urban Development Internship (3-5, max. 15)
+T UDE 101 Introduction to Computer Modeling (5) A&H
+T UDE 210 Introduction to Urban Design History and Theory (5) A&H
+T UDE 260 Urban Design Studio I (5) A&H/SSc
+T UDE 310 Social Production of Space (5)
+T UDE 340 Urban Design Studio II (5) SSc/A&H
+T UDE 350 Urban Design Studio III (5) SSc/A&H
+T UDE 360 Urban Design Studio IV (5) SSc/A&H
+T UDE 440 Urban Design Studio V (5) SSc/A&H
+T UDE 450 Urban Design Studio VI - Senior Project Part I (5)
+T UDE 460 Urban Design Studio VII - Senior Project Part II (5)
