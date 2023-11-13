@@ -1,5 +1,5 @@
 def average(prefix, number):
-    gpa = eval(open('grades.dict', 'r').read())[prefix][number]
+    gpa = courses[prefix][number]
     total, _one, one, two, three = 0, 0, 0, 0, 0
     for key in gpa.keys():
         total += gpa.get(key)
@@ -11,15 +11,23 @@ def average(prefix, number):
             two += gpa.get(key)
         if 40 >= int(key) >= 30:
             three += gpa.get(key)
-    _one = str(round(_one / total * 100, 2)) + '%'
-    one = str(round(one / total * 100, 2)) + '%'
-    two = str(round(two / total * 100, 2)) + '%'
-    three = str(round(three / total * 100, 2)) + '%'
-    print('COURSE:  ' + prefix + ' ' + number + '\n' + 'TOTAL NUMBER OF STUDENTS:  ' +
-          str(total) + '\n' + '0.0 - 0.9:  ' + _one + '\n' + '1.0 - 1.9:  ' + one + '\n' +
-          '2.0 - 2.9:  ' + two + '\n' + '3.0 - 4.0:  ' + three + '\n')
+    if total == 0:
+        return 0
+    else:
+        _one = str(_one / total)
+        one = str(one / total)
+        two = str(two / total)
+        three = str(three / total)
+        out = str(prefix) + ',' + str(number) + ',' + str(total) + ',' + str(_one) + ',' + str(one) + ',' + str(
+            two) + ',' + str(three) + '\n'
+        print(out)
+        return out
 
 
-course = ['TCSS', '440']
-
-average(course[0], course[1])
+courses = eval(open('grades.dict', 'r').read())
+with open('GPA_Distro.csv', 'w') as file:
+    file.write('PREFIX, NUMBER, TOTAL, 0.0-.9, 1.0-1.9, 2.0-2.9, 3.0-4.0\n')
+    for prefix in courses:
+        for number in courses[prefix]:
+            if average(prefix, number) != 0:
+                file.write(average(prefix, number))
