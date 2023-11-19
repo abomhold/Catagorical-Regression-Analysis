@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 cookies = "cookies.txt"
 cookieJar = cookie.MozillaCookieJar('cookies.txt')
 cookieJar.load()
-record = open('dataAll.txt', 'w')
+record = open('../old/dataAll.txt', 'w')
 record.write('PREFIX, NUMBER, GPA \n')
 with open('urls.txt') as file:
     for line in file:
@@ -29,6 +29,6 @@ with open('urls.txt') as file:
         record.write(grade)
 
 record.close()
-fr = open('dataAll.txt', 'r')
+fr = open('../old/dataAll.txt', 'r')
 print(fr.read())
 fr.close()

@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 f = open('courses.txt', 'w')
 f.write('PREFIX, NUMBER, TITLE \n')
-with open('departments.txt') as file:
+with open('../old/departments.txt') as file:
     for url in file:
         r = requests.get(url[:-1])
         soup = BeautifulSoup(r.text, 'html.parser')
