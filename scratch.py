@@ -54,23 +54,23 @@ print(y_pred)
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 
 # Assume y_test are your true labels and y_pred are the predictions from the logistic regression model
-y_pred = classifier.predict(x_test)
+y_pred = (classifier.predict_proba(y_test))
 
-# Accuracy
-accuracy = accuracy_score(y_test, y_pred)
-print(f"Accuracy: {accuracy}")
-avg ='macro'
-# Precision
-precision = precision_score(y_test, y_pred, average=avg)
-print(f"Precision: {precision}")
-
-# Recall
-recall = recall_score(y_test, y_pred, average=avg)
-print(f"Recall: {recall}")
-
-# F1 Score
-f1 = f1_score(y_test, y_pred, average=avg)
-print(f"F1 Score: {f1}")
+# # Accuracy
+# accuracy = accuracy_score(y_test, y_pred)
+# print(f"Accuracy: {accuracy}")
+# avg ='macro'
+# # Precision
+# precision = precision_score(y_test, y_pred, average=avg)
+# print(f"Precision: {precision}")
+#
+# # Recall
+# recall = recall_score(y_test, y_pred, average=avg)
+# print(f"Recall: {recall}")
+#
+# # F1 Score
+# f1 = f1_score(y_test, y_pred, average=avg)
+# print(f"F1 Score: {f1}")
 
 # Confusion Matrix
 conf_matrix = confusion_matrix(y_test, y_pred)

@@ -20,16 +20,14 @@ df.index = df.index.astype(int)
 
 df = df.sort_index(ascending=True)
 df = df.T
-x = df.columns
-x = x.to_numpy()
-x = x.reshape(-1, 1)
-y = df.T.values
+y = df.columns.to_numpy().reshape(-1,1)
+x = df.T.values
 print(y)
 print(x)
 # x = df.iloc[:, 0].values
 # print(x)
 
-x_train, x_test, y_train, y_test = train_test_split(y, x, test_size=0.2, random_state=0)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
 pt = preprocessing.PowerTransformer(method='yeo-johnson', standardize=False)
 # x_test = pt.fit_transform(x_test)
 # x_train = pt.fit_transform(x_train)
@@ -41,16 +39,18 @@ x_test = pca.transform(x_test)
 explained_variance = pca.explained_variance_ratio_
 print(explained_variance)
 
-# from sklearn.linear_model import LogisticRegression
-#
-# classifier = LogisticRegression(random_state=0)
-# classifier.fit(x_train, y_train)
+from sklearn.linear_model import LogisticRegression
 
-# scaler = preprocessing.StandardScaler().fit(x_train)
-# x_train = sc.fit_transform(x_train)
-# # x_test = sc.transform(x_test)
-# print(x_value)
-# print(y_value)
+classifier = LogisticRegression(random_state=0)
+classifier.fit(x_train, y_train)
+
+import
+
+scaler = preprocessing.StandardScaler().fit(x_train)
+x_train = sc.fit_transform(x_train)
+x_test = sc.transform(x_test)
+print(x_value)
+print(y_value)
 
 # import plotly.express as px
 #

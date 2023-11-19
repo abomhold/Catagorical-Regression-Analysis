@@ -1,7 +1,7 @@
 import json
 from collections import defaultdict
 
-fw = open('data.json', 'w')
+fw = open('../datacollapsed.json', 'w')
 data = defaultdict(dict)
 with (open('cleandata.txt') as file):
     for line in file:
@@ -9,10 +9,10 @@ with (open('cleandata.txt') as file):
         course = string[0]
         number = string[1]
         gpa = ','.join(string[2:]).replace('\'', '\"')
-        data[course][number] = json.loads(gpa)
+        data[course+number] = json.loads(gpa)
 
 fw.write(json.dumps(data, sort_keys=True, indent=4))
 fw.close()
-fr = open('data.json', 'r')
+fr = open('../datacollapsed.json', 'r')
 print(fr.read())
 fr.close()
