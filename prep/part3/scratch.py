@@ -20,7 +20,7 @@ df = df.T
 y = df.iloc[:, 0].y
 x = df.iloc[:, 1:].y
 
-# Splitting data into training and test sets
+# Splitting data into training and test.json sets
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
 
 # Data preprocessing
@@ -47,7 +47,7 @@ classifier = LogisticRegression(random_state=0, max_iter=1000, solver='lbfgs')  
 # Fit the model
 a = classifier.fit(x_train, y_train)
 print(a)
-# Predict using the test set
+# Predict using the test.json set
 y_pred = classifier.predict(x_test)
 print(y_pred)
 # Evaluate the model...

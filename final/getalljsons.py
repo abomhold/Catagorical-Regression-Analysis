@@ -1,13 +1,18 @@
 import json
+import sys
+
 import requests
 import http.cookiejar as cookie
-import re
+import logging
+
+log_file = open('./files/log', 'w')
+sys.stderr = log_file
 
 cookie_jar = cookie.MozillaCookieJar("files/cookies.txt")
 cookie_jar.load()
 
 
-def getcourses():
+def get_courses():
     campuses = {'seattle', 'tacoma', 'bothell'}
     courses = []
     for campus in campuses:
@@ -16,7 +21,7 @@ def getcourses():
     return courses
 
 
-def buildurls(courses):
+def build_urls(courses):
     urls = {}
     for course in courses:
         string = course['key']
@@ -28,19 +33,39 @@ def buildurls(courses):
     return urls
 
 
-def getjsons(list):
+def get_jsons(urls):
     raw_jsons = {}
-    for entry in list:
-        r = requests.get(list[entry], cookies=cookie_jar)
-        raw_jsons[entry] = r.text
-        print(entry + '\n' + raw_jsons[entry])
+    for entry in urls:
+        r = requests.get(urls[entry], cookies=cookie_jar)
+        raw_jsons[entry] = json.loads(r.text)
+        print(entry)
+        print(raw_jsons[entry])
+        sys.stdout = log_file
+        print(entry)
+        print(raw_jsons[entry])
+        sys.stdout = sys.__stdout__
     return raw_jsons
 
 
+with open('./files/all_raw.json', 'w') as file:
+    file.write(json.dumps(get_jsons(build_urls(get_courses()))))
 
-with open('./files/allurls', 'w') as file:
-    file.write(json.dumps(buildurls(getcourses())))
+sys.stderr = sys.__stderr__
+log_file.close()
 
-with open('./files/allurls', 'r') as file:
+
+
+
+# print(get_courses())
+# print(build_urls(get_courses()))
+# print(get_jsons(build_urls(get_courses()))
+
+
+# with open('./files/allcourses', 'r') as file:
+#     print(file.read())
+#
+# with open('./files/allurls', 'r') as file:
+#     print(file.read())
+
+with open('./files/all_raw.json', 'r') as file:
     print(file.read())
-    # file.write(json.dumps(getjsons(buildurls(getcourses())), sort_keys=True, indent=2))
