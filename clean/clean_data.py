@@ -9,7 +9,7 @@ import re
 with open('./files/temp_gpa.json', 'r') as file:
     data = file.read()
 
-pd = pd.DataFrame(json.loads(data))
+dfsdfpd = pd.DataFrame(json.loads(data))
 
 def remove_errors(pd):
     temp = pd
