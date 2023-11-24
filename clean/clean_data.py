@@ -6,16 +6,10 @@ import re
 # overall_gpa = 33.675253210725074
 
 
-with open('./files/all_raw.json', 'r') as file:
+with open('./files/temp_gpa.json', 'r') as file:
     data = file.read()
 
 pd = pd.DataFrame(json.loads(data))
-
-
-# print(pd.T.index)
-# for course in pd:
-#     print(course)
-
 
 def remove_errors(pd):
     temp = pd
@@ -28,7 +22,6 @@ def remove_options(pd):
     temp = pd
     for course in temp:
         if pd[course]['prereq_graph'] != None:
-            # (pd[course]['prereq_graph']['x']['options'])
             del pd[course]['prereq_graph']['x']['options']
 
 
@@ -42,19 +35,82 @@ def get_totals(pd):
     overall_gpa = total_gpa / total_count
     return {"total_count": total_count, "overall_gpa": overall_gpa}
 
-print(pd.size)
-remove_errors(pd)
-remove_options(pd)
+
+# wrote to temp.json file to reduce runtime SAVES 6MB
+# remove_errors(pd)
+# remove_options(pd)
+# with open('./files/temp.json', 'w') as file:
+#     pd.to_json(file, orient='records')
+
 # coverted to constants
-#get_totals(pd)
-print(pd.size)
+# get_totals(pd)
+
+# Convert the gpa to something useful
+
+# remove none GPAs
+def get_gpa_courses(pd):
+    temp = pd
+    for course in temp:
+        # I have no clue why it is 9
+        # I lost my labels somewhere....
+        gpa = pd[course][9]
+        if gpa == []:
+            del pd[course]
+    return pd
 
 
+def get_gpa_courses_2(pd):
+    temp = pd
+    for course in temp:
+        totalcount = 0
+        for grade in temp[course][9]:
+            totalcount += grade['count']
+        if totalcount == 0:
+            del pd[course]
 
+# pd = get_gpa_courses(pd)
+# pd = get_gpa_courses_2(pd)
+
+# for course in pd:
+#     print(pd[course][9])
+
+# get_gpa_course_2(pd)
+
+print(pd)
 
 
 # for course in pd:
-#     print(pd[course]['error'])
+#     print(pd[course][9])
+
+# Write to file removed a lot of courses but
+# not alot of space, the courses with gpa must
+# be the heaviest
+# with open('./files/temp_gpa.json', 'w') as file:
+#     pd.to_json(file, orient='records')
+
+
+def average(pd):
+    for course in pd:
+        totalcount = 0
+        totalgpa = 0
+        for grade in pd[course][9]:
+            totalcount += grade['count']
+            totalgpa += grade['count'] * int(grade['gpa'])
+        print(totalcount)
+        avg = totalgpa / totalcount
+        print(avg)
+        pd[course]['average_gpa'] = avg
+
+    #     totalcount += ['']
+    #     totalgpa += entry['count'] * int(entry['gpa'])
+    # return totalgpa / totalcount
+
+
+print(pd)
+
+
+
+
 
 # import json
 # from array import array
@@ -70,45 +126,8 @@ print(pd.size)
 #
 # from sklearn.preprocessing import StandardScaler
 # from sklearn.model_selection import train_test_split
-#
-# # Remove errors
-# #
-# # dump = json.loads(open('dump.json', 'r').read())
-# # cleandump = open('cleandump.json', 'w')
-# # new = {}
-# # for course in dump:
-# #     if 'error' not in dump[course]:
-# #         new[course] = dump[course]
-# # cleandump.write(json.dumps(new))
-# # cleandump.close()
-# # cleandump = open('cleandump.json', 'r')
-# # print(cleandump.read())
-#
-# overallgpa = 32.37313217414929
-# overallcount = 235568
-# dump = json.loads(open('cleandump.json', 'r').read())
-#
-#
 
 #
-# removeoptions(dump)
-#
-#
-# # print(dump)
-#
-# # Get to overall gpa
-# # totalcount = 0
-# # totalgpa = 0
-# # for course in dump:
-# #     for entry in dump[course]['gpa_distro']:
-# #         totalcount += entry['count']
-# #         totalgpa += entry['count'] * int(entry['gpa'])
-# #
-# # overallgpa = totalgpa / totalcount
-# # print(totalgpa)
-# # print(totalcount)
-# # print(overallgpa)
-# # 7626074
 # def offsetfromoverall(distro):
 #     overallgpa = 32.37313217414929
 #     overallcount = 235568
@@ -197,9 +216,9 @@ print(pd.size)
 #
 # # splitcourses()
 # dump = json.loads(open('gpadump.json', 'r').read())
-# temp = dump
+# temp.json = dump
 #
-# for course in temp:
+# for course in temp.json:
 #     changevalues(course)
 #
 # print(totaldistro)
@@ -213,11 +232,11 @@ print(pd.size)
 #
 # # print(dump)
 #
-# # temp = json.dumps(dump, sort_keys=True, indent=4)
+# # temp.json = json.dumps(dump, sort_keys=True, indent=4)
 # # with open('working.json', 'w') as file:
-# #     file.write(temp)
+# #     file.write(temp.json)
 #
-# # for course in temp:
+# # for course in temp.json:
 # #     print(dump[course]['gpaoffset'])
 #
 # # print(offsetfromoverall('TCSS305'))

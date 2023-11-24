@@ -160,11 +160,11 @@ print(totaldistro)
 
 # print(dump)
 
-# temp = json.dumps(dump, sort_keys=True, indent=4)
+# temp.json = json.dumps(dump, sort_keys=True, indent=4)
 # with open('working.json', 'w') as file:
-#     file.write(temp)
+#     file.write(temp.json)
 
-# for course in temp:
+# for course in temp.json:
 #     print(dump[course]['gpaoffset'])
 
 # print(offsetfromoverall('TCSS305'))
