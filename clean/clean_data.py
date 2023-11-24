@@ -10,10 +10,10 @@ newdump = eval(json.dumps(data))
 #     #print(data[entry])
 #     dump = eval(json.dumps(data[entry]))
 #     print(dump)
-
-for d in newdump:
-    print(data[d].replace('\"', ''))
-
+#
+# for d in newdump:
+#     print(data[d].replace('\"', ''))
+#
 
 # with open('./files/temp', 'r') as file:
 #     dump = json.loads(file.read())
