@@ -41,7 +41,6 @@ def get_totals(pd):
 # remove_options(pd)
 # with open('./files/temp.json', 'w') as file:
 #     pd.to_json(file, orient='records')
-
 # coverted to constants
 # get_totals(pd)
 
@@ -58,7 +57,7 @@ def get_gpa_courses(pd):
             del pd[course]
     return pd
 
-
+# Remove gpa with 0 total counts
 def get_gpa_courses_2(pd):
     temp = pd
     for course in temp:
@@ -70,15 +69,9 @@ def get_gpa_courses_2(pd):
 
 # pd = get_gpa_courses(pd)
 # pd = get_gpa_courses_2(pd)
-
 # for course in pd:
 #     print(pd[course][9])
-
 # get_gpa_course_2(pd)
-
-print(pd)
-
-
 # for course in pd:
 #     print(pd[course][9])
 
@@ -106,7 +99,7 @@ def average(pd):
     # return totalgpa / totalcount
 
 
-print(pd)
+
 
 
 
