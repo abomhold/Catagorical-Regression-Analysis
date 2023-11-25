@@ -1,6 +1,7 @@
-import json
+import pickle
 import pandas as pd
-import re
+
+from bs4 import BeautifulSoup
 
 TOTAL_COUNTS = 2370259
 OVERALL_GPA = 33.675253210725074
@@ -11,19 +12,25 @@ print(data)
 
 def average(data):
     avg_list = []
-    for course in data.index:
-        totalcount = 0
-        totalgpa = 0
-        for grade in data.loc[course]['gpa_distro']:
-            totalcount += grade['count']
-            totalgpa += grade['count'] * int(grade['gpa'])
-        avg_list.append(totalgpa / totalcount)
+
+    for index, row in data.iterrows():
+        gpa_distro = row.get('gpa_distro', [])
+
+        total_count = 0
+        total_gpa = 0
+        for grade in gpa_distro:
+            total_count += grade['count']
+            total_gpa += grade['count'] * int(grade['gpa'])
+
+        # Handle division by zero if total_count is 0
+        avg = (total_gpa / total_count) if total_count > 0 else 0
+        avg_list.append(avg)
+
     data['gpa_avg'] = avg_list
     return data
 
 
 def average_no_zero(data):
-    temp = data
     avg_list = []
     for index in data.index:
         totalcount = 0
@@ -39,21 +46,27 @@ def average_no_zero(data):
 
 def percent_mastered(data):
     avg_list = []
-    for index in data.index:
-        total_count = 0
-        mastered_count = 0
-        for grade in data.loc[index]['gpa_distro']:
-            total_count += grade['count']
-            if int(grade['gpa']) >= 30:
-                mastered_count += grade['count']
-            # if total_count == 0:
-            #     # print(data[index])
-            #     avg_list.append(0)
-        else:
-            avg_list.append(mastered_count / total_count)
+
+    for index, row in data.iterrows():
+        gpa_distro = row.get('gpa_distro', [])
+
+        total_count = sum(grade['count'] for grade in gpa_distro)
+        mastered_count = sum(grade['count'] for grade in gpa_distro if int(grade['gpa']) >= 30)
+
+        # Handle division by zero if total_count is 0
+        avg = (mastered_count / total_count) if total_count > 0 else 0
+        avg_list.append(avg)
+
     data['percent_mastered'] = avg_list
     return data
 
+def add_level(data):
+    level = []
+    for index in data.index:
+        number = int(data.loc[index, 'course_id'][-3:])
+        level.append(int(number/100)*100)
+    data['course_level'] = level
+    return data
 
 def flatten_coi_data(data):
     # Lists to hold the data for each new column
@@ -202,46 +215,31 @@ def flatten_description(data):
     return data
 
 
-# def flatten_description(data):
-#     description = []
-#     prepositions = {
-#         'aboard', 'about', 'above', 'across', 'after', 'against', 'along', 'amid', 'among', 'around', 'as', 'at',
-#         'before',
-#         'behind', 'below', 'beneath', 'beside', 'between', 'beyond', 'but', 'by', 'concerning', 'considering',
-#         'despite',
-#         'down', 'during', 'except', 'for', 'from', 'in', 'inside', 'into', 'like', 'near', 'of', 'off', 'on', 'onto',
-#         'out',
-#         'outside', 'over', 'past', 'regarding', 'round', 'since', 'through', 'to', 'toward', 'under', 'underneath',
-#         'until',
-#         'up', 'upon', 'with', 'within', 'without'
-#     }
-#
-#     for index in data.index:
-#         # string_set = set()
-#         if data.loc[index]['course_description'] is not None:
-#             string = data.loc[index]['course_description'].replace(',', '')
-#             string = string.replace('.', '')
-#             string = string.replace(':', '')
-#             string = string.replace('/', ' ')
-#             string = string.replace(')', '')
-#             string = string.replace('(', '')
-#             string = set(string.split(' '))
-#             if string == '':
-#                 string_set = {None}
-#             else:
-#                 string_set = string
-#         else:
-#             string_set = {None}
-#
-#         cleaned_set = set()
-#         if perpositions in string_set:
-#             for s in string_set:
-#                 cleaned_set.add(word for word in s if word.lower() not in prepositions)
-#
-#         else:
-#             cleaned_set = string_set
-#     data['course_description'] = cleaned_set
-#     return data
+def get_department_dict():
+    with open('files/department_html_dict.pkl', 'rb') as handle:
+        html_dict = pickle.load(handle)
+    dep_word_list = {}
+    for department in html_dict:
+        soup = BeautifulSoup(str(html_dict[department]), 'html.parser')
+        dep_string = soup.h1.text.split('\n')
+        dep_words = [string for string in dep_string if string != 'UW TACOMA']
+        dep_words = [string for string in dep_words if string != 'UW BOTHELL']
+        dep_words = [string for string in dep_words if string]
+        dep_word_list[department] = dep_words
+    return dep_word_list
+
+
+def add_departments(data):
+    dep_dict = get_department_dict()
+    dep_list = []
+    for index in data.index:
+        key = str(data.loc[index, 'department_abbrev']).replace(' ', '')
+        if key in dep_dict:
+            dep_list.append(set(dep_dict[key]))
+        else:
+            dep_list.append({None})
+    data['departments'] = dep_list
+    return data
 
 
 data = average(data)
@@ -250,196 +248,15 @@ data = percent_mastered(data)
 data = flatten_coi_data(data)
 data = flatten_concurrent_courses(data)
 data = flatten_prereq(data)
+data = add_level(data)
 data = remove_extra_columns(data)
 data = flatten_course_offered(data)
 data = flatten_description(data)
-data.to_pickle('./files/almost_data_frame.pkl')
-# data = data.T
-# print(data.loc[data['course'] == 'TCSS305'])
-# print(data[6374]['coi_data'])
+data = add_departments(data)
+data.to_pickle('./files/temp_data_frame.pkl')
 # for index in data.index:
-#     print(data.loc[index]['course_description'])
-    # print(data.loc[index]['has_prereq'])
-    # print(data.loc[index]['course_offered'])
-# if data.loc[index]['prereq_graph'] != None:
-#         # temp = eval(str(data.loc[index]['prereq_graph']['x']['edges']['to']))
-#         # print(
-#         #     list(sorted({ele for val in data.loc[index]['prereq_graph']['x']['edges']['to'].values() for ele in val})))
-#         # print(data.loc[index]['course'])
-#         print(data.loc[index]['prereq_graph']['x']['nodes']['writing_crs'])
-#         # print(set(data.loc[index]['prereq_graph']['x']['edges']['from'].values()))
+#     print(data.loc[index, 'departments'])
+
 # .loc[6380]
 print(data)
 print(data.loc[6380])
-
-# import json
-# from array import array
-#
-# import pandas
-# from sklearn import preprocessing
-# from sklearn.datasets import make_classification
-# from sklearn.linear_model import LogisticRegression
-# from sklearn.model_selection import train_test_split
-# from sklearn.pipeline import make_pipeline
-# from sklearn.preprocessing import StandardScaler
-# import pandas as data
-#
-# from sklearn.preprocessing import StandardScaler
-# from sklearn.model_selection import train_test_split
-
-#
-# def offsetfromoverall(distro):
-#     overallgpa = 32.37313217414929
-#     overallcount = 235568
-#     gpa = average(distro)
-#     if gpa != 0:
-#         return overallgpa - gpa
-#     else:
-#         return 0
-#
-#
-# # Turn the gpa in to something useful
-# def gettotal(distro):
-#     totalcount = 0
-#     for entry in distro:
-#         totalcount += entry['count']
-#     return totalcount
-#
-#
-# def average(distro):
-#     totalcount = 0
-#     totalgpa = 0
-#     for entry in distro:
-#         totalcount += entry['count']
-#         totalgpa += entry['count'] * int(entry['gpa'])
-#     if totalcount == 0:
-#         return 0
-#     else:
-#         return totalgpa / totalcount
-#
-#
-# def averagewithoutzero(distro):
-#     totalcount = 0
-#     totalgpa = 0
-#     for entry in distro:
-#         if entry['gpa'] != '0':
-#             totalcount += entry['count']
-#             totalgpa += entry['count'] * int(entry['gpa'])
-#     if totalcount == 0:
-#         return 0
-#     else:
-#         return totalgpa / totalcount
-# totaldistro = {'0': 0, '1': 0, '2': 0, '3': 0, '4': 0, '5': 0, '6': 0, '7': 0, '8': 0, '9': 0, '10': 0, '11': 0, '12': 0, '13': 0, '14': 0, '15': 0, '16': 0, '17': 0, '18': 0, '19': 0, '20': 0, '21': 0, '22': 0, '23': 0, '24': 0, '25': 0, '26': 0, '27': 0, '28': 0, '29': 0, '30': 0, '31': 0, '32': 0, '33': 0, '34': 0, '35': 0, '36': 0, '37': 0, '38': 0, '39': 0, '40': 0}
-#
-# def gettotaldistro(distro):
-#     for entry in distro:
-#          #print(entry['gpa'])
-#         #print(entry['count'])
-#         totaldistro[entry['gpa']] += entry['count']
-#
-#
-#
-# def changevalues(course):
-#     gettotaldistro(dump[course]['gpa_distro'])
-#     dump[course]['gpaaverage'] = average(dump[course]['gpa_distro'])
-#     dump[course]['gpaoffset'] = offsetfromoverall(dump[course]['gpa_distro'])
-#     dump[course]['gpacount'] = gettotal(dump[course]['gpa_distro'])
-#     dump[course]['dropcount'] = dump[course]['gpa_distro'][0]['count']
-#     dump[course]['gpanodrop'] = averagewithoutzero(dump[course]['gpa_distro'])
-#     # del dump[course]['gpa_distro']
-#     dump[course]['gpaoffsetnodrop'] = overallgpa - dump[course]['gpanodrop']
-#     gettotal(dump[course]['gpa_distro'])
-#
-# # split courses with gpa
-# def splitcourses():
-#     def removenogpa(course):
-#         gpa = average(dump[course]['gpa_distro'])
-#         if gpa == 0:
-#             nogpacourses[course] = dump[course]
-#         else:
-#             gpacourses[course] = dump[course]
-#
-#     nogpacourses = {}
-#     gpacourses = {}
-#     for course in dump:
-#         removenogpa(course)
-#
-#     with open('nogpadump.json', 'w') as file:
-#         file.write(json.dumps(nogpacourses, sort_keys=True, indent=4))
-#
-#     # print(open('nogpadump.json', 'r').read())
-#
-#     with open('gpadump.json', 'w') as file:
-#         file.write(json.dumps(gpacourses, sort_keys=True, indent=4))
-#     # print(open('gpadump.json', 'r').read())
-#
-#
-# # splitcourses()
-# dump = json.loads(open('gpadump.json', 'r').read())
-# temp.json = dump
-#
-# for course in temp.json:
-#     changevalues(course)
-#
-# print(totaldistro)
-#
-# #
-# # with open('working.json', 'w') as file:
-# #     file.write(json.dumps(dump, sort_keys=True, indent=4))
-#
-# # Remove options
-#
-#
-# # print(dump)
-#
-# # temp.json = json.dumps(dump, sort_keys=True, indent=4)
-# # with open('working.json', 'w') as file:
-# #     file.write(temp.json)
-#
-# # for course in temp.json:
-# #     print(dump[course]['gpaoffset'])
-#
-# # print(offsetfromoverall('TCSS305'))
-# #
-# df = data.DataFrame(dump).T
-# df = df[['gpaoffsetnodrop','gpaaverage', 'gpaoffset', 'gpacount','dropcount','gpanodrop']]
-# df = df.sort_values(by='gpaoffsetnodrop', ascending=True)
-#
-# # print(df.to_string())
-# #print(json.dumps(dump['TCSS305'], sort_keys=True, indent=4))
-#
-# # df.sort_index(key=lambda x1: int(x1).)
-# # df.index = df.index.astype(int)
-# # # df = df.reindex(sorted(df.columns[1:], key=lambda x: int(x.split('_')[-1][1:])), axis=1)
-# #
-# # df = df.sort_index(ascending=True)
-# # df = df.T
-# # y = df.columns.to_numpy().reshape(-1,1)
-# # x = df.T.values
-# # print(y)
-# # print(x)
-# # # x = df.iloc[:, 0].values
-# # # print(x)
-# # import json
-# #
-# #
-# #
-# # #gpa_dict = eval(open('datacollapsed.json', 'r').read())
-# # courses = eval(open('grades.dict', 'r').read())
-# # percents = {}
-# #
-# # for prefix in courses:
-# #     for number in courses[prefix]:
-# #         if average(prefix, number) != 0:
-# #             percents[prefix + number] = average(prefix, number)
-# #
-# # with open('percents', 'w') as file:
-# #     file.write(json.dumps(percents, sort_keys=True, indent=4))
-# #
-# # with open('percents', 'r') as file:
-# #     print(file.read())
-# # # # json.dumps(data, sort_keys=True, indent=4)
-# # def offsetfromoverall(course):
-# #     gpa = average(dump[course]['gpa_distro'])
-# #     if gpa != 0:
-# #         return overallgpa - gpa

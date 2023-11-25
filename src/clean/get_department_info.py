@@ -16,4 +16,10 @@ for department in html_dict:
     dep_word_list[department] = dep_words
     # print(dep_words)
     # print(dep_string)
-print(dep_word_list)
+
+with open('files/departement_dict.pkl', 'wb') as file:
+    pickle.dump(dep_word_list, file)
+
+with open('files/departement_dict.pkl', 'rb') as file:
+    loaded_dict = pickle.load(file)
+print(loaded_dict)
