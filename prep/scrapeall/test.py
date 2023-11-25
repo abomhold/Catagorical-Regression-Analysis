@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 
-with open('output/coursesrawhtml', 'r') as file:
+with open('output/coursesraw.html', 'r') as file:
     soup = BeautifulSoup(file.read(), 'html.parser')
     soup = soup.findAll('a', {"name": lambda l: l})
     for line in soup:
