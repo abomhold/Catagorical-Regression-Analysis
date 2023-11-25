@@ -56,30 +56,47 @@ def percent_mastered(data):
 
 
 def flatten_coi_data(data):
+    # Lists to hold the data for each new column
     course_coi = []
     course_level_coi = []
     curric_coi = []
     percent_in_range = []
-    for index in data.index:
-        course_coi.append(data.loc[index]['coi_data']['course_coi'])
-        course_level_coi.append(data.loc[index]['coi_data']['course_level_coi'])
-        curric_coi.append(data.loc[index]['coi_data']['curric_coi'])
-        percent_in_range.append(data.loc[index]['coi_data']['percent_in_range'])
+
+    # Iterate over the DataFrame rows
+    for index, row in data.iterrows():
+        coi_data = row.get('coi_data', {})  # Use a default empty dictionary if 'coi_data' is missing
+
+        # Extract each piece of data, using a default value if the key is missing
+        course_coi.append(coi_data.get('course_coi'))
+        course_level_coi.append(coi_data.get('course_level_coi'))
+        curric_coi.append(coi_data.get('curric_coi'))
+        percent_in_range.append(coi_data.get('percent_in_range'))
+
+    # Add the new columns to the DataFrame
     data['course_coi'] = course_coi
     data['course_level_coi'] = course_level_coi
     data['curric_coi'] = curric_coi
     data['percent_in_range'] = percent_in_range
+
     return data
 
 
 def flatten_concurrent_courses(data):
     courses = []
-    for index in data.index:
-        if data.loc[index]['concurrent_courses'] == {} or data.loc[index]['concurrent_courses'] == None:
+
+    for index, row in data.iterrows():
+        # Retrieve the concurrent_courses data for the row
+        concurrent_courses = row.get('concurrent_courses')
+
+        # Check if concurrent_courses is empty or None
+        if not concurrent_courses:
             courses.append(None)
         else:
-            courses.append(set(data.loc[index]['concurrent_courses'].keys()))
-            # print(list(data.loc[index]['concurrent_courses'].keys()))
+            # Create a set of the keys with spaces removed
+            fixed_set = {key.replace(' ', '') for key in concurrent_courses.keys()}
+            courses.append(fixed_set)
+
+    # Update the DataFrame with the new concurrent_courses data
     data['concurrent_courses'] = courses
     return data
 
@@ -93,17 +110,35 @@ def remove_extra_columns(data):
 
 
 def flatten_prereq(data):
+    # Lists to hold the information for each course
     has_prereq_of = []
     is_prereq_for = []
-    for index in data.index:
-        if data.loc[index]['prereq_graph'] != None:
-            has_prereq_of.append(set(data.loc[index]['prereq_graph']['x']['edges']['from'].values()))
-            is_prereq_for.append(set(data.loc[index]['prereq_graph']['x']['edges']['to'].values()))
-        else:
-            has_prereq_of.append(None)
-            is_prereq_for.append(None)
-    data['has_prereq_of'] = has_prereq_of
-    data['is_prereq_for'] = is_prereq_for
+
+    # Iterate over the DataFrame rows
+    for index, row in data.iterrows():
+        # Initialize default values for when 'prereq_graph' is None or doesn't contain the required keys
+        has_set = {None}
+        is_set = {None}
+
+        # Check if 'prereq_graph' is not None and contains the necessary structure
+        prereq_graph = row.get('prereq_graph')
+        if prereq_graph:
+            has_edges = prereq_graph.get('x', {}).get('edges', {}).get('from')
+            is_edges = prereq_graph.get('x', {}).get('edges', {}).get('to')
+            self_course_id = row.get('course_id')
+
+            if has_edges:
+                has_set = {course.replace(' ', '') for course in has_edges.values() if course != self_course_id}
+            if is_edges:
+                is_set = {course.replace(' ', '') for course in is_edges.values() if course != self_course_id}
+
+        # Add the processed sets to the corresponding lists
+        has_prereq_of.append(has_set if has_set else {None})
+        is_prereq_for.append(is_set if is_set else {None})
+
+    # Add the new lists as columns to the DataFrame
+    data['has_prereq'] = has_prereq_of
+    data['is_prereq'] = is_prereq_for
     return data
 
 
@@ -136,8 +171,77 @@ def flatten_course_offered(data):
         else:
             quarter_set.add(None)
         offered.append(quarter_set)
-    data['usually_offered'] = offered
+    data['course_offered'] = offered
     return data
+
+
+def flatten_description(data):
+    prepositions = {'aboard', 'about', 'above', 'across', 'after', 'against', 'along', 'among', 'around', 'before',
+                    'behind', 'below', 'beneath', 'beside', 'between', 'beyond', 'concerning', 'considering', 'despite',
+                    'during', 'except', 'inside', 'outside', 'regarding', 'round', 'since', 'through', 'toward',
+                    'under', 'underneath', 'until', 'within', 'without'}
+
+    for index in data.index:
+        string_set = set()
+        course_description = data.loc[index, 'course_description']  # Use loc to access the cell directly
+
+        if course_description:
+            # Remove punctuation and split into words
+            string = course_description.replace(',', '').replace('.', '').replace(';', '').replace(':', '').replace('/',
+                                                                                                                    ' ')
+            string = string.replace(')', '').replace('(', '').split()
+            # Create a set of words that are not prepositions
+            string_set = {word for word in string if
+                          word.lower() not in prepositions and len(word) > 4 and not word.isdigit()}
+        # Update the 'course_description' for each row in the DataFrame
+        if string_set == set():
+            data.at[index, 'course_description'] = set({None})
+        else:
+            data.at[index, 'course_description'] = string_set  # Convert set back to string
+
+    return data
+
+
+# def flatten_description(data):
+#     description = []
+#     prepositions = {
+#         'aboard', 'about', 'above', 'across', 'after', 'against', 'along', 'amid', 'among', 'around', 'as', 'at',
+#         'before',
+#         'behind', 'below', 'beneath', 'beside', 'between', 'beyond', 'but', 'by', 'concerning', 'considering',
+#         'despite',
+#         'down', 'during', 'except', 'for', 'from', 'in', 'inside', 'into', 'like', 'near', 'of', 'off', 'on', 'onto',
+#         'out',
+#         'outside', 'over', 'past', 'regarding', 'round', 'since', 'through', 'to', 'toward', 'under', 'underneath',
+#         'until',
+#         'up', 'upon', 'with', 'within', 'without'
+#     }
+#
+#     for index in data.index:
+#         # string_set = set()
+#         if data.loc[index]['course_description'] is not None:
+#             string = data.loc[index]['course_description'].replace(',', '')
+#             string = string.replace('.', '')
+#             string = string.replace(':', '')
+#             string = string.replace('/', ' ')
+#             string = string.replace(')', '')
+#             string = string.replace('(', '')
+#             string = set(string.split(' '))
+#             if string == '':
+#                 string_set = {None}
+#             else:
+#                 string_set = string
+#         else:
+#             string_set = {None}
+#
+#         cleaned_set = set()
+#         if perpositions in string_set:
+#             for s in string_set:
+#                 cleaned_set.add(word for word in s if word.lower() not in prepositions)
+#
+#         else:
+#             cleaned_set = string_set
+#     data['course_description'] = cleaned_set
+#     return data
 
 
 data = average(data)
@@ -148,11 +252,15 @@ data = flatten_concurrent_courses(data)
 data = flatten_prereq(data)
 data = remove_extra_columns(data)
 data = flatten_course_offered(data)
+data = flatten_description(data)
+data.to_pickle('./files/almost_data_frame.pkl')
 # data = data.T
 # print(data.loc[data['course'] == 'TCSS305'])
 # print(data[6374]['coi_data'])
 # for index in data.index:
-#     print(data.loc[index]['usually_offered'])
+#     print(data.loc[index]['course_description'])
+    # print(data.loc[index]['has_prereq'])
+    # print(data.loc[index]['course_offered'])
 # if data.loc[index]['prereq_graph'] != None:
 #         # temp = eval(str(data.loc[index]['prereq_graph']['x']['edges']['to']))
 #         # print(
@@ -161,6 +269,7 @@ data = flatten_course_offered(data)
 #         print(data.loc[index]['prereq_graph']['x']['nodes']['writing_crs'])
 #         # print(set(data.loc[index]['prereq_graph']['x']['edges']['from'].values()))
 # .loc[6380]
+print(data)
 print(data.loc[6380])
 
 # import json
