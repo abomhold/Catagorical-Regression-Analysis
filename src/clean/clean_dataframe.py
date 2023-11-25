@@ -6,67 +6,89 @@ from bs4 import BeautifulSoup
 TOTAL_COUNTS = 2370259
 OVERALL_GPA = 33.675253210725074
 
-data = pd.read_pickle('files/trimmed_data_frame.pkl')
+data = pd.read_pickle('files/formatted_dataframe.pkl').T
 print(data)
 
 
 def average(data):
-    avg_list = []
-
-    for index, row in data.iterrows():
-        gpa_distro = row.get('gpa_distro', [])
-
-        total_count = 0
-        total_gpa = 0
-        for grade in gpa_distro:
-            total_count += grade['count']
-            total_gpa += grade['count'] * int(grade['gpa'])
-
-        # Handle division by zero if total_count is 0
-        avg = (total_gpa / total_count) if total_count > 0 else 0
-        avg_list.append(avg)
-
-    data['gpa_avg'] = avg_list
+    # Assuming 'gpa_distro' is a column containing a list of dictionaries
+    data['gpa_avg'] = data['gpa_distro'].apply(
+        lambda distro: sum(grade['count'] * int(grade['gpa']) for grade in distro) / sum(
+            grade['count'] for grade in distro) if distro else 0)
     return data
 
 
 def average_no_zero(data):
-    avg_list = []
-    for index in data.index:
-        totalcount = 0
-        totalgpa = 0
-        for grade in data.loc[index]['gpa_distro']:
-            if grade['gpa'] != '0':
-                totalcount += grade['count']
-                totalgpa += grade['count'] * int(grade['gpa'])
-        avg_list.append(totalgpa / totalcount)
-    data['gpa_avg_no_drops'] = avg_list
+    data['gpa_avg_no_drops'] = data['gpa_distro'].apply(
+        lambda distro: sum(grade['count'] * int(grade['gpa']) for grade in distro if grade['gpa'] != '0') / sum(
+            grade['count'] for grade in distro if grade['gpa'] != '0') if distro else 0)
     return data
 
 
 def percent_mastered(data):
-    avg_list = []
-
-    for index, row in data.iterrows():
-        gpa_distro = row.get('gpa_distro', [])
-
-        total_count = sum(grade['count'] for grade in gpa_distro)
-        mastered_count = sum(grade['count'] for grade in gpa_distro if int(grade['gpa']) >= 30)
-
-        # Handle division by zero if total_count is 0
-        avg = (mastered_count / total_count) if total_count > 0 else 0
-        avg_list.append(avg)
-
-    data['percent_mastered'] = avg_list
+    data['percent_mastered'] = data['gpa_distro'].apply(
+        lambda distro: sum(grade['count'] for grade in distro if int(grade['gpa']) >= 30) / sum(
+            grade['count'] for grade in distro) if distro else 0)
     return data
+
+
+#
+# def average(data):
+#     avg_list = []
+#     for course in data.columns:
+#         totalcount = 0
+#         totalgpa = 0
+#         for grade in data[course]['gpa_distro']:
+#             totalcount += grade['count']
+#             totalgpa += grade['count'] * int(grade['gpa'])
+#         avg_list.append(totalgpa / totalcount)
+#     data.loc['gpa_avg'] = avg_list
+#     return data
+#
+#
+# def average_no_zero(data):
+#     avg_list = []
+#     for course in data.columns:
+#         totalcount = 0
+#         totalgpa = 0
+#         for grade in data[course]['gpa_distro']:
+#             if grade['gpa'] != '0':
+#                 totalcount += grade['count']
+#                 totalgpa += grade['count'] * int(grade['gpa'])
+#         avg_list.append(totalgpa / totalcount)
+#     data.loc['gpa_avg_no_drops'] = avg_list
+#     return data
+#
+#
+# def percent_mastered(data):
+#     avg_list = []
+#
+#     for course in data.columns:
+#         gpa_distro = data[course]['gpa_distro']
+#
+#         total_count = sum(grade['count'] for grade in gpa_distro)
+#         mastered_count = sum(grade['count'] for grade in gpa_distro if int(grade['gpa']) >= 30)
+#
+#         # Handle division by zero if total_count is 0
+#         avg = (mastered_count / total_count) if total_count > 0 else 0
+#         avg_list.append(avg)
+#
+#     data.loc['percent_mastered'] = avg_list
+#     return data
 
 def add_level(data):
-    level = []
-    for index in data.index:
-        number = int(data.loc[index, 'course_id'][-3:])
-        level.append(int(number/100)*100)
-    data['course_level'] = level
+    data['course_level'] = data['course_id'].apply(lambda x: int(int(x[-3:]) / 100) * 100)
     return data
+
+
+# def add_level(data):
+#     level = []
+#     for course in data.columns:
+#         number = int(data[course, 'course_id'][-3:])
+#         level.append(int(number / 100) * 100)
+#     data['course_level'] = level
+#     return data
+
 
 def flatten_coi_data(data):
     # Lists to hold the data for each new column
@@ -243,20 +265,40 @@ def add_departments(data):
 
 
 data = average(data)
+print(data)
+print(data.loc['TMATH208'])
+
 data = average_no_zero(data)
+print(data)
+print(data.loc['TMATH208'])
 data = percent_mastered(data)
+print(data)
+print(data.loc['TMATH208'])
 data = flatten_coi_data(data)
+print(data)
+print(data.loc['TMATH208'])
 data = flatten_concurrent_courses(data)
+print(data)
+print(data.loc['TMATH208'])
 data = flatten_prereq(data)
+print(data)
+print(data.loc['TMATH208'])
 data = add_level(data)
+print(data)
+print(data.loc['TMATH208'])
 data = remove_extra_columns(data)
+print(data)
+print(data.loc['TMATH208'])
 data = flatten_course_offered(data)
+print(data)
+print(data.loc['TMATH208'])
 data = flatten_description(data)
+print(data)
+print(data.loc['TMATH208'])
 data = add_departments(data)
+print(data)
+print(data.loc['TMATH208'])
 data.to_pickle('./files/temp_data_frame.pkl')
 # for index in data.index:
 #     print(data.loc[index, 'departments'])
-
-# .loc[6380]
 print(data)
-print(data.loc[6380])

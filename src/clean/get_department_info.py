@@ -22,4 +22,5 @@ with open('files/departement_dict.pkl', 'wb') as file:
 
 with open('files/departement_dict.pkl', 'rb') as file:
     loaded_dict = pickle.load(file)
+
 print(loaded_dict)
