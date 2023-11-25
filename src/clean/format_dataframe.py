@@ -1,6 +1,7 @@
 import pandas as pd
 import re
 
+
 def remove_errors(data):
     temp = data
     for course in temp:
@@ -8,12 +9,14 @@ def remove_errors(data):
             del data[course]
     return data
 
+
 def remove_options(data):
     temp = data
     for course in temp:
         if data[course]['prereq_graph'] != None:
             del data[course]['prereq_graph']['x']['options']
     return data
+
 
 def get_totals(data):
     total_count = 0
@@ -50,28 +53,26 @@ def get_gpa_courses_2(data):
         if totalcount == 0:
             del data[course]
     return data
+
+
 def remove_empty_collumn(data):
     data = data.T
     del data[14]
     return data
 
+
 def add_headers(data):
     coloumns = ['coi_data', 'concurrent_courses', 'course_campus', 'course_credits', 'course_description', 'course_id',
-            'course_offered', 'course_title', 'department_abbrev', 'gpa_distro', 'is_bottleneck', 'is_gateway',
-            'prereq_graph', 'prereq_string']
+                'course_offered', 'course_title', 'department_abbrev', 'gpa_distro', 'is_bottleneck', 'is_gateway',
+                'prereq_graph', 'prereq_string']
     # data = pd.DataFrame(json.loads(data))
     data.columns = coloumns
     return data
 
 
-# total_counts = 2370259
-# overall_gpa = 33.675253210725074
-
-
-
 data = pd.read_pickle('files/trimmed_data_frame.pkl')
-#print(data.index)
-#data.insert(0, "course",data.index, True)
+# print(data.index)
+# data.insert(0, "course",data.index, True)
 data = data.reset_index(drop=True)
 print(data)
 data.to_pickle('./files/trimmed_data_frame.pkl')
@@ -91,17 +92,13 @@ data.to_pickle('./files/trimmed_data_frame.pkl')
 # print(data)
 
 
-
-
 # Write to file removed a lot of courses but
 # not alot of space, the courses with gpa must
 # be the heaviest
 
-    # store = pd.HDFStore('store.h5')
-    # store['data'] = data  # save it
-    # store['data']  # load it
-
-
+# store = pd.HDFStore('store.h5')
+# store['data'] = data  # save it
+# store['data']  # load it
 
 
 # wrote to temp.json file to reduce runtime SAVES 6MB
