@@ -106,32 +106,32 @@ with open('./files/departments.pkl', 'rb') as handle:
 print(html_dict)
 
 
-# #################################################################
-# # COLLECT ALL COURSE JSONs
-# # TIME INTENSIVE
-#
-# # Requires valid cookie file
-# # Instructions on how to generate your own in the '/files/cookie.txt'
-# # Set up cookie jar
-# cookie_jar = cookie.MozillaCookieJar("files/cookies.txt")
-# cookie_jar.load()
-#
-# # Set up logging to a file
-# log_file = open('./files/log', 'w')
-# sys.stderr = log_file
-#
-# # Get the courses from each campus's top level JSON
-# courses = get_courses()
-# # Build the urls for each course
-# urls = build_urls(courses)
-# # Collect the JSON for each course
-# courses_json = get_jsons(urls)
-#
-# # Save the course JSON data
-# # with open('files/all_raw.json', 'w') as file:
-# #     json.dump(courses_json, file)
-#
-# # Restore standard error and close log file
-# sys.stderr = sys.__stderr__
-# log_file.close()
-# ##############################################################
+#################################################################
+# COLLECT ALL COURSE JSONs
+# TIME INTENSIVE
+
+# Requires valid cookie file
+# Instructions on how to generate your own in the '/files/cookie.txt'
+# Set up cookie jar
+cookie_jar = cookie.MozillaCookieJar("files/cookies.txt")
+cookie_jar.load()
+
+# Set up logging to a file
+log_file = open('./files/log', 'w')
+sys.stderr = log_file
+
+# Get the courses from each campus's top level JSON
+courses = get_courses()
+# Build the urls for each course
+urls = build_urls(courses)
+# Collect the JSON for each course
+courses_json = get_jsons(urls)
+
+# Save the course JSON data
+# with open('files/all_raw.json', 'w') as file:
+#     json.dump(courses_json, file)
+
+# Restore standard error and close log file
+sys.stderr = sys.__stderr__
+log_file.close()
+##############################################################
