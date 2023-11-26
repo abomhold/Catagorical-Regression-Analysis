@@ -83,30 +83,3 @@ for feature in ['tacoma', 'seattle', 'is_bottleneck', 'is_gateway', 'course_leve
     plt.xticks(rotation=45)
     plt.ylim(30000, 40000)
     plt.show()
-
-# Mean Squared Error (MSE): 8587767.74
-#
-# MSE is the average of the squares of the errors between the predicted and actual values. It's a measure of the quality of the estimator. A lower MSE indicates a better fit of the model to the data. In your case, an MSE of around 8.59 million (considering your target variable gpa_avg is scaled up by 1000) is relatively high, suggesting that the model’s predictions deviate significantly from the actual values.
-# Root Mean Squared Error (RMSE): 2930.49
-#
-# RMSE is the square root of MSE and provides a measure of the average error magnitude in the same units as the response variable. An RMSE of 2930.49, in the context of GPA scores multiplied by 1000, implies that the typical error in the predictions is about 2.930 on a 0-4 GPA scale. This is a substantial error considering the range of GPA scores.
-# Mean Absolute Error (MAE): 2343.72
-#
-# MAE is the average of the absolute differences between the predicted values and actual values. It provides a straightforward interpretation of the average error magnitude. An MAE of 2343.72 indicates that, on average, the model’s predictions are off by about 2.344 GPA points (after scaling down by 1000).
-# Coefficient of Determination (R² score): 0.13
-#
-# The R² score ranges from 0 to 1 and represents the proportion of the variance in the dependent variable that is predictable from the independent variables. An R² of 0.13 suggests that only 13% of the variability in GPA scores is explained by your model. This indicates a relatively weak fit of the model to your data.
-# Model Coefficients:
-#
-#     is_bottleneck: 14.2663: This coefficient suggests that being a bottleneck course is associated with an increase of about 0.014 in GPA (when scaled back to the original GPA scale).
-#     is_gateway: -242.7160: This implies that being a gateway course is associated with a decrease of about 0.243 in GPA.
-#     course_level: 553.2763: For each unit increase in course level (assuming the levels are 100, 200, 300, 400), there is an associated increase of about 0.553 in GPA.
-#     Campus Coefficients (bothell, seattle, tacoma): These extremely large coefficients are unusual and suggest an issue in the model. Such large values can arise from multicollinearity (high correlation between predictor variables), lack of data normalization, or other data issues. They are not meaningful in this form and indicate a potential problem with the model or data.
-#
-# Interpretation and Considerations:
-#
-#     The model's predictive accuracy is not very high, given the large MSE, RMSE, MAE, and low R².
-#     The coefficients for is_bottleneck, is_gateway, and course_level provide some insights but should be interpreted cautiously given the overall model performance.
-#     The exceedingly large coefficients for campuses are a red flag, indicating potential issues with the data or model specification. It's advisable to investigate the data preprocessing steps, check for multicollinearity, and ensure proper scaling and encoding of variables.
-#     Consider exploring other modeling techniques or additional relevant features that could improve the model's performance.
-#
