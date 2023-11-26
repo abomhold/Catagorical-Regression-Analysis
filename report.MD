@@ -1,3 +1,174 @@
+# Linear Regression Model on Categorical Data of UW Courses
+## Collection, Processing, and Analysis
+
+### Part One: Collection
+```python
+import json
+import pickle
+import sys
+import requests
+import http.cookiejar as cookie
+from bs4 import BeautifulSoup
+import re
+
+HTML_URL_HEADER = 'https://www.washington.edu/students/'
+JSON_URL_HEADER = 'https://dawgpath.uw.edu/api/v1/courses/'
+
+
+# Function to retrieve course information from the UW API
+def get_courses():
+    # Define the campuses to fetch course data for
+    campuses = {'seattle', 'tacoma', 'bothell'}
+    courses = []
+
+    # Loop through each campus
+    for campus in campuses:
+        # Construct the URL for the API call
+        response = requests.get(f'{JSON_URL_HEADER}{campus}', cookies=cookie_jar)
+        # Evaluate the text response to Python list
+        courses += eval(response.text)
+    return courses
+
+
+# Function to build detailed course URLs from course data
+def build_urls(courses):
+    urls = {}
+
+    # Loop through each course to construct its detailed URL
+    for course in courses:
+        key = course['key']
+        url = f'{JSON_URL_HEADER}{key}'
+        # Extract course prefix and number
+        prefix, number = key[:-3].replace(' ', ''), key.split(' ')[-1]
+        # Store the full URL with the course key
+        urls[prefix + number] = url
+    return urls
+
+
+# Function to fetch course data in JSON format from URLs
+def get_jsons(urls):
+    raw_jsons = {}
+
+    # Loop through each URL and fetch the JSON data
+    for key, url in urls.items():
+        response = requests.get(url, cookies=cookie_jar)
+        # Parse the JSON response
+        raw_jsons[key] = json.loads(response.text)
+        # Log output to a file
+        print(key, raw_jsons[key], file=log_file)
+    return raw_jsons
+
+
+# Function to scrape department information from UW course catalog pages
+def build_department_urls():
+    # Define the URL suffix for each campus
+    campuses = {'crscatb/', 'crscat/', 'crscatt/'}
+    urls = {}
+
+    # Loop through each campus to construct department URLs
+    for campus in campuses:
+        url = HTML_URL_HEADER + campus
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        # Loop through each link header to find department URLs
+        for line in soup.findAll('li'):
+            match = re.search('(?<=href=")[a-zA-Z.]+(?=">)', str(line.a))
+            if match:
+                department = match.group().split('.')[0].upper()
+                # Store the full URL for each department
+                urls[department] = url + match.group()
+    return urls
+
+
+def scrape_and_save_html(urls):
+    html_dict = {}
+
+    # Loop through each department URL to scrape its HTML content
+    for department, dep_url in urls.items():
+        response = requests.get(dep_url)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        # Store the prettified HTML content
+        html_dict[department] = soup.prettify()
+    return html_dict
+
+
+def process_department_html(html_dict):
+    dep_word_list = {}
+
+    # Process the HTML content to extract department words
+    for department, html_content in html_dict.items():
+        soup = BeautifulSoup(html_content, 'html.parser')
+        # Extract and clean the department header text
+        dep_string = soup.h1.text.replace('\n', '').replace('   ', '  ').split('  ')
+        # Filter out unwanted words
+        dep_words = [string for string in dep_string if string and string not in ('UW TACOMA', 'UW BOTHELL')]
+        # Store the words for each department
+        dep_word_list[department] = dep_words
+
+    return dep_word_list
+
+
+###################################################################
+# COLLECT DEPARTMENT INFORMATION FROM ONLINE COURSE CATALOGUE
+
+# # First build the department urls
+# department_urls = build_department_urls()
+
+# # Scrape the department course catalogue for department names
+# html_content = scrape_and_save_html(department_urls)
+
+# # To reduce server time scrape all html first
+# # Save to file and then continue processing
+# # Run once then comment out
+# with open('./files/department_html_content.pkl', 'wb') as handle:
+#     pickle.dump(html_content, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+# For multiple runs just read from file
+with open('./files/department_html_content.pkl', 'rb') as handle:
+    html_dict = pickle.load(handle)
+
+# Filter the department HTML to find the department keywords
+processed_departments = process_department_html(html_dict)
+
+# print(processed_departments)
+with open('./files/departments.pkl', 'wb') as handle:
+    pickle.dump(processed_departments, handle, protocol=pickle.HIGHEST_PROTOCOL)
+with open('./files/departments.pkl', 'rb') as handle:
+    html_dict = pickle.load(handle)
+print(html_dict)
+
+#################################################################
+# COLLECT ALL COURSE JSONs
+# TIME INTENSIVE
+
+# Requires valid cookie file
+# Instructions on how to generate your own in the '/files/cookie.txt'
+# Set up cookie jar
+cookie_jar = cookie.MozillaCookieJar("files/cookies.txt")
+cookie_jar.load()
+
+# Set up logging to a file
+log_file = open('./files/log', 'w')
+sys.stderr = log_file
+
+# Get the courses from each campus's top level JSON
+courses = get_courses()
+# Build the urls for each course
+urls = build_urls(courses)
+# Collect the JSON for each course
+courses_json = get_jsons(urls)
+
+# Save the course JSON data
+# with open('files/all_raw.json', 'w') as file:
+#     json.dump(courses_json, file)
+
+# Restore standard error and close log file
+sys.stderr = sys.__stderr__
+log_file.close()
+##############################################################
+```
+### Part 2: Processing
+```python
 import pickle
 import time
 
@@ -324,3 +495,125 @@ for operation, time_taken in timings.items():
 # Flatten Description: 0.31 seconds
 # Remove Extra Columns: 0.00 seconds
 # Final Save to Disk: 0.04 seconds
+```
+### Part 3: Analysis
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LinearRegression
+from sklearn.pipeline import make_pipeline
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+import math
+import matplotlib.pyplot as plt
+
+# Load the data
+df = pd.read_pickle('./files/clean_dataframe.pkl')
+
+# Fill NaN values with the mean of each column
+df['course_coi'].fillna(df['course_coi'].mean(), inplace=True)
+df['course_level_coi'].fillna(df['course_level_coi'].mean(), inplace=True)
+df['curric_coi'].fillna(df['curric_coi'].mean(), inplace=True)
+df['percent_in_range'].fillna(df['percent_in_range'].mean(), inplace=True)
+
+# Extract and convert 'course_credits' to float
+df['course_credits'] = df['course_credits'].str.extract('(\d+\.?\d*)').astype(float)
+
+# One-hot encode 'course_campus' and drop one category to avoid multicollinearity
+campus_dummies = pd.get_dummies(df['course_campus'], drop_first=True)
+
+# Combine all features for the model
+x = pd.concat([df[['is_bottleneck', 'is_gateway', 'course_level', 'course_coi', 'course_level_coi', 'curric_coi',
+                   'percent_in_range', 'course_credits']], campus_dummies], axis=1)
+x = x.astype({'is_bottleneck': bool, 'is_gateway': bool, 'course_level': int, 'course_credits': int})
+
+# Prepare target variable y by scaling the GPA
+y = df['percent_mastered']  # / 100
+
+# Split the data into training and testing sets
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random_state=0)
+
+# Create a pipeline for scaling and linear regression
+pipeline = make_pipeline(StandardScaler(), LinearRegression())
+pipeline.fit(x_train, y_train)
+
+# Predict using the model
+y_pred = pipeline.predict(x_test)
+
+# Evaluate the model's performance
+mse = mean_squared_error(y_test, y_pred)
+rmse = math.sqrt(mse)
+mae = mean_absolute_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+
+# Print out the evaluation metrics
+print(f"Mean Squared Error (MSE): {mse:.2f}")
+print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
+print(f"Mean Absolute Error (MAE): {mae:.2f}")
+print(f"Coefficient of Determination (R² score): {r2:.2f}")
+
+# Extract model coefficients
+model = pipeline.named_steps['linearregression']
+coefficients = model.coef_
+features = x.columns
+
+# Print out the coefficients with their meanings
+print("\nModel Coefficients and their Impact on Predicted GPA (as Percentage):")
+for feature, coef in zip(features, coefficients):
+    if feature == 'is_bottleneck':
+        print(
+            f"{feature}: {coef:.4f} - Being a bottleneck course (if True) is associated with a {coef:.2f}% change in "  
+         + "competency.")
+    elif feature == 'is_gateway':
+        print(
+            f"{feature}: {coef:.4f} - Being a gateway course (if True) is associated with a {coef:.2f}% change in "
+            + "competency.")
+    elif feature not in ['course_coi', 'course_level_coi', 'curric_coi', 'percent_in_range']:
+        print(
+            f"{feature}: {coef:.4f} - A unit increase in '{feature}' is associated with a {coef:.2f}% change in "
+            + "competency.")
+
+# Combine test set and predictions for plotting
+predicted_gpa = pd.DataFrame({'Actual': y_test, 'Predicted': y_pred})
+predicted_gpa = pd.concat([x_test.reset_index(drop=True), predicted_gpa.reset_index(drop=True)], axis=1)
+
+# Plotting
+for feature in ['tacoma', 'seattle', 'is_bottleneck', 'is_gateway', 'course_level', 'course_credits']:
+    feature_avg = predicted_gpa.groupby(feature).mean()
+    plt.figure()
+    feature_avg['Predicted'].plot(kind='bar')
+    plt.ylabel('Predicted Percent >= 3.0')
+    plt.title(f'Predicted Percent >= 3.0 by {feature}')
+    plt.xticks(rotation=45)
+    plt.ylim(0.7, 1.0)
+    plt.show()
+
+```
+### Results:
+```
+GOOD MODEL
+
+Mean Squared Error (MSE): 0.01
+Root Mean Squared Error (RMSE): 0.11
+Mean Absolute Error (MAE): 0.09
+Coefficient of Determination (R² score): 0.22
+
+ONLY EXPLAINING A CHANGE OF 22%
+MAKES SENSE THE CATAGORIES REALLY SHOULD HAVE TO MUCH IMPACT
+
+
+Model Coefficients and their Impact on Predicted GPA (as Percentage):
+is_bottleneck: 0.0007 - Being a bottleneck course (if True) is associated with a 0.00% change in competency.
+is_gateway: -0.0112 - Being a gateway course (if True) is associated with a -0.01% change in competency.
+course_level: 0.0189 - A unit increase in 'course_level' is associated with a 0.02% change in competency.
+course_credits: -0.0181 - A unit increase in 'course_credits' is associated with a -0.02% change in competency.
+seattle: 0.0280 - A unit increase in 'seattle' is associated with a 0.03% change in competency.
+tacoma: -0.0125 - A unit increase in 'tacoma' is associated with a -0.01% change in competency.
+```
+
+![img_3.png](img_3.png)
+![img_2.png](img_2.png)
+![img.png](img.png)
+![img_6.png](img_6.png)
+![img_4.png](img_4.png)
+![img_5.png](img_5.png)

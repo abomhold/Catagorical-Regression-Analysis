@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LinearRegression
@@ -65,13 +64,13 @@ print("\nModel Coefficients and their Impact on Predicted GPA (as Percentage):")
 for feature, coef in zip(features, coefficients):
     if feature == 'is_bottleneck':
         print(
-            f"{feature}: {coef:.4f} - Being a bottleneck course (if True) is associated with a {coef:.2f}% change in mastery.")
+            f"{feature}: {coef:.4f} - Being a bottleneck course (if True) is associated with a {coef:.2f}% change in competency.")
     elif feature == 'is_gateway':
         print(
-            f"{feature}: {coef:.4f} - Being a gateway course (if True) is associated with a {coef:.2f}% change in mastery.")
-    else:
+            f"{feature}: {coef:.4f} - Being a gateway course (if True) is associated with a {coef:.2f}% change in competency.")
+    elif feature not in ['course_coi', 'course_level_coi', 'curric_coi', 'percent_in_range']:
         print(
-            f"{feature}: {coef:.4f} - A unit increase in '{feature}' is associated with a {coef:.2f}% change in mastery.")
+            f"{feature}: {coef:.4f} - A unit increase in '{feature}' is associated with a {coef:.2f}% change in competency.")
 
 # Combine test set and predictions for plotting
 predicted_gpa = pd.DataFrame({'Actual': y_test, 'Predicted': y_pred})
