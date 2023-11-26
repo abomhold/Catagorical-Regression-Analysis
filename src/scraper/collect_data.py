@@ -6,13 +6,8 @@ import http.cookiejar as cookie
 from bs4 import BeautifulSoup
 import re
 
-# Set up logging to a file and load cookies
-log_file = open('./files/log', 'w')
-sys.stderr = log_file
-# cookie_jar = cookie.MozillaCookieJar("files/cookies.txt")
-# cookie_jar.load()
-
-UW_URL_HEADER = 'https://www.washington.edu/students/'
+HTML_URL_HEADER = 'https://www.washington.edu/students/'
+JSON_URL_HEADER = 'https://dawgpath.uw.edu/api/v1/courses/'
 
 
 # Function to retrieve course information from the UW API
@@ -20,7 +15,7 @@ def get_courses():
     campuses = {'seattle', 'tacoma', 'bothell'}
     courses = []
     for campus in campuses:
-        response = requests.get(f"https://dawgpath.uw.edu/api/v1/courses/{campus}", cookies=cookie_jar)
+        response = requests.get(f'{JSON_URL_HEADER}{campus}', cookies=cookie_jar)
         courses += eval(response.text)
     return courses
 
@@ -30,7 +25,7 @@ def build_urls(courses):
     urls = {}
     for course in courses:
         key = course['key']
-        url = f'https://dawgpath.uw.edu/api/v1/courses/details/{key}'
+        url = f'{JSON_URL_HEADER}{key}'
         prefix, number = key[:-3].replace(' ', ''), key.split(' ')[-1]
         urls[prefix + number] = url
     return urls
@@ -51,7 +46,7 @@ def build_department_urls():
     campuses = {'crscatb/', 'crscat/', 'crscatt/'}
     urls = {}
     for campus in campuses:
-        url = UW_URL_HEADER + campus
+        url = HTML_URL_HEADER + campus
         response = requests.get(url)
         soup = BeautifulSoup(response.text, 'html.parser')
         for line in soup.findAll('li'):
@@ -86,6 +81,7 @@ def process_department_html(html_dict):
     return dep_word_list
 
 
+###################################################################
 # COLLECT DEPARTMENT INFORMATION FROM ONLINE COURSE CATALOGUE
 
 # First build the department urls
@@ -104,12 +100,26 @@ with open('./files/department_html_content.pkl', 'rb') as handle:
 processed_departments = process_department_html(html_dict)
 print(processed_departments)
 
+#################################################################
 # COLLECT ALL COURSE JSONs
+# TIME INTENSIVE
 
 # Requires valid cookie file
 # Instructions on how to generate your own in the '/files/cookie.txt'
+# Set up cookie jar
+cookie_jar = cookie.MozillaCookieJar("files/cookies.txt")
+cookie_jar.load()
 
-# courses_json = get_jsons(build_urls(get_courses()))
+# Set up logging to a file
+log_file = open('./files/log', 'w')
+sys.stderr = log_file
+
+# Get the courses from each campus's top level JSON
+courses = get_courses()
+# Build the urls for each course
+urls = build_urls(courses)
+# Collect the JSON for each course
+courses_json = get_jsons(urls)
 
 # Save the course JSON data
 # with open('files/all_raw.json', 'w') as file:
@@ -118,3 +128,4 @@ print(processed_departments)
 # Restore standard error and close log file
 sys.stderr = sys.__stderr__
 log_file.close()
+##############################################################
