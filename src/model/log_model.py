@@ -1,7 +1,7 @@
 import pandas as pd
-df = pd.read_pickle('./files/clean_data_frame.pkl')
+df = pd.read_pickle('./files/clean_dataframe.pkl')
 for index in df.index:
-    print(df.loc[index])
+    print(f'{index}\n{df.loc[index]['departments']}')
 
 # Assuming the target variable is in the first column
 # y = df.iloc[:, 13]
