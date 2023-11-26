@@ -270,7 +270,7 @@ for entry in entries:
     print(f'{entry}: {entries[entry]}')
 for entry in timings:
     print(f'{entry}: {timings[entry]}')
-v
+
 # Timing the save to disk operation
 start_time = time.time()
 data.to_pickle('./files/no_gpa_dataframe.pkl')  # FILE_SIZE: 18.62 MB
