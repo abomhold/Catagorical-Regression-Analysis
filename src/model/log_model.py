@@ -1,7 +1,8 @@
 import pandas as pd
 df = pd.read_pickle('./files/clean_dataframe.pkl')
-for index in df.index:
-    print(f'{index}\n{df.loc[index]['departments']}')
+print(df.loc['TMATH208'])
+# for index in df.index:
+#     print(f'{index}\n{df.loc[index]['course_description']}')
 
 # Assuming the target variable is in the first column
 # y = df.iloc[:, 13]

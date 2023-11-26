@@ -285,8 +285,6 @@ entries = {}
 # read from disk and transpose data
 data = pd.read_pickle('./files/no_gpa_dataframe.pkl').T
 
-
-
 # # Timing get_totals function
 # start_time = time.time()
 # totals = get_totals(data)
@@ -299,6 +297,7 @@ data = pd.read_pickle('./files/no_gpa_dataframe.pkl').T
 functions_to_time = [
     ('Remove Options', remove_options),
     ('Add Departments', add_departments),
+    ('Average', average),
     ('Average No Zero', average_no_zero),
     ('Percent Mastered', percent_mastered),
     ('Flatten COI Data', flatten_coi_data),
@@ -326,21 +325,18 @@ print(data)
 print('FINAL COURSE EXAMPLE: ')
 print(data.loc['TMATH208'])
 
-#Display timings
+# Display timings
 for operation, time_taken in timings.items():
     print(f"{operation}: {time_taken:.2f} seconds")
 
-# Remove Errors: 5.34 seconds
-# Get GPA Courses: 451.02 seconds
-# Remove Options: 0.23 seconds
-# Add Departments: 3.89 seconds
+# Average: 0.07 seconds
 # Average No Zero: 0.09 seconds
-# Percent Mastered: 0.07 seconds
+# Percent Mastered: 0.06 seconds
 # Flatten COI Data: 0.22 seconds
 # Flatten Concurrent Courses: 0.22 seconds
 # Flatten Prerequisites: 0.25 seconds
 # Add Level: 0.01 seconds
-# Flatten Course Offered: 0.31 seconds
+# Flatten Course Offered: 0.35 seconds
 # Flatten Description: 0.31 seconds
 # Remove Extra Columns: 0.00 seconds
 # Final Save to Disk: 0.04 seconds
