@@ -23,10 +23,11 @@ def remove_options(data):
     # Remove the 'options' key from the 'prereq_graph' of each course.
     # Iterates through the dataset and checks if 'prereq_graph' exists for each course.
     # If 'prereq_graph' is present, deletes the 'options' key from it.
-    for course in data:
-        if data[course]['prereq_graph'] is not None:
-            print(f'REMOVING FOR COURSE: {course}')
-            del data[course]['prereq_graph']['x']['options']
+    for course, row in data.iterrows():
+        graph = row.get('prereq_graph', {})
+        if graph is not None:
+            # print(f'REMOVING FOR COURSE: {course}')
+            del graph['x']['options']
     return data
 
 
@@ -43,11 +44,11 @@ def get_totals(data):
 
 def get_gpa_courses(data):
     # Remove courses from the dataset based on their GPA distribution.
-    # Identifies courses where the 9th index (assumed to be 'gpa_distro') is empty or has a total count of 0.
+    # Identifies courses 'gpa_distro' is empty or has a total count of 0.
     # Iterates through the dataset and deletes such courses.
     # Also, prints the course identifier for each course removed.
-    courses_to_remove = [course for course in data if not data[course].iloc[9] or
-                         sum(grade['count'] for grade in data[course].iloc[9]) == 0]
+    courses_to_remove = [course for course in data if not data[course]['gpa_distro'] or
+                         sum(grade['count'] for grade in data[course]['gpa_distro']) == 0]
     for course in courses_to_remove:
         print(f'REMOVING COURSE: {course}')
         del data[course]
@@ -202,7 +203,7 @@ def get_department_dict():
     # Process the HTML data using BeautifulSoup to extract department names.
     # Skips 'UW TACOMA' and 'UW BOTHELL' strings and any empty strings.
     # Returns a dictionary mapping department abbreviations to department names.
-    with open('../clean/files/department_html_dict.pkl', 'rb') as handle:
+    with open('./files/department_html_content.pkl', 'rb') as handle:
         html_dict = pickle.load(handle)
     dep_word_list = {}
     for department in html_dict:
@@ -217,10 +218,12 @@ def add_departments(data):
     # Add a new column 'departments' to the DataFrame, mapping each course to its department(s).
     # Uses a pre-loaded department dictionary to find department names for each course.
     # Handles cases where the department abbreviation is not found in the dictionary.
-    dep_dict = get_department_dict()
+    with open('./files/departments.pkl', 'rb') as handle:
+        dep_dict = pickle.load(handle)
     dep_list = []
     for course in data.index:
         key = str(data.loc[course, 'department_abbrev']).replace(' ', '')
+        print(dep_dict.get(key, {None}))
         dep_list.append(set(dep_dict.get(key, {None})))
     data['departments'] = dep_list
     return data
@@ -239,42 +242,50 @@ def remove_extra_columns(data):
 # Initialize a dictionary to store execution times and number of entries
 timings = {}
 entries = {}
-# Timing the data loading
-start_time = time.time()
-data = pd.read_json('./files/all_raw.json')  # FILE_SIZE: 27.58 MB
-entries['initial'] = data.columns.size
-timings['Load Data'] = time.time() - start_time
-print(data)
-for entry in entries:
-    print(f'{entry}: {entries[entry]}')
-for entry in timings:
-    print(f'{entry}: {timings[entry]}')
-# Timing remove_errors function
-start_time = time.time()
-data = remove_errors(data)
-entries['Remove Errors'] = data.columns.size
-timings['Remove Errors'] = time.time() - start_time
-print(data)
-for entry in entries:
-    print(f'{entry}: {entries[entry]}')
-for entry in timings:
-    print(f'{entry}: {timings[entry]}')
-# Timing get_gpa_courses function
-start_time = time.time()
-data = get_gpa_courses(data)
-entries['Get GPA Courses'] = data.columns.size
-timings['Get GPA Courses'] = time.time() - start_time
 
-print(data)
-for entry in entries:
-    print(f'{entry}: {entries[entry]}')
-for entry in timings:
-    print(f'{entry}: {timings[entry]}')
-v
-# Timing the save to disk operation
-start_time = time.time()
-data.to_pickle('./files/no_gpa_dataframe.pkl')  # FILE_SIZE: 18.62 MB
-timings['Save to Disk'] = time.time() - start_time
+#######################################################################################
+# # TIME FOR COMPLETION ~8 MIN
+#
+# data = pd.read_json('./files/all_raw.json')  # FILE_SIZE: 27.58 MB
+# entries['initial'] = data.columns.size
+# print(data)
+#
+# # Timing remove_errors function
+# start_time = time.time()
+# data = remove_errors(data)
+# entries['Remove Errors'] = data.columns.size
+# timings['Remove Errors'] = time.time() - start_time
+# data = data.drop('error', inplace=False)
+# print(data)
+#
+# # Timing get_gpa_courses function
+# start_time = time.time()
+# data = get_gpa_courses(data)
+# entries['Get GPA Courses'] = data.columns.size
+# timings['Get GPA Courses'] = time.time() - start_time
+#
+# print(data)
+# for entry in entries:
+#     print(f'{entry}: {entries[entry]}')
+# for entry in timings:
+#     print(f'{entry}: {timings[entry]}')
+#
+# data.to_pickle('./files/no_gpa_dataframe.pkl')  # FILE_SIZE: 18.62 MB
+# # size:
+# # initial: 10826
+# # Remove Errors: 10817
+# # Get GPA Courses: 6717
+# # time:
+# # Remove Errors: 5.317916393280029
+# # Get GPA Courses: 488.68519949913025
+
+######################################################################################
+
+
+# read from disk and transpose data
+data = pd.read_pickle('./files/no_gpa_dataframe.pkl').T
+
+
 
 # # Timing get_totals function
 # start_time = time.time()
@@ -282,47 +293,54 @@ timings['Save to Disk'] = time.time() - start_time
 # timings['Get Totals'] = time.time() - start_time
 #
 # print(totals)
-#
-# # Timing the load from disk operation
-# start_time = time.time()
-# data = pd.read_pickle('./files/no_gpa_dataframe.pkl')
-# timings['Load from Disk'] = time.time() - start_time
-#
-# print(data)
-#
-# # Timing subsequent operations
-# functions_to_time = [
-#     ('Remove Options', remove_options),
-#     ('Drop Error Column', lambda d: d.drop('error')),
-#     ('Transpose Data', lambda d: d.T),
-#     ('Add Departments', add_departments),
-#     ('Average No Zero', average_no_zero),
-#     ('Percent Mastered', percent_mastered),
-#     ('Flatten COI Data', flatten_coi_data),
-#     ('Flatten Concurrent Courses', flatten_concurrent_courses),
-#     ('Flatten Prerequisites', flatten_prereq),
-#     ('Add Level', add_level),
-#     ('Flatten Course Offered', flatten_course_offered),
-#     ('Flatten Description', flatten_description),
-#     ('Remove Extra Columns', remove_extra_columns)
-# ]
-#
-# for func_name, func in functions_to_time:
-#     start_time = time.time()
-#     data = func(data)
-#     entries['initial'] = data.columns.size
-#     timings[func_name] = time.time() - start_time
-#     print(data.loc['TMATH208'])
-#
-# # Timing the final save to disk operation
-# start_time = time.time()
-# data.to_pickle('./files/clean_dataframe.pkl')
-# timings['Final Save to Disk'] = time.time() - start_time
-#
-# print(data)
-# print('FINAL COURSE EXAMPLE: ')
-# print(data.loc['TMATH208'])
-#
-# # Display timings
-# for operation, time_taken in timings.items():
-#     print(f"{operation}: {time_taken:.2f} seconds")
+
+
+# Timing subsequent operations
+functions_to_time = [
+    ('Remove Options', remove_options),
+    ('Add Departments', add_departments),
+    ('Average No Zero', average_no_zero),
+    ('Percent Mastered', percent_mastered),
+    ('Flatten COI Data', flatten_coi_data),
+    ('Flatten Concurrent Courses', flatten_concurrent_courses),
+    ('Flatten Prerequisites', flatten_prereq),
+    ('Add Level', add_level),
+    ('Flatten Course Offered', flatten_course_offered),
+    ('Flatten Description', flatten_description),
+    ('Remove Extra Columns', remove_extra_columns)
+]
+
+for func_name, func in functions_to_time:
+    start_time = time.time()
+    data = func(data)
+    timings[func_name] = time.time() - start_time
+    print(data)
+    print(data.loc['TMATH208'])
+
+# Timing the final save to disk operation
+start_time = time.time()
+data.to_pickle('./files/clean_dataframe.pkl')
+timings['Final Save to Disk'] = time.time() - start_time
+
+print(data)
+print('FINAL COURSE EXAMPLE: ')
+print(data.loc['TMATH208'])
+
+#Display timings
+for operation, time_taken in timings.items():
+    print(f"{operation}: {time_taken:.2f} seconds")
+
+# Remove Errors: 5.34 seconds
+# Get GPA Courses: 451.02 seconds
+# Remove Options: 0.23 seconds
+# Add Departments: 3.89 seconds
+# Average No Zero: 0.09 seconds
+# Percent Mastered: 0.07 seconds
+# Flatten COI Data: 0.22 seconds
+# Flatten Concurrent Courses: 0.22 seconds
+# Flatten Prerequisites: 0.25 seconds
+# Add Level: 0.01 seconds
+# Flatten Course Offered: 0.31 seconds
+# Flatten Description: 0.31 seconds
+# Remove Extra Columns: 0.00 seconds
+# Final Save to Disk: 0.04 seconds
