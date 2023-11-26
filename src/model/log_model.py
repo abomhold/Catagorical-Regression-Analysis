@@ -1,78 +1,62 @@
-import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
-from sklearn import metrics
-from sklearn.decomposition import PCA
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-import seaborn as sns
+from sklearn.linear_model import LinearRegression
+from sklearn.pipeline import Pipeline
+from sklearn.metrics import mean_squared_error
 
+# Load and prepare the data
 df = pd.read_pickle('./files/clean_dataframe.pkl')
 df.reset_index(names=['courses'], inplace=True)
+print(list(df.columns))
+# # Prepare feature matrix X
+# x = df[['course_campus']]
+# dummies_campus = pd.get_dummies(x['course_campus'])
+# x = pd.concat([x, dummies_campus], axis='columns')
+# x = x.drop(['course_campus'], axis='columns')
+# x = x.astype({'bothell': bool, 'seattle': bool, 'tacoma': bool})
 
-x = df[['course_campus', 'is_bottleneck', 'is_gateway', 'course_level']]
-dummies_campus = pd.get_dummies(x['course_campus'])
-# dummies_department = pd.get_dummies(x['department_abbrev'])
-x = pd.concat([x, dummies_campus], axis='columns')
-x = x.drop(['course_campus'], axis='columns')
-x = x.astype(
-    {'is_bottleneck': bool, 'is_gateway': bool, 'course_level': int, 'bothell': bool, 'seattle': bool, 'tacoma': bool})
-print(x.columns)
+# Prepare feature matrix X
+x = df[['course_level']]
+# dummies_level = pd.get_dummies(x['course_level'])
+# x = pd.concat([x, dummies_level], axis='columns')
+# x = x.drop(['course_level'], axis='columns')
+x = x.astype({'course_level': int})
 
+# Prepare target variable y
 y = df[['gpa_avg']].copy()
 y['gpa_avg'] = df.gpa_avg.multiply(1000).round().astype(int)
-print(y)
+y = y.gpa_avg
 
-# Splitting data into training and test.json sets
-x_test, x_train, y_test, y_train = train_test_split(x, y.values.ravel(), test_size=0.25, random_state=0)
-print(x_train, x_test, y_train, y_test)
+# Splitting data into training and test sets
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random_state=0)
 
-# PCA for dimensionality reduction
-pca = PCA(n_components=6)
-x_train = pca.fit_transform(x_train)
-x_test = pca.transform(x_test)
-explained_variance = pca.explained_variance_ratio_
-print(x_train, x_test)
-print(explained_variance)
+# Instantiate Standard Scaler and Linear Regression
+scaler = StandardScaler()
+regressor = LinearRegression()
 
-# import the class
-from sklearn.linear_model import LogisticRegression
+# Creating a pipeline
+pipeline = Pipeline([('scaler', scaler), ('regressor', regressor)])
+pipeline.fit(x_train, y_train)
 
-# instantiate the model (using the default parameters)
-logreg = LogisticRegression(random_state=16, max_iter=10000)
+# Make predictions
+y_pred = pipeline.predict(x_test)
 
-# fit the model with data
-logreg.fit(x_train, y_train)
+# Evaluate the model
+mse = mean_squared_error(y_test, y_pred)
+print(f"Mean Squared Error: {mse}")
 
-y_pred = logreg.predict(x_test)
-print(y_pred)
+# Plotting the bar plot for predicted GPA averages for each campus
+predicted_gpa = pd.DataFrame({'Actual': y_test, 'Predicted': y_pred})
+predicted_gpa = pd.concat([x_test.reset_index(drop=True), predicted_gpa.reset_index(drop=True)], axis=1)
 
-cnf_matrix = metrics.confusion_matrix(y_test, y_pred)
+# Aggregate predictions by campus
+level_avg = predicted_gpa.groupby([100, 200, 300, 400]).mean()
 
-print(cnf_matrix)
-
-class_names = list(y.columns)  # name  of classes
-
-fig, ax = plt.subplots()
-
-tick_marks = np.arange(len(class_names))
-
-plt.xticks(tick_marks, 'test_x')
-
-plt.yticks(tick_marks, 'test_y')
-
-# create heatmap
-
-sns.heatmap(pd.DataFrame(cnf_matrix), annot=True, cmap="YlGnBu", fmt='g')
-
-ax.xaxis.set_label_position("top")
-
-plt.tight_layout()
-
-plt.title('Confusion matrix', y=1.1)
-
-plt.ylabel('Actual label')
-
-plt.xlabel('Predicted label')
-
-#
+# Plot
+level_avg['Predicted'].plot(kind='bar')
+plt.ylabel('Predicted GPA (x1000)')
+plt.title('Predicted GPA Average by Leve')
+plt.xticks(ticks=[0, 1, 2, 3], labels=['100', '200', '300', '400'], rotation=0)
+plt.show()
