@@ -1,7 +1,21 @@
-# Linear Regression Model on Categorical Data of UW Courses
+# Linear Regression Model of Categorical UW Course Data
 ## Collection, Processing, and Analysis
 
-### Part One: Collection
+### Introduction:
+Anyone who has been an undergraduate will probably remember discussions with their peers when planning the next quarter.
+What kind of classes are the hardest, which discipline is easiest, and what quarter to take a piticularly difficult class are all common questions.
+If the student is lucky they will be able to ask an upper classmen for advice. But the information will always be anacdotal and based on personal experiance.
+While first hand accounts are an excellent source of information, they can paint an incomplete picture. 
+In this project, we are going to use data to add some objectivity and try to figure out what features of a course are actually the most impactfull.
+
+In undergraduate studies, course selection is often discussed among students. Key considerations include identifying challenging courses, assessing the relative difficulty of different disciplines, and strategically planning the timing of particularly demanding classes. Traditionally, students have relied on anecdotal advice from senior peers, which, while valuable, provides a perspective based on personal experience that may not comprehensively represent the academic environment.
+
+This project aims to supplement anecdotal insights with objective data analysis to provide a more rounded understanding of the factors that influence course difficulty. 
+By analyzing various attributes of courses, such as department, level, and campus, aginst the historical grade distributions, we seek to identify patterns and trends that can inform students’ course planning decisions.
+
+
+ 
+#### Part One: Collection
 ```python
 import json
 import pickle

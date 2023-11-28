@@ -92,17 +92,18 @@ for season in seasons:
 df['has_prereq'] = df['has_prereq'].apply(lambda x: None not in x)
 df['course_title'] = df['course_title'].apply(lambda title: {word for word in title.split() if len(word) > 4})
 
-new_columns_df = get_words(25)
+new_columns_df = get_words(100)
 campus_dummies = pd.get_dummies(df['course_campus'], drop_first=True)
-
 
 # Combine all features for the model
 # Assign X
 x = df[['is_bottleneck', 'is_gateway', 'course_level', 'course_credits', 'offered_winter', 'offered_summer',
-        'offered_spring', 'offered_autumn', 'has_prereq', 'is_stem', 'is_humanities', 'mean_concur_level']].copy()
+        'offered_spring', 'offered_autumn', 'has_prereq', 'is_stem', 'is_humanities', 'mean_concur_level', 'course_coi', 'course_level_coi', 'curric_coi', 'percent_in_range']].copy()
 x = pd.concat([x, campus_dummies, new_columns_df], axis=1)
 # Assign Y
 y = df['percent_mastered']
+
+#######################################################################################################################
 
 # Split the data into training and testing sets
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random_state=0)
@@ -125,61 +126,103 @@ print(f"Mean Squared Error (MSE): {mse:.2f}")
 print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
 print(f"Mean Absolute Error (MAE): {mae:.2f}")
 print(f"Coefficient of Determination (R² score): {r2:.2f}")
-
 # Extract model coefficients
 model = pipeline.named_steps['linearregression']
 coefficients = model.coef_
 features = x.columns
 
 # List to store feature names and their corresponding percent change
-feature_impact = []
-
-for feature, coef in zip(features, coefficients):
-    # Calculate percent change and store in the list
-    percent_change = coef * 100
-    feature_impact.append((feature, percent_change))
+feature_impact = [(feature, coef * 100) for feature, coef in zip(features, coefficients)]
 
 # Sort the list by the absolute value of percent change, in descending order
 feature_impact.sort(key=lambda x: abs(x[1]), reverse=True)
 
-# Assuming feature_impact is a list of tuples (feature, impact)
-regular_features = []
-word_features = []
+# Define groups of features
+campus_features = ['seattle', 'tacoma']
+season_features = ['offered_winter', 'offered_summer', 'offered_spring', 'offered_autumn']
+bottleneck_gateway_features = ['is_bottleneck', 'is_gateway','has_prereq']
+course_level_features = ['course_level', 'mean_concur_level']
+discipline_features = ['is_humanities', 'is_stem']
+word_features = [f for f, _ in feature_impact if f.startswith("word_")]
 
-# Split features into regular and word_ features
-for feature, change in feature_impact:
-    if feature.startswith("word_"):
-        word_features.append((feature, change))
-    else:
-        regular_features.append((feature, change))
 
-# Sort features based on absolute value of impact
-# regular_features.sort(key=lambda x: abs(x[1]), reverse=True)
-word_features.sort(key=lambda x: abs(x[1]), reverse=True)
+# Function to print feature impacts
+def print_feature_impacts(group, title):
+    print(f"\n{title}:")
+    for feature in group:
+        change = next((change for f, change in feature_impact if f == feature), None)
+        if change is not None:
+            print(f"  {feature}: {change:.2f}%")
 
-# Print sorted regular features
-print("\nSorted Model Coefficients and their Impact (as Percentage) for Regular Features:")
-for feature, change in regular_features:
-    print(f"{feature}: {change:.2f}%")
 
-# Print top ten word features
+# Print impacts of different feature groups
+print_feature_impacts(campus_features, "Campus Features")
+print_feature_impacts(season_features, "Season Features")
+print_feature_impacts(bottleneck_gateway_features, "Bottleneck and Gateway Features")
+print_feature_impacts(course_level_features, "Course Level Features")
+print_feature_impacts(discipline_features, "Discipline Features")
+
+# Separate section for word features
 print("\nTop Ten 'word_' Features and their Impact (as Percentage):")
-for feature, change in word_features[:10]:  # Limit to top 10
-    print(f"{feature}: {change:.2f}%")
+for feature in word_features[:10]:  # Limit to top 10
+    change = next((change for f, change in feature_impact if f == feature), None)
+    print(f"  {feature}: {change:.2f}%")
 
 # Combine test set and predictions for plotting
 predicted_gpa = pd.DataFrame({'Actual': y_test, 'Predicted': y_pred})
 predicted_gpa = pd.concat([x_test.reset_index(drop=True), predicted_gpa.reset_index(drop=True)], axis=1)
 
-# Plotting
-for feature in ['tacoma', 'seattle', 'is_bottleneck', 'is_gateway', 'course_level', 'course_credits', 'has_prereq',
-                'mean_concur_level']:
-    feature_avg = predicted_gpa.groupby(feature).mean()
-    plt.figure()
-    feature_avg['Predicted'].plot(kind='bar')
-    plt.ylabel('Predicted Percent >= 3.0')
-    plt.title(f'Predicted Percent >= 3.0 by {feature}')
-    plt.xticks(rotation=45)
-    # plt.ylim(30000, 40000)
-    plt.ylim(0.7, 1.0)
+
+# Function to create bar graphs for binary features
+# Function to plot a consolidated bar graph
+def plot_grouped_bar(dataframe, features, title):
+    means = {feature: dataframe.groupby(feature)['Predicted'].mean() for feature in features}
+    df_means = pd.DataFrame(means)
+
+    df_means.plot(kind='bar')
+    plt.ylabel('Percentage >3.0')
+    plt.title(title)
+    plt.xticks(rotation=0)
+    plt.legend(title="Feature")
+    plt.ylim(.7, 1)
     plt.show()
+
+
+def plot_boolean_bar(dataframe, features, title):
+    df = dataframe.copy()
+    for feature in features:
+        df[feature] = df[feature].map({True: 'True', False: 'False'})
+
+    melted_df = df.melt(value_vars=features, id_vars='Predicted', var_name='Feature', value_name='Value')
+    means = melted_df.groupby(['Feature', 'Value'])['Predicted'].mean().unstack()
+
+    means.plot(kind='bar', stacked=False)
+    plt.ylabel('Percentage >3.0')
+    plt.title(title)
+    plt.xticks(rotation=45)
+    plt.legend(title="Value")
+    plt.ylim(.7, 1)
+    plt.show()
+
+
+# 1) Campuses: Seattle and Tacoma
+plot_boolean_bar(predicted_gpa, ['seattle', 'tacoma'], 'Percentage >3.0 by Campus')
+
+# 2) Seasons
+plot_boolean_bar(predicted_gpa, ['offered_winter', 'offered_summer', 'offered_spring', 'offered_autumn'],
+                 'Percentage >3.0 by Season')
+
+# 3) Bottleneck, Gateway, and Prerequisites
+plot_boolean_bar(predicted_gpa, ['is_bottleneck', 'is_gateway', 'has_prereq'],
+                 'Percentage >3.0 by Course Characteristics')
+
+# 4) Course Level and Mean Concurrent Level
+plot_grouped_bar(predicted_gpa, ['course_level', 'mean_concur_level'],
+                 'Percentage >3.0 by Course and Concurrent Levels')
+
+# 5) Humanities and STEM
+plot_boolean_bar(predicted_gpa, ['is_humanities', 'is_stem'], 'Percentage >3.0 by Discipline Type')
+
+# 6) Top 10 Words
+
+plot_boolean_bar(predicted_gpa, word_features[:10], 'Percentage >3.0 by Presence of Top 10 Words')
