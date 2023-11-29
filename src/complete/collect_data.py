@@ -136,8 +136,7 @@ print(html_dict)
 # COLLECT ALL COURSE JSONs
 # TIME INTENSIVE
 
-# Requires valid cookie file
-# Instructions on how to generate your own in the '/files/cookie.txt'
+# REQUIRES VALID COOKIE.TXT FILE
 # Set up cookie jar
 cookie_jar = cookie.MozillaCookieJar("files/cookies.txt")
 cookie_jar.load()

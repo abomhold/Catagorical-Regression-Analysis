@@ -1,84 +1,47 @@
 # Linear Regression Model of Categorical UW Course Data
+
 ## Collection, Processing, and Analysis
 
-### Introduction:
-Anyone who has been an undergraduate will probably remember discussions with their peers when planning the next quarter.
-What kind of classes are the hardest, which discipline is easiest, and what quarter to take a piticularly difficult class are all common questions.
-If the student is lucky they will be able to ask an upper classmen for advice. But the information will always be anacdotal and based on personal experiance.
-While first hand accounts are an excellent source of information, they can paint an incomplete picture. 
-In this project, we are going to use data to add some objectivity and try to figure out what features of a course are actually the most impactfull.
+## Introduction:
 
-In undergraduate studies, course selection is often discussed among students. Key considerations include identifying challenging courses, assessing the relative difficulty of different disciplines, and strategically planning the timing of particularly demanding classes. Traditionally, students have relied on anecdotal advice from senior peers, which, while valuable, provides a perspective based on personal experience that may not comprehensively represent the academic environment.
+In undergraduate studies, course selection is often a hot topic for debate. Key considerations include identifying
+challenging courses, assessing the relative difficulty of different disciplines, and strategically planning the timing
+of particularly demanding classes. Traditionally, students have relied on anecdotal advice from senior peers, which,
+while valuable, provides a perspective based on personal experience that may not comprehensively represent the academic
+environment. This project aims to supplement anecdotal insights with objective data analysis to provide a more rounded
+understanding of the factors that influence course difficulty. By analyzing various attributes of courses, such as
+department, level, and campus, against the historical grade distributions, we seek to identify patterns and trends that
+can inform students’ course planning decisions.
+<br/><br/>
 
-This project aims to supplement anecdotal insights with objective data analysis to provide a more rounded understanding of the factors that influence course difficulty. 
-By analyzing various attributes of courses, such as department, level, and campus, aginst the historical grade distributions, we seek to identify patterns and trends that can inform students’ course planning decisions.
+## Part One: Collection
 
+The first step in the process is to collect the data. In our case there are two sourse that we will pull from, the UW
+course cataluoge and the "DawgPath" course database. DawgPath is an internal UW site that contains a GPA distibution as
+well other catagorical data. We will start with the course cataloge and use it to scape the department key words for
+each course prefix.
+This will be used later to leverage word frequincesy as an additonal metric. Then we will need to collect each course
+from the DawgPath database.
+<br/><br/>
 
- 
-#### Part One: Collection
+### Course Catalogue
+
+The UW course catalogue offers a wealth of information about course departments, which is crucial for gathering keywords
+associated with each course prefix. These keywords will later be instrumental in analyzing word frequencies and deriving
+additional metrics for the courses. The UW course catalogue is hosted as a simple HTML page meaning scraping will be
+relitivly straight forward espciaaly using the BeautifulSoup package which will allows us to diectly sort through the
+HTML by headers reducing complexity. This function constructs URLs for each department listed in the course catalogue
+for different campuses. We achive this by pulling the top level campus course catalouge and the selecting all of the
+links. We then add any link that matches the Regex pattern for a course URL. This is then return as a list of URLS.This
+function constructs URLs for each department listed in the course catalogue for different campuses. Next, the
+departmental HTML content is scraped and stored. We then collect all of the words in the department descriptions. We
+filter out some of the redundant words and return a list of departments associated with each course prefix.
+
 ```python
-import json
-import pickle
-import sys
-import requests
-import http.cookiejar as cookie
-from bs4 import BeautifulSoup
-import re
-
-HTML_URL_HEADER = 'https://www.washington.edu/students/'
-JSON_URL_HEADER = 'https://dawgpath.uw.edu/api/v1/courses/'
-
-
-# Function to retrieve course information from the UW API
-def get_courses():
-    # Define the campuses to fetch course data for
-    campuses = {'seattle', 'tacoma', 'bothell'}
-    courses = []
-
-    # Loop through each campus
-    for campus in campuses:
-        # Construct the URL for the API call
-        response = requests.get(f'{JSON_URL_HEADER}{campus}', cookies=cookie_jar)
-        # Evaluate the text response to Python list
-        courses += eval(response.text)
-    return courses
-
-
-# Function to build detailed course URLs from course data
-def build_urls(courses):
-    urls = {}
-
-    # Loop through each course to construct its detailed URL
-    for course in courses:
-        key = course['key']
-        url = f'{JSON_URL_HEADER}{key}'
-        # Extract course prefix and number
-        prefix, number = key[:-3].replace(' ', ''), key.split(' ')[-1]
-        # Store the full URL with the course key
-        urls[prefix + number] = url
-    return urls
-
-
-# Function to fetch course data in JSON format from URLs
-def get_jsons(urls):
-    raw_jsons = {}
-
-    # Loop through each URL and fetch the JSON data
-    for key, url in urls.items():
-        response = requests.get(url, cookies=cookie_jar)
-        # Parse the JSON response
-        raw_jsons[key] = json.loads(response.text)
-        # Log output to a file
-        print(key, raw_jsons[key], file=log_file)
-    return raw_jsons
-
-
-# Function to scrape department information from UW course catalog pages
 def build_department_urls():
     # Define the URL suffix for each campus
     campuses = {'crscatb/', 'crscat/', 'crscatt/'}
     urls = {}
-
     # Loop through each campus to construct department URLs
     for campus in campuses:
         url = HTML_URL_HEADER + campus
@@ -96,7 +59,6 @@ def build_department_urls():
 
 def scrape_and_save_html(urls):
     html_dict = {}
-
     # Loop through each department URL to scrape its HTML content
     for department, dep_url in urls.items():
         response = requests.get(dep_url)
@@ -108,7 +70,6 @@ def scrape_and_save_html(urls):
 
 def process_department_html(html_dict):
     dep_word_list = {}
-
     # Process the HTML content to extract department words
     for department, html_content in html_dict.items():
         soup = BeautifulSoup(html_content, 'html.parser')
@@ -118,85 +79,86 @@ def process_department_html(html_dict):
         dep_words = [string for string in dep_string if string and string not in ('UW TACOMA', 'UW BOTHELL')]
         # Store the words for each department
         dep_word_list[department] = dep_words
-
     return dep_word_list
-
-
-###################################################################
-# COLLECT DEPARTMENT INFORMATION FROM ONLINE COURSE CATALOGUE
-
-# # First build the department urls
-# department_urls = build_department_urls()
-
-# # Scrape the department course catalogue for department names
-# html_content = scrape_and_save_html(department_urls)
-
-# # To reduce server time scrape all html first
-# # Save to file and then continue processing
-# # Run once then comment out
-# with open('./files/department_html_content.pkl', 'wb') as handle:
-#     pickle.dump(html_content, handle, protocol=pickle.HIGHEST_PROTOCOL)
-
-# For multiple runs just read from file
-with open('./files/department_html_content.pkl', 'rb') as handle:
-    html_dict = pickle.load(handle)
-
-# Filter the department HTML to find the department keywords
-processed_departments = process_department_html(html_dict)
-
-# print(processed_departments)
-with open('./files/departments.pkl', 'wb') as handle:
-    pickle.dump(processed_departments, handle, protocol=pickle.HIGHEST_PROTOCOL)
-with open('./files/departments.pkl', 'rb') as handle:
-    html_dict = pickle.load(handle)
-print(html_dict)
-
-#################################################################
-# COLLECT ALL COURSE JSONs
-# TIME INTENSIVE
-
-# Requires valid cookie file
-# Instructions on how to generate your own in the '/files/cookie.txt'
-# Set up cookie jar
-cookie_jar = cookie.MozillaCookieJar("files/cookies.txt")
-cookie_jar.load()
-
-# Set up logging to a file
-log_file = open('./files/log', 'w')
-sys.stderr = log_file
-
-# Get the courses from each campus's top level JSON
-courses = get_courses()
-# Build the urls for each course
-urls = build_urls(courses)
-# Collect the JSON for each course
-courses_json = get_jsons(urls)
-
-# Save the course JSON data
-# with open('files/all_raw.json', 'w') as file:
-#     json.dump(courses_json, file)
-
-# Restore standard error and close log file
-sys.stderr = sys.__stderr__
-log_file.close()
-##############################################################
 ```
-### Part 2: Processing
+
+<br/><br/>
+
+### DawgPath Database
+
+DawgPath is an internal University of Washington (UW) website utilized by students and advisors to access historical GPA
+distributions and other relevant course data. Interestingly, the JSON data for each course, sourced from DawgPath,
+contains more detailed information than what is visible on the website. The data collection process involves
+constructing URLs for API requests. Each UW campus has a top-level JSON file listing all courses in its database. The
+method involves iterating through each campus, retrieving course codes, and appending them to a standard JSON URL
+format. Once complete, each course's JSON is requested and added to a new JSON under the concatenation of the department
+prefix and course number. The resulting JSON is ~10826 entries and ~28MB. This structured approach facilitates the
+efficient gathering of course information from DawgPath for our analysis.
+
 ```python
-import pickle
-import time
+# Function to retrieve all courses stored in the database
+def get_courses():
+    # Define the campuses to fetch course data for
+    campuses = {'seattle', 'tacoma', 'bothell'}
+    courses = []
+    # Loop through each campus
+    for campus in campuses:
+        # Construct the URL for the API call
+        response = requests.get(f'{JSON_URL_HEADER}{campus}', cookies=cookie_jar)
+        # Evaluate the text response to Python list
+        courses += eval(response.text)
+    return courses
 
-import pandas as pd
-import re
 
-from bs4 import BeautifulSoup
+# Function to build course URLs 
+def build_urls(courses):
+    urls = {}
+    # Loop through each course to construct its URL
+    for course in courses:
+        key = course['key']
+        url = f'{JSON_URL_HEADER}{key}'
+        # Extract course prefix and number
+        prefix, number = key[:-3].replace(' ', ''), key.split(' ')[-1]
+        # Store the full URL with the course key
+        urls[prefix + number] = url
+    return urls
 
 
+# Function to fetch course data in JSON format from URLs
+def get_jsons(urls):
+    raw_jsons = {}
+    # Loop through each URL and fetch the JSON data
+    for key, url in urls.items():
+        response = requests.get(url, cookies=cookie_jar)
+        # Parse the JSON response
+        raw_jsons[key] = json.loads(response.text)
+        # Log output as working to a file in case of interruptions 
+        print(key, raw_jsons[key], file=log_file)
+    return raw_jsons
+```
+
+<br/><br/>
+
+## Part 2: Processing
+
+In this second phase of our work, we concentrate on refining the collected data to improve its usability and efficiency
+for analysis. This involves a series of steps aimed at streamlining the dataset for better performance in subsequent
+processing and to work towards a format that our eventual model will understand.
+<br/><br/>
+
+### Remove Extra Data
+
+Now that the data is collected, we must turn it into something usable. To start, we need to reduce the size of the
+dataset. Removing the extra data upfront will reduce the time cost of the later functions. First, we removed all of the
+courses that returned errors. It only eliminates ~9 classes, meaning the data set is pretty clean, and the scraping
+process worked as intended. We also removed extra information we didn't need from the prereq data field. The most
+significant removal is the extraction of only courses with GPA distribution, which eliminates ~4100 entries. Since our
+course data will be compared to the grades, we don't want any classes that don't give grades.
+
+```python
 def remove_errors(data):
     # Remove courses from the dataset that contain a specific error pattern.
     # Searches for courses with an error message matching the pattern '.*Course.*'.
-    # Uses a regular expression to identify these error messages.
-    # Iterates through the dataset and deletes courses that match the criteria.
     courses_to_remove = [course for course in data if re.search('.*Course.*', str(data[course]['error']))]
     for course in courses_to_remove:
         print(f'REMOVING COURSE: {course}')
@@ -205,147 +167,116 @@ def remove_errors(data):
 
 
 def remove_options(data):
-    # Remove the 'options' key from the 'prereq_graph' of each course.
-    # Iterates through the dataset and checks if 'prereq_graph' exists for each course.
     # If 'prereq_graph' is present, deletes the 'options' key from it.
     for course, row in data.iterrows():
         graph = row.get('prereq_graph', {})
         if graph is not None:
-            # print(f'REMOVING FOR COURSE: {course}')
+            print(f'REMOVING FOR COURSE: {course}')
             del graph['x']['options']
     return data
 
 
-def get_totals(data):
-    # Calculate the total count of grades and the overall GPA across all courses.
-    # Iterates through each course's 'gpa_distro' and aggregates counts and GPA values.
-    # The overall GPA is calculated as the weighted average of all GPAs.
-    # If there are no grades (total_count is 0), the overall GPA is set to 0.
-    total_count = sum(entry['count'] for course in data for entry in data[course]['gpa_distro'])
-    total_gpa = sum(entry['count'] * int(entry['gpa']) for course in data for entry in data[course]['gpa_distro'])
-    overall_gpa = total_gpa / total_count if total_count else 0
-    return {"total_count": total_count, "overall_gpa": overall_gpa}
-
-
 def get_gpa_courses(data):
-    # Remove courses from the dataset based on their GPA distribution.
     # Identifies courses 'gpa_distro' is empty or has a total count of 0.
     # Iterates through the dataset and deletes such courses.
-    # Also, prints the course identifier for each course removed.
     courses_to_remove = [course for course in data if not data[course]['gpa_distro'] or
                          sum(grade['count'] for grade in data[course]['gpa_distro']) == 0]
     for course in courses_to_remove:
         print(f'REMOVING COURSE: {course}')
         del data[course]
     return data
+```
 
+<br/><br/>
 
-def average(data):
-    # Calculate the average GPA for each course based on 'gpa_distro' and store it in 'gpa_avg'.
-    # 'gpa_distro' is assumed to be a list of dictionaries with 'count' and 'gpa' keys.
-    # The function computes the weighted sum of GPAs divided by the total number of counts.
-    # If 'gpa_distro' is empty, the average is set to 0.
-    data['gpa_avg'] = data['gpa_distro'].apply(
-        lambda distro: sum(grade['count'] * int(grade['gpa']) for grade in distro) / sum(
-            grade['count'] for grade in distro) if distro else 0)
-    return data
+### Clean  Data
 
+The data cleaning and feature extraction for the course dataset involved key steps to enhance analysis. Initially, we
+calculated and added 'percent_mastered' to the DataFrame, representing the percentage of grades above a GPA of 30. We
+then standardized the course levels by rounding down each course's identifier to the nearest hundred.
 
-def average_no_zero(data):
-    # Similar to the 'average' function but excludes zero grades ('gpa' is '0').
-    # Calculates the average GPA without considering zero grades and stores it in 'gpa_avg_no_drops'.
-    # If 'gpa_distro' is empty or all grades are zero, the average is set to 0.
-    data['gpa_avg_no_drops'] = data['gpa_distro'].apply(
-        lambda distro: sum(grade['count'] * int(grade['gpa']) for grade in distro if grade['gpa'] != '0') / sum(
-            grade['count'] for grade in distro if grade['gpa'] != '0') if distro else 0)
-    return data
-
-
+```python
 def percent_mastered(data):
-    # Calculate the percentage of grades considered as 'mastered' (where 'gpa' is 30 or higher).
-    # Adds a new column 'percent_mastered' to the DataFrame showing this percentage.
-    # The percentage is the count of 'mastered' grades divided by the total grade count.
-    # If 'gpa_distro' is empty, the percentage is set to 0.
+    # Calculate the percentage of high grades (GPA >= 3.0)
     data['percent_mastered'] = data['gpa_distro'].apply(
         lambda distro: sum(grade['count'] for grade in distro if int(grade['gpa']) >= 30) / sum(
-            grade['count'] for grade in distro) if distro else 0)
+            grade['count'] for grade in distro) if distro else 0)  # Set to 0 if no distribution available
     return data
 
 
 def add_level(data):
-    # Extract the course level from the last three characters of 'course_id' and add to a new column.
-    # Assumes that 'course_id' ends with a three-digit number representing the course level.
-    # The course level is rounded down to the nearest hundred.
-    data['course_level'] = data['course_id'].apply(lambda x: int(int(x[-3:]) / 100) * 100)
+    # Deduce course level from course_id and add as new column
+    data['course_level'] = data['course_id'].apply(lambda x: int(x[-3:]) // 100 * 100)  # Rounds down to nearest hundred
     return data
+```
 
+Subsequently, we flattened the 'coi_data' from each course, creating separate columns like 'course_coi', '
+course_level_coi', 'curric_coi', and 'percent_in_range' for analyzing course complexity and curriculum aspects. The '
+concurrent_courses' data was processed to identify common course pairings and student course load, and we added columns
+indicating prerequisites and subsequent courses to understand curriculum progression.
 
+```python
 def flatten_coi_data(data):
-    # Extract and flatten 'coi_data' from each row into separate columns.
-    # Initializes lists to store data for new columns: 'course_coi', 'course_level_coi', 'curric_coi',
-    # 'percent_in_range'.
-    # Iterates through the DataFrame, extracting data from 'coi_data' and appending it to the respective lists.
-    # Appends None if 'coi_data' is missing or the key does not exist in 'coi_data'.
-    # The new columns are added to the DataFrame with the extracted data.
+    # Extract complexity of information (COI) data and add as new columns
+    # Initialize lists for each new column
     course_coi, course_level_coi, curric_coi, percent_in_range = [], [], [], []
     for index, row in data.iterrows():
         coi_data = row.get('coi_data', {})
+        # Append COI data, or None if missing
         course_coi.append(coi_data.get('course_coi'))
         course_level_coi.append(coi_data.get('course_level_coi'))
         curric_coi.append(coi_data.get('curric_coi'))
         percent_in_range.append(coi_data.get('percent_in_range'))
+    # Add new columns to DataFrame
     data['course_coi'], data['course_level_coi'], data['curric_coi'], data[
         'percent_in_range'] = course_coi, course_level_coi, curric_coi, percent_in_range
     return data
 
 
 def flatten_concurrent_courses(data):
-    # Process 'concurrent_courses' data for each row, creating a set of course keys with spaces removed.
-    # Adds a new column 'concurrent_courses' to the DataFrame with the processed data.
-    # If 'concurrent_courses' is missing or empty, None is appended to the list.
+    # Create a set of concurrent courses, ensuring each key is space-free
     courses = []
     for index, row in data.iterrows():
         concurrent_courses = row.get('concurrent_courses')
-        if concurrent_courses:
-            fixed_set = {key.replace(' ', '') for key in concurrent_courses.keys()}
-            courses.append(fixed_set)
-        else:
-            courses.append(None)
+        # Create a set of courses without spaces, or None if missing
+        fixed_set = {key.replace(' ', '') for key in concurrent_courses.keys()} if concurrent_courses else None
+        courses.append(fixed_set)
     data['concurrent_courses'] = courses
     return data
 
 
 def flatten_prereq(data):
-    # Process prerequisite data ('prereq_graph') for each row and add two new columns: 'has_prereq' and 'is_prereq'.
-    # 'has_prereq' lists courses that are prerequisites for the current course.
-    # 'is_prereq' lists courses for which the current course is a prerequisite.
-    # Excludes the current course ('course_id') from both lists.
-    # Adds None to the lists if 'prereq_graph' is missing or does not contain the required keys.
+    # Add prerequisite relationship data as new columns
     has_prereq_of, is_prereq_for = [], []
     for index, row in data.iterrows():
         prereq_graph = row.get('prereq_graph')
         self_course_id = row.get('course_id')
+        # Generate sets for courses that are prerequisites or have this course as a prerequisite
         has_set = {course.replace(' ', '') for course in
                    prereq_graph.get('x', {}).get('edges', {}).get('from', {}).values() if
-                   course != self_course_id} if prereq_graph else {None}
+                   course != self_course_id} if prereq_graph else None
         is_set = {course.replace(' ', '') for course in
                   prereq_graph.get('x', {}).get('edges', {}).get('to', {}).values() if
-                  course != self_course_id} if prereq_graph else {None}
+                  course != self_course_id} if prereq_graph else None
         has_prereq_of.append(has_set)
         is_prereq_for.append(is_set)
     data['has_prereq'], data['is_prereq'] = has_prereq_of, is_prereq_for
     return data
+```
 
+We then tackled the 'course_offered' data for each course. By extracting the quarters
+in which each course is available, we added a new column, 'course_offered', to the DataFrame. This column holds a set of
+quarters specific to each course. We also accommodated special cases, such as jointly offered courses and entries split
+by ';'. Where 'course_offered' data was unavailable or lacked specific quarter information, we assigned None.
 
+```python
 def flatten_course_offered(data):
-    # Process 'course_offered' data for each row, extracting the quarters in which the course is offered.
-    # Adds a new column 'course_offered' to the DataFrame with a set of quarters for each course.
-    # Handles special cases like 'jointly' offered courses and splits on ';'.
-    # Adds None if 'course_offered' is missing or no specific quarter information is found.
+    # Extract quarters when courses are offered and add as new column
     offered, quarter_mapping = [], {'A': 'autumn', 'W': 'winter', 'Sp': 'spring', 'S': 'summer'}
     for index in data.index:
         line = data.loc[index]['course_offered']
         quarter_set = set()
+        # Map abbreviation to full quarter name, add None if missing
         if line:
             if 'jointly' in line:
                 line = line.split(';')[1].strip() if ';' in line else ''
@@ -359,170 +290,122 @@ def flatten_course_offered(data):
         offered.append(quarter_set)
     data['course_offered'] = offered
     return data
+```
 
+Next, we refined the 'course_description' for each course. By removing prepositions, short words, and numeric terms, we
+created a new 'course_description' column in the DataFrame with clean and concise descriptions. This involved breaking
+down each description into individual words and filtering them based on length as an easy way to ensure a focus on
+substantial, course-relevant content.
 
+```python
 def flatten_description(data):
-    # Process 'course_description' for each row, removing prepositions, short words, and numeric words.
-    # Adds a new column 'course_description' to the DataFrame with the cleaned description.
-    # Splits the description into words and filters them based on specified criteria.
-    # Adds a set of None if 'course_description' is missing or no words meet the criteria.
-    prepositions = {'aboard', 'about', 'above', 'across', 'after', 'against', 'along', 'among', 'around', 'before',
-                    'behind', 'below', 'beneath', 'beside', 'between', 'beyond', 'concerning', 'considering', 'despite',
-                    'during', 'except', 'inside', 'outside', 'regarding', 'round', 'since', 'through', 'toward',
-                    'under', 'underneath', 'until', 'within', 'without'}
+    # Clean and process course descriptions
+    prepositions = {'aboard', 'about', 'above', ...}  # List of prepositions to exclude
     for course in data.index:
         course_description = data.loc[course, 'course_description']
         if course_description:
-            words = (course_description.replace(',', '').replace('.', '').replace(';', '').replace(':', '').
-                     replace('/', ' ').replace(')', '').replace('(', '').split())
-            string_set = {word for word in words if
-                          word.lower() not in prepositions and len(word) > 4 and not word.isdigit()}
+            # Remove punctuation, split into words, and filter based on length and type
+            words = set(word for word in course_description.split() if
+                        word.lower() not in prepositions and len(word) > 4 and not word.isdigit())
         else:
-            string_set = {None}
-        data.at[course, 'course_description'] = string_set
+            words = {None}
+        data.at[course, 'course_description'] = words
     return data
+```
 
+Furthermore, we mapped each course to its respective departments using a pre-constructed dictionary derived from
+scraping the course catalogue. Using the 'course_abbrev' column, we added a set of department strings to each course
+entry. Lastly, we removed all the columns from which we had extracted data and no longer needed. This approach of
+continuous data trimming helps in reducing runtime and minimize errors.
 
+```python
 def add_departments(data):
-    # Add a new column 'departments' to the DataFrame, mapping each course to its department(s).
-    # Uses a pre-loaded department dictionary to find department names for each course.
-    # Handles cases where the department abbreviation is not found in the dictionary.
+    # Map courses to their departments
     with open('./files/departments.pkl', 'rb') as handle:
         dep_dict = pickle.load(handle)
     dep_list = []
     for course in data.index:
-        key = str(data.loc[course, 'department_abbrev']).replace(' ', '')
-        print(dep_dict.get(key, {None}))
-        dep_list.append(set(dep_dict.get(key, {None})))
+        key = data.loc[course, 'department_abbrev'].replace(' ', '')
+    # Use department dictionary to map courses, add None if not found
+    dep_list.append(set(dep_dict.get(key, {None})))
     data['departments'] = dep_list
     return data
 
 
 def remove_extra_columns(data):
-    # Remove specific columns from the DataFrame that are no longer needed.
-    # Targets columns: 'coi_data', 'gpa_distro', 'prereq_graph', 'prereq_string'.
-    # Checks if each column exists before attempting to delete it.
+    # Remove columns that are no longer needed from DataFrame
     for column in ['coi_data', 'gpa_distro', 'prereq_graph', 'prereq_string']:
         if column in data.columns:
-            del data[column]
+            del data[column]  # Delete column if it exists
     return data
-
-
-# Initialize a dictionary to store execution times and number of entries
-timings = {}
-entries = {}
-
-#######################################################################################
-# # TIME FOR COMPLETION ~8 MIN
-#
-# data = pd.read_json('./files/all_raw.json')  # FILE_SIZE: 27.58 MB
-# entries['initial'] = data.columns.size
-# print(data)
-#
-# # Timing remove_errors function
-# start_time = time.time()
-# data = remove_errors(data)
-# entries['Remove Errors'] = data.columns.size
-# timings['Remove Errors'] = time.time() - start_time
-# data = data.drop('error', inplace=False)
-# print(data)
-#
-# # Timing get_gpa_courses function
-# start_time = time.time()
-# data = get_gpa_courses(data)
-# entries['Get GPA Courses'] = data.columns.size
-# timings['Get GPA Courses'] = time.time() - start_time
-#
-# print(data)
-# for entry in entries:
-#     print(f'{entry}: {entries[entry]}')
-# for entry in timings:
-#     print(f'{entry}: {timings[entry]}')
-#
-# data.to_pickle('./files/no_gpa_dataframe.pkl')  # FILE_SIZE: 18.62 MB
-# # size:
-# # initial: 10826
-# # Remove Errors: 10817
-# # Get GPA Courses: 6717
-# # time:
-# # Remove Errors: 5.317916393280029
-# # Get GPA Courses: 488.68519949913025
-
-######################################################################################
-
-
-# read from disk and transpose data
-data = pd.read_pickle('./files/no_gpa_dataframe.pkl').T
-
-# # Timing get_totals function
-# start_time = time.time()
-# totals = get_totals(data)
-# timings['Get Totals'] = time.time() - start_time
-#
-# print(totals)
-
-
-# Timing subsequent operations
-functions_to_time = [
-    ('Remove Options', remove_options),
-    ('Add Departments', add_departments),
-    ('Average', average),
-    ('Average No Zero', average_no_zero),
-    ('Percent Mastered', percent_mastered),
-    ('Flatten COI Data', flatten_coi_data),
-    ('Flatten Concurrent Courses', flatten_concurrent_courses),
-    ('Flatten Prerequisites', flatten_prereq),
-    ('Add Level', add_level),
-    ('Flatten Course Offered', flatten_course_offered),
-    ('Flatten Description', flatten_description),
-    ('Remove Extra Columns', remove_extra_columns)
-]
-
-for func_name, func in functions_to_time:
-    start_time = time.time()
-    data = func(data)
-    timings[func_name] = time.time() - start_time
-    print(data)
-    print(data.loc['TMATH208'])
-
-# Timing the final save to disk operation
-start_time = time.time()
-data.to_pickle('./files/clean_dataframe.pkl')
-timings['Final Save to Disk'] = time.time() - start_time
-
-print(data)
-print('FINAL COURSE EXAMPLE: ')
-print(data.loc['TMATH208'])
-
-# Display timings
-for operation, time_taken in timings.items():
-    print(f"{operation}: {time_taken:.2f} seconds")
-
-# Average: 0.07 seconds
-# Average No Zero: 0.09 seconds
-# Percent Mastered: 0.06 seconds
-# Flatten COI Data: 0.22 seconds
-# Flatten Concurrent Courses: 0.22 seconds
-# Flatten Prerequisites: 0.25 seconds
-# Add Level: 0.01 seconds
-# Flatten Course Offered: 0.35 seconds
-# Flatten Description: 0.31 seconds
-# Remove Extra Columns: 0.00 seconds
-# Final Save to Disk: 0.04 seconds
 ```
-### Part 3: Analysis
-```python
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LinearRegression
-from sklearn.pipeline import make_pipeline
-from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
-import math
-import matplotlib.pyplot as plt
 
-# Load the data
-df = pd.read_pickle('./files/clean_dataframe.pkl')
+All of the data in our dataframe is now completely machine-readable and easy to manipulate, we need to do one more phase
+of cleaning to format the data in a format that is relevant to our model.
+<br/><br/>
+
+### Prepare Data
+
+We need to refine and prepare our DataFrame for analysis within a machine learning framework. This requires that We
+
+
+start with the calculate_mean_level function, where we
+calculate the average level of concurrent courses. This involves extracting the last three digits from each course code,
+assuming they represent the course level, multiplying them by 100, and then computing their mean, rounding off to the
+nearest hundred. In cases where the concurrent courses list is either empty or contains None, our function is designed
+to return None.
+
+Next, we employ the get_words function to delve into the 'course_description' and 'course_title' columns of our
+DataFrame. Here, we are extracting words and counting their frequencies. Our aim is to identify the top x most frequent
+words, and then we create a new DataFrame that marks the presence of these top words in the course descriptions and
+titles.
+
+Subsequently, we focus on handling NaN values in our dataset. We fill NaN entries in specific columns - 'course_coi', '
+course_level_coi', 'curric_coi', and 'percent_in_range' - with the mean values of those columns. We also extract
+numerical values from the 'course_credits' column and convert them into floats. Additionally, we process the '
+course_title' column to retain only words that are longer than four characters.
+
+Further enhancing our DataFrame, we add a new column, 'mean_concur_level', which we calculate using our
+calculate_mean_level function. We also categorize courses into STEM and Humanities based on their departmental
+affiliations.
+
+In analyzing seasonal offerings of courses, we create new columns for each season. These columns indicate whether a
+course is offered in that particular season. We also process the 'has_prereq' column to check if the courses have
+prerequisites.
+
+Moreover, we reapply the get_words function to extract the top 100 words for a more in-depth analysis. We also create
+dummy variables for different campuses, adding to the richness of our dataset.
+
+Finally, we assemble a comprehensive set of features for our predictive model. This includes various columns from our
+DataFrame, along with the newly created dummy variables and word columns. We designate 'percent_mastered' as our target
+variable, presumably to predict or analyze the success rate or mastery level in the courses. Through these meticulous
+steps, we are preparing a robust dataset that is primed for a sophisticated and insightful analysis.
+
+```python
+def calculate_mean_level(concurrent_courses):
+    if not concurrent_courses or None in concurrent_courses:
+        return None
+    levels = [int(course[-3]) * 100 for course in concurrent_courses]
+    # levels = [level for level in levels if level is not None]  # Filter out None values
+    mean_level = round(sum(levels) / len(levels), -2)  # Round to nearest 100
+    return mean_level
+
+
+def get_words(x):
+    all_words = [word for description in df['course_description'] for word in description]
+    all_words += [word for description in df['course_title'] for word in description]
+    # Count the frequency of each word
+    word_counts = Counter(all_words)
+    # Identify the top 10 most frequent words
+    top_words = [word for word, count in word_counts.most_common(x)]
+    # Assuming 'top_10_words' is a list of words you want to add as columns
+    top_word_columns = {}
+    for word in top_words:
+        column_name = f"word_{word}"
+        top_word_columns[column_name] = df.apply(
+            lambda row: word in row['course_description'] or word in row['course_title'], axis=1)
+    return pd.DataFrame(top_word_columns)
+
 
 # Fill NaN values with the mean of each column
 df['course_coi'].fillna(df['course_coi'].mean(), inplace=True)
@@ -532,102 +415,32 @@ df['percent_in_range'].fillna(df['percent_in_range'].mean(), inplace=True)
 
 # Extract and convert 'course_credits' to float
 df['course_credits'] = df['course_credits'].str.extract('(\d+\.?\d*)').astype(float)
+df['course_title'] = df['course_title'].apply(lambda title: ' '.join([word for word in title.split() if len(word) > 4]))
 
-# One-hot encode 'course_campus' and drop one category to avoid multicollinearity
+df['mean_concur_level'] = df['concurrent_courses'].apply(calculate_mean_level)
+df['mean_concur_level'].fillna(int(df['mean_concur_level'].mean() / 100) * 100, inplace=True)
+
+df['is_stem'] = df['departments'].apply(lambda depts: any(dept in stem_departments for dept in depts))
+df['is_humanities'] = df['departments'].apply(lambda depts: any(dept in humanities_departments for dept in depts))
+
+seasons = set.union(*df['course_offered'])
+for season in seasons:
+    df[f'offered_{season}'] = df['course_offered'].apply(lambda x: season in x)
+
+df['has_prereq'] = df['has_prereq'].apply(lambda x: None not in x)
+df['course_title'] = df['course_title'].apply(lambda title: {word for word in title.split() if len(word) > 4})
+
+new_columns_df = get_words(100)
 campus_dummies = pd.get_dummies(df['course_campus'], drop_first=True)
 
 # Combine all features for the model
-x = pd.concat([df[['is_bottleneck', 'is_gateway', 'course_level', 'course_coi', 'course_level_coi', 'curric_coi',
-                   'percent_in_range', 'course_credits']], campus_dummies], axis=1)
-x = x.astype({'is_bottleneck': bool, 'is_gateway': bool, 'course_level': int, 'course_credits': int})
-
-# Prepare target variable y by scaling the GPA
-y = df['percent_mastered']  # / 100
-
-# Split the data into training and testing sets
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random_state=0)
-
-# Create a pipeline for scaling and linear regression
-pipeline = make_pipeline(StandardScaler(), LinearRegression())
-pipeline.fit(x_train, y_train)
-
-# Predict using the model
-y_pred = pipeline.predict(x_test)
-
-# Evaluate the model's performance
-mse = mean_squared_error(y_test, y_pred)
-rmse = math.sqrt(mse)
-mae = mean_absolute_error(y_test, y_pred)
-r2 = r2_score(y_test, y_pred)
-
-# Print out the evaluation metrics
-print(f"Mean Squared Error (MSE): {mse:.2f}")
-print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
-print(f"Mean Absolute Error (MAE): {mae:.2f}")
-print(f"Coefficient of Determination (R² score): {r2:.2f}")
-
-# Extract model coefficients
-model = pipeline.named_steps['linearregression']
-coefficients = model.coef_
-features = x.columns
-
-# Print out the coefficients with their meanings
-print("\nModel Coefficients and their Impact on Predicted GPA (as Percentage):")
-for feature, coef in zip(features, coefficients):
-    if feature == 'is_bottleneck':
-        print(
-            f"{feature}: {coef:.4f} - Being a bottleneck course (if True) is associated with a {coef:.2f}% change in "  
-         + "competency.")
-    elif feature == 'is_gateway':
-        print(
-            f"{feature}: {coef:.4f} - Being a gateway course (if True) is associated with a {coef:.2f}% change in "
-            + "competency.")
-    elif feature not in ['course_coi', 'course_level_coi', 'curric_coi', 'percent_in_range']:
-        print(
-            f"{feature}: {coef:.4f} - A unit increase in '{feature}' is associated with a {coef:.2f}% change in "
-            + "competency.")
-
-# Combine test set and predictions for plotting
-predicted_gpa = pd.DataFrame({'Actual': y_test, 'Predicted': y_pred})
-predicted_gpa = pd.concat([x_test.reset_index(drop=True), predicted_gpa.reset_index(drop=True)], axis=1)
-
-# Plotting
-for feature in ['tacoma', 'seattle', 'is_bottleneck', 'is_gateway', 'course_level', 'course_credits']:
-    feature_avg = predicted_gpa.groupby(feature).mean()
-    plt.figure()
-    feature_avg['Predicted'].plot(kind='bar')
-    plt.ylabel('Predicted Percent >= 3.0')
-    plt.title(f'Predicted Percent >= 3.0 by {feature}')
-    plt.xticks(rotation=45)
-    plt.ylim(0.7, 1.0)
-    plt.show()
-
-```
-### Results:
-```
-GOOD MODEL
-
-Mean Squared Error (MSE): 0.01
-Root Mean Squared Error (RMSE): 0.11
-Mean Absolute Error (MAE): 0.09
-Coefficient of Determination (R² score): 0.22
-
-ONLY EXPLAINING A CHANGE OF 22%
-MAKES SENSE THE CATAGORIES REALLY SHOULD HAVE TO MUCH IMPACT
-
-
-Model Coefficients and their Impact on Predicted GPA (as Percentage):
-is_bottleneck: 0.0007 - Being a bottleneck course (if True) is associated with a 0.00% change in competency.
-is_gateway: -0.0112 - Being a gateway course (if True) is associated with a -0.01% change in competency.
-course_level: 0.0189 - A unit increase in 'course_level' is associated with a 0.02% change in competency.
-course_credits: -0.0181 - A unit increase in 'course_credits' is associated with a -0.02% change in competency.
-seattle: 0.0280 - A unit increase in 'seattle' is associated with a 0.03% change in competency.
-tacoma: -0.0125 - A unit increase in 'tacoma' is associated with a -0.01% change in competency.
+# Assign X
+x = df[['is_bottleneck', 'is_gateway', 'course_level', 'course_credits', 'offered_winter', 'offered_summer',
+        'offered_spring', 'offered_autumn', 'has_prereq', 'is_stem', 'is_humanities', 'mean_concur_level', 'course_coi',
+        'course_level_coi', 'curric_coi', 'percent_in_range']].copy()
+x = pd.concat([x, campus_dummies, new_columns_df], axis=1)
+# Assign Y
+y = df['percent_mastered']
 ```
 
-![img_3.png](img_3.png)
-![img_2.png](img_2.png)
-![img.png](img.png)
-![img_6.png](img_6.png)
-![img_4.png](img_4.png)
-![img_5.png](img_5.png)
+### Part 3: Analysis
