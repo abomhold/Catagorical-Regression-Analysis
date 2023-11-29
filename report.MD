@@ -4,38 +4,17 @@
 
 ## Introduction:
 
-In undergraduate studies, course selection is often a hot topic for debate. Key considerations include identifying
-challenging courses, assessing the relative difficulty of different disciplines, and strategically planning the timing
-of particularly demanding classes. Traditionally, students have relied on anecdotal advice from senior peers, which,
-while valuable, provides a perspective based on personal experience that may not comprehensively represent the academic
-environment. This project aims to supplement anecdotal insights with objective data analysis to provide a more rounded
-understanding of the factors that influence course difficulty. By analyzing various attributes of courses, such as
-department, level, and campus, against the historical grade distributions, we seek to identify patterns and trends that
-can inform students’ course planning decisions.
-<br/><br/>
+
+In undergraduate studies, course selection is often a hot topic for debate. Discussions include challenging courses,  the difficulty of different disciplines, and planning the timing of particularly demanding classes. Traditionally, students have relied on anecdotal advice from senior peers, which, while valuable, provides a perspective based on personal experience that may not comprehensively represent the academic environment. This project aims to supplement anecdotal insights with data analysis using a linear regression model machine learning. To provide a more rounded understanding of the factors that influence course difficulty. By analyzing various attributes of courses, such as department, level, and campus, against the historical grade distributions, I seek to identify patterns and trends that can inform students' course planning decisions.  <br/><br/>
 
 ## Part One: Collection
 
-The first step in the process is to collect the data. In our case there are two sourse that we will pull from, the UW
-course cataluoge and the "DawgPath" course database. DawgPath is an internal UW site that contains a GPA distibution as
-well other catagorical data. We will start with the course cataloge and use it to scape the department key words for
-each course prefix.
-This will be used later to leverage word frequincesy as an additonal metric. Then we will need to collect each course
-from the DawgPath database.
-<br/><br/>
+
+The first step in the process is to collect the data. In my case, there are two sources that I will pull from: the UW course catalog and the DawgPath" course database. DawgPath is an internal UW site that contains a GPA distribution and other categorical data. I will start with the course catalog and use it to escape the department keywords for each course prefix. I will use it later to leverage word frequency as an additional metric. Then, I will need to collect each course from the DawgPath database.
 
 ### Course Catalogue
 
-The UW course catalogue offers a wealth of information about course departments, which is crucial for gathering keywords
-associated with each course prefix. These keywords will later be instrumental in analyzing word frequencies and deriving
-additional metrics for the courses. The UW course catalogue is hosted as a simple HTML page meaning scraping will be
-relitivly straight forward espciaaly using the BeautifulSoup package which will allows us to diectly sort through the
-HTML by headers reducing complexity. This function constructs URLs for each department listed in the course catalogue
-for different campuses. We achive this by pulling the top level campus course catalouge and the selecting all of the
-links. We then add any link that matches the Regex pattern for a course URL. This is then return as a list of URLS.This
-function constructs URLs for each department listed in the course catalogue for different campuses. Next, the
-departmental HTML content is scraped and stored. We then collect all of the words in the department descriptions. We
-filter out some of the redundant words and return a list of departments associated with each course prefix.
+The UW course catalog offers information about course departments, which is used for gathering keywords associated with each course prefix. These keywords will later be instrumental in analyzing word frequencies and deriving additional course metrics. The UW course catalog is hosted as a simple HTML page, meaning scraping will be relatively straightforward, especially using the BeautifulSoup package, allowing us to sort through the HTML directly by headers, reducing complexity. This function constructs URLs for each department listed in the course catalog for different campuses. I achieved this by pulling the top-level campus course catalog and selecting all the links. I then add any link that matches the Regex pattern for a course URL. This is then returned as a list of URLs. This function constructs URLs for each department listed in the course catalog for different campuses. Next, the departmental HTML content is scraped and stored. I then collect all of the words in the department descriptions. I filter out redundant words and return a list of departments associated with each course prefix.
 
 ```python
 def build_department_urls():
@@ -82,18 +61,10 @@ def process_department_html(html_dict):
     return dep_word_list
 ```
 
-<br/><br/>
-
 ### DawgPath Database
 
-DawgPath is an internal University of Washington (UW) website utilized by students and advisors to access historical GPA
-distributions and other relevant course data. Interestingly, the JSON data for each course, sourced from DawgPath,
-contains more detailed information than what is visible on the website. The data collection process involves
-constructing URLs for API requests. Each UW campus has a top-level JSON file listing all courses in its database. The
-method involves iterating through each campus, retrieving course codes, and appending them to a standard JSON URL
-format. Once complete, each course's JSON is requested and added to a new JSON under the concatenation of the department
-prefix and course number. The resulting JSON is ~10826 entries and ~28MB. This structured approach facilitates the
-efficient gathering of course information from DawgPath for our analysis.
+DawgPath is an internal University of Washington (UW) website utilized by students and advisors to access historical GPA distributions and other relevant course data. Interestingly, the JSON data for each course, sourced from DawgPath, contains more detailed information than what is visible on the website. The data collection process involves constructing URLs for API requests. Each UW campus has a top-level JSON file listing all courses in its database. The method is iterating through each campus, retrieving course codes, and appending them to the standard JSON URL. Once complete, each course's JSON is requested and added to a new JSON under the concatenation of the department prefix and course number. The resulting JSON is ~10826 entries and ~28MB. This structured approach enables the efficient gathering of course information from DawgPath for my analysis.
+
 
 ```python
 # Function to retrieve all courses stored in the database
@@ -136,24 +107,16 @@ def get_jsons(urls):
         print(key, raw_jsons[key], file=log_file)
     return raw_jsons
 ```
-
 <br/><br/>
 
 ## Part 2: Processing
 
-In this second phase of our work, we concentrate on refining the collected data to improve its usability and efficiency
-for analysis. This involves a series of steps aimed at streamlining the dataset for better performance in subsequent
-processing and to work towards a format that our eventual model will understand.
-<br/><br/>
+
+In this second phase of my work, I concentrate on refining the collected data to improve its usability and efficiency for analysis. This involves a series of steps aimed at streamlining the dataset for better performance in subsequent processing and to work towards a format that my eventual model will understand.
 
 ### Remove Extra Data
 
-Now that the data is collected, we must turn it into something usable. To start, we need to reduce the size of the
-dataset. Removing the extra data upfront will reduce the time cost of the later functions. First, we removed all of the
-courses that returned errors. It only eliminates ~9 classes, meaning the data set is pretty clean, and the scraping
-process worked as intended. We also removed extra information we didn't need from the prereq data field. The most
-significant removal is the extraction of only courses with GPA distribution, which eliminates ~4100 entries. Since our
-course data will be compared to the grades, we don't want any classes that don't give grades.
+Now that the data is collected, I must turn it into something usable. To start, I need to reduce the size of the dataset. Removing the extra data upfront will reduce the time cost of the later functions. First, I removed all of the courses that returned errors. It only eliminates ~9 classes, meaning the data set is pretty clean, and the scraping process worked as intended. I also removed extra information I didn't need from the prereq data field. The most significant removal is the extraction of only courses with GPA distribution, which eliminates ~4100 entries. Since my course data will be compared to the grades, I don't want any classes that don't give grades.
 
 ```python
 def remove_errors(data):
@@ -187,13 +150,9 @@ def get_gpa_courses(data):
     return data
 ```
 
-<br/><br/>
-
 ### Clean  Data
 
-The data cleaning and feature extraction for the course dataset involved key steps to enhance analysis. Initially, we
-calculated and added 'percent_mastered' to the DataFrame, representing the percentage of grades above a GPA of 30. We
-then standardized the course levels by rounding down each course's identifier to the nearest hundred.
+The data cleaning and feature extraction for the course dataset involved steps to enhance analysis. Initially, I calculated and added 'percent_mastered' to the DataFrame, representing the percentage of grades above a GPA of 30. I then standardized the course levels by rounding each course's identifier to the nearest hundred.
 
 ```python
 def percent_mastered(data):
@@ -210,10 +169,7 @@ def add_level(data):
     return data
 ```
 
-Subsequently, we flattened the 'coi_data' from each course, creating separate columns like 'course_coi', '
-course_level_coi', 'curric_coi', and 'percent_in_range' for analyzing course complexity and curriculum aspects. The '
-concurrent_courses' data was processed to identify common course pairings and student course load, and we added columns
-indicating prerequisites and subsequent courses to understand curriculum progression.
+Subsequently, I flattened the 'coi_data' from each course, creating separate columns like 'course_coi', 'course_level_coi', 'curric_coi', and 'percent_in_range'. These are UW's internal metrics for course difficulty; they are incredibly sparse and are not a good metric for analysis, but including the data helps increase the reliability of the model and increases the amount of variance accounted. The 'concurrent_courses' data was processed to identify common course pairings and student course load, and I added columns indicating prerequisites and subsequent courses to understand curriculum progression.
 
 ```python
 def flatten_coi_data(data):
@@ -264,11 +220,7 @@ def flatten_prereq(data):
     return data
 ```
 
-We then tackled the 'course_offered' data for each course. By extracting the quarters
-in which each course is available, we added a new column, 'course_offered', to the DataFrame. This column holds a set of
-quarters specific to each course. We also accommodated special cases, such as jointly offered courses and entries split
-by ';'. Where 'course_offered' data was unavailable or lacked specific quarter information, we assigned None.
-
+I then tackled the 'course_offered' data for each course. I added a new column, 'course_offered', to the DataFrame by extracting the quarters in which each course is available. This column holds a set of quarters specific to each course. I also accommodated special cases, such as jointly offered courses and entries split by ';'. Where 'course_offered' data was unavailable or lacked specific quarter information, I assigned None.
 ```python
 def flatten_course_offered(data):
     # Extract quarters when courses are offered and add as new column
@@ -292,10 +244,8 @@ def flatten_course_offered(data):
     return data
 ```
 
-Next, we refined the 'course_description' for each course. By removing prepositions, short words, and numeric terms, we
-created a new 'course_description' column in the DataFrame with clean and concise descriptions. This involved breaking
-down each description into individual words and filtering them based on length as an easy way to ensure a focus on
-substantial, course-relevant content.
+
+Next, I refined the 'course_description' for each course. I removed prepositions, short words, and numeric terms and created a new 'course_description' column in the DataFrame with clean and concise descriptions. This involved breaking down each description into individual words and filtering them based on length as an easy way to ensure a focus on substantial, course-relevant content.
 
 ```python
 def flatten_description(data):
@@ -313,10 +263,7 @@ def flatten_description(data):
     return data
 ```
 
-Furthermore, we mapped each course to its respective departments using a pre-constructed dictionary derived from
-scraping the course catalogue. Using the 'course_abbrev' column, we added a set of department strings to each course
-entry. Lastly, we removed all the columns from which we had extracted data and no longer needed. This approach of
-continuous data trimming helps in reducing runtime and minimize errors.
+Furthermore, I mapped each course to its respective departments using a pre-constructed dictionary derived from scraping the course catalog. Using the 'course_abbrev' column, I added a set of department strings to each course entry. Lastly, I removed all the columns I had extracted data and no longer needed. This approach of continuous data trimming helps in reducing runtime and minimizing errors.
 
 ```python
 def add_departments(data):
@@ -340,46 +287,10 @@ def remove_extra_columns(data):
     return data
 ```
 
-All of the data in our dataframe is now completely machine-readable and easy to manipulate, we need to do one more phase
-of cleaning to format the data in a format that is relevant to our model.
-<br/><br/>
+All the data in my data frame is now organized and easy to manipulate. I need to do one more cleaning phase to format the data in a format relevant to the regression model.
 
 ### Prepare Data
-
-We need to refine and prepare our DataFrame for analysis within a machine learning framework. This requires that We
-
-
-start with the calculate_mean_level function, where we
-calculate the average level of concurrent courses. This involves extracting the last three digits from each course code,
-assuming they represent the course level, multiplying them by 100, and then computing their mean, rounding off to the
-nearest hundred. In cases where the concurrent courses list is either empty or contains None, our function is designed
-to return None.
-
-Next, we employ the get_words function to delve into the 'course_description' and 'course_title' columns of our
-DataFrame. Here, we are extracting words and counting their frequencies. Our aim is to identify the top x most frequent
-words, and then we create a new DataFrame that marks the presence of these top words in the course descriptions and
-titles.
-
-Subsequently, we focus on handling NaN values in our dataset. We fill NaN entries in specific columns - 'course_coi', '
-course_level_coi', 'curric_coi', and 'percent_in_range' - with the mean values of those columns. We also extract
-numerical values from the 'course_credits' column and convert them into floats. Additionally, we process the '
-course_title' column to retain only words that are longer than four characters.
-
-Further enhancing our DataFrame, we add a new column, 'mean_concur_level', which we calculate using our
-calculate_mean_level function. We also categorize courses into STEM and Humanities based on their departmental
-affiliations.
-
-In analyzing seasonal offerings of courses, we create new columns for each season. These columns indicate whether a
-course is offered in that particular season. We also process the 'has_prereq' column to check if the courses have
-prerequisites.
-
-Moreover, we reapply the get_words function to extract the top 100 words for a more in-depth analysis. We also create
-dummy variables for different campuses, adding to the richness of our dataset.
-
-Finally, we assemble a comprehensive set of features for our predictive model. This includes various columns from our
-DataFrame, along with the newly created dummy variables and word columns. We designate 'percent_mastered' as our target
-variable, presumably to predict or analyze the success rate or mastery level in the courses. Through these meticulous
-steps, we are preparing a robust dataset that is primed for a sophisticated and insightful analysis.
+Now, I need to prepare the data frame for analysis in a machine-learning context. I need to turn any field with categorical data into new columns of booleans. This is only sometimes possible as some features have thousands of categories, like in the case of 'course_description'. For 'course_description' and 'course_title', I can count the frequency of each word and then a variable amount of 'top_words' and see what works best. For 'concur_courses', I used the mean level of all the concurrent courses. It will also be easier to compare to the 'course_level' data. It begins with calculate_mean_level, a function that computes the average level of concurrent courses by extracting and averaging the last three digits of each course code, rounding to the nearest hundred. The get_words function then analyzes the 'course_description' and 'course_title' columns to count word frequencies and identify the top x most frequent words, creating a new DataFrame indicating these words' presence in course descriptions and titles.
 
 ```python
 def calculate_mean_level(concurrent_courses):
@@ -406,13 +317,10 @@ def get_words(x):
             lambda row: word in row['course_description'] or word in row['course_title'], axis=1)
     return pd.DataFrame(top_word_columns)
 
+```
 
-# Fill NaN values with the mean of each column
-df['course_coi'].fillna(df['course_coi'].mean(), inplace=True)
-df['course_level_coi'].fillna(df['course_level_coi'].mean(), inplace=True)
-df['curric_coi'].fillna(df['curric_coi'].mean(), inplace=True)
-df['percent_in_range'].fillna(df['percent_in_range'].mean(), inplace=True)
-
+Next, I converted the numerical values from 'course_credits' to the smallest number of credits possible and filtered 'course_title' to retain words longer than four characters. Courses are categorized into STEM and Humanities based on department affiliations that we scraped from the course catalog. I turned the 'has_prereq' column into a boolean by checking for any prerequisites. Lastly, I convert the 'course_offered' and 'course_campus' fields to individual boolean columns.
+```python
 # Extract and convert 'course_credits' to float
 df['course_credits'] = df['course_credits'].str.extract('(\d+\.?\d*)').astype(float)
 df['course_title'] = df['course_title'].apply(lambda title: ' '.join([word for word in title.split() if len(word) > 4]))
@@ -443,4 +351,132 @@ x = pd.concat([x, campus_dummies, new_columns_df], axis=1)
 y = df['percent_mastered']
 ```
 
-### Part 3: Analysis
+## Part 3: Analysis
+
+
+I begin by splitting the dataset into training and testing sets, using a 25% test size and setting a random state for reproducibility. This division is used for evaluating the model's performance on unseen data. After splitting, I create a pipeline that combines the StandardScaler for feature scaling and the linear regression model. The StandardScaler standardizes the features (independent variables) by removing the mean and scaling them to have unit variance before use.
+
+Once the pipeline is set up, I fit it with the training data, which involves learning the linear relationship between the features (X) and the target variable (Y). The process of 'training' or 'fitting' the model is accomplished by finding the values of coefficients that minimize the difference between the observed values and the values predicted by the model. This is usually done using Ordinary Least Squares (OLS), which aims to minimize the sum of the squares of the residuals (the differences between observed and predicted values). The model is then used to predict the target variable on the testing set.
+```python
+# Split the data into training and testing sets
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random_state=0)
+
+# Create a pipeline for scaling and linear regression
+pipeline = make_pipeline(StandardScaler(), LinearRegression())
+pipeline.fit(x_train, y_train)
+
+# Predict using the model
+y_pred = pipeline.predict(x_test)
+```
+
+The model's performance is evaluated using several metrics. Mean Squared Error (MSE) and Root Mean Squared Error (RMSE) give an idea of the error magnitude. The MSE measures the average squared difference between the actual and predicted values. Squaring the errors gives more weight to larger errors. The RMSE is the square root of MSE. It brings the error metric back to the same scale as the dependent variable, making it more interpretable. Mean Absolute Error (MAE) is the average of the absolute differences between predicted and actual values. Unlike MSE, it treats all errors equally, regardless of their size. It provides a straightforward interpretation of the average prediction error. The coefficient of Determination, or R² score, indicates the proportion of the variance in the dependent variable that is predictable from the independent variables. A score of one means perfect prediction, while a score of zero indicates that the model is no better than a model that predicts the mean of the dependent variable for all observations.
+
+```python
+# Evaluate the model's performance
+mse = mean_squared_error(y_test, y_pred)
+rmse = math.sqrt(mse)
+mae = mean_absolute_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+```
+
+## Results
+
+After some trial and error and tweaking, I could reliably produce these results.
+
+```commandline
+Mean Squared Error (MSE): 0.01
+Root Mean Squared Error (RMSE): 0.11
+Mean Absolute Error (MAE): 0.08
+Coefficient of Determination (R² score): 0.31
+```
+
+The MSE, RMSE, and MAE might seem good initially, but the R² score shows the true picture. The model only explains about 31% of the change in the percentage of students who mastered the topic. In addition to that 31%, the model is wrong by about 11%. Our results are arguably meaningless, with most features representing less than 2.0%. However, for this project, I will continue as if they are and, in the end, see if, despite the errors, there is any insight to glean from the data.
+
+```commandline
+Campus Features:
+  seattle: 2.05%
+  tacoma: -1.54%
+```
+
+Next was the campus features. You might notice that despite scraping all three campuses, only two have been used in the model. The reason is that the columns are supposed to be independent of each other, and by including all three campuses, we would have added a completely dependent system where every value would have been one of the three and never more than one. It causes the regression model to collapse and renders those columns useless. As the data shows, the Seattle campus is associated with a ~2% increase, and the Tacoma campus with ~ -1.5%.
+
+```commandline
+Season Features:
+  offered_winter: 0.01%
+  offered_summer: -0.40%
+  offered_spring: 0.34%
+  offered_autumn: -0.04%
+  
+Bottleneck and Gateway Features:
+  is_bottleneck: 0.25%
+  is_gateway: -0.76%
+  has_prereq: 0.28%
+```
+
+
+The season features and the degree map features produced no significant impact. The only interesting bit is that 'has_prereq' was consistently associated with a positive increase, and 'is_gateway' was consistently negative. Considering that, by definition, gateway courses are prerequisites for other classes; the data seems to suggest that the prerequisite classes are harder than the actual classes they are preparing you for.
+
+```commandline
+Course Level Features:
+  course_level: 2.04%
+  mean_concur_level: 0.62%
+
+Discipline Features:
+  is_humanities: 1.21%
+  is_stem: -0.52%
+```
+
+The last of any meaningful categories were the course level and discipline features. The course-level features support the same idea as the degree map features. Namely, the farther in the degree, the better students do, despite the assumedly harder coursework.
+
+```commandline
+Top 15 'word_' Features and their Impact:
+  word_minimum: -2.70%
+  word_grade: 1.29%
+  word_three: 0.88%
+  word_either: -0.77%
+  word_health: 0.66%
+  word_including: -0.59%
+  word_theory: -0.55%
+  word_theories: -0.51%
+  word_design: 0.50%
+  word_emphasis: -0.50%
+  word_contemporary: 0.50%
+  word_Research: 0.47%
+  word_processes: -0.46%
+  word_Prerequisite: -0.45%
+  word_Students: 0.44%
+```
+
+
+Finally, the word features. The features are hard to classify because the words represent multiple ideas in different classes. For example, the most impactful word was 'minimum,' but there is no way to distinguish between a concept of prerequisites or math and could potentially include courses from another. A similar problem exists with most of the words on the list. Thus, words mostly representative of one idea are the only ones where conclusions can be drawn. Of, the theory/theories are the only ones above 1% of absolute change. This indicates that classes heavy in concepts and perhaps light on application are associated with a negative impact. 
+
+### Conclusion
+
+
+Although the model never produced any statistically significant results, the project was an excellent exercise and learning experience for Python, web scraping, data processing, machine learning applications, and data analytics. One metric wasn't included because it overlaps with the metric we are using for our y values, the number of people who received a zero or dropped the class. If I add a couple of lines to the code and one more category:
+
+
+```python
+df['number_of_drops'] = df['gpa_distro'].apply(
+    lambda distro: sum(grade['count'] for grade in distro if int(grade['gpa']) == 0) / sum(
+        grade['count'] for grade in distro))
+```
+
+Then exclude 0 GPA from our percent_mastered:
+
+```python
+df['percent_mastered'] = df['gpa_distro'].apply(
+    lambda distro: sum(grade['count'] for grade in distro if int(grade['gpa']) >= 30) / sum(
+        grade['count'] for grade in distro if grade['gpa'] != '0'))
+```
+
+I am left with the single most impactful feature of the whole project despite the rest of the model remaining relatively the same, which wasn't initially included because the data was for personal use. While I can't predict the future, I don't plan to drop any courses and thus wasn't looking in that direction:
+
+```commandline
+number_of_drops: -3.01%
+```
+
+This is although the students with zero are no longer a factor in the percentage. While you may assume this is because it represents classes that are more heavily < 3.0, the number of zeros is more independent from the rest of the grades than expected. The raw GPA distro showed that unlike the top quartile, where there is a standard distribution of grades, the bottom quartile is almost exclusively 0. Other impactful features like the course level features and the bottleneck, gateway, and prereq features support this. The farther along the degree you get, the better the students do. Mainly because fewer of them drop classes as they are more invested and would only be able to register for the higher classes if they had shown a history of not dropping classes. It also explains the difference in campus. It's not that the Seattle campus is easier; the prestige of the Seattle campus allows them to be more selective about who they admit and thus only admit students with a track record of already doing well.
+
+
+So, to answer the question, what classes are the easiest? The classes you show up to.

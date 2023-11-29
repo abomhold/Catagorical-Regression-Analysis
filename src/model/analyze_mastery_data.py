@@ -102,7 +102,7 @@ x = df[['is_bottleneck', 'is_gateway', 'course_level', 'course_credits', 'offere
 x = pd.concat([x, campus_dummies, new_columns_df], axis=1)
 # Assign Y
 y = df['percent_mastered']
-
+# y = df['gpa_avg']
 #######################################################################################################################
 
 # Split the data into training and testing sets
@@ -164,7 +164,7 @@ print_feature_impacts(discipline_features, "Discipline Features")
 
 # Separate section for word features
 print("\nTop Ten 'word_' Features and their Impact (as Percentage):")
-for feature in word_features[:10]:  # Limit to top 10
+for feature in word_features[:25]:  # Limit to top 10
     change = next((change for f, change in feature_impact if f == feature), None)
     print(f"  {feature}: {change:.2f}%")
 

@@ -83,7 +83,7 @@ def percent_mastered(data):
     # If 'gpa_distro' is empty, the percentage is set to 0.
     data['percent_mastered'] = data['gpa_distro'].apply(
         lambda distro: sum(grade['count'] for grade in distro if int(grade['gpa']) >= 30) / sum(
-            grade['count'] for grade in distro) if distro else 0)
+            grade['count'] for grade in distro if grade['gpa'] != '0'))
     return data
 
 
@@ -207,7 +207,7 @@ def add_departments(data):
     dep_list = []
     for course in data.index:
         key = str(data.loc[course, 'department_abbrev']).replace(' ', '')
-        print(dep_dict.get(key, {None}))
+        # print(dep_dict.get(key, {None}))
         dep_list.append(set(dep_dict.get(key, {None})))
     data['departments'] = dep_list
     return data
@@ -217,7 +217,7 @@ def remove_extra_columns(data):
     # Remove specific columns from the DataFrame that are no longer needed.
     # Targets columns: 'coi_data', 'gpa_distro', 'prereq_graph', 'prereq_string'.
     # Checks if each column exists before attempting to delete it.
-    for column in ['coi_data', 'gpa_distro', 'prereq_graph', 'prereq_string']:
+    for column in ['coi_data', 'prereq_graph', 'prereq_string']:
         if column in data.columns:
             del data[column]
     return data
