@@ -9,7 +9,7 @@ import math
 import matplotlib.pyplot as plt
 
 # Load the data
-df = pd.read_pickle('../complete/files/clean_dataframe.pkl')
+df = pd.read_pickle('../files/clean_dataframe.pkl')
 
 # Fill NaN values with the mean of each column
 df['course_coi'].fillna(df['course_coi'].mean(), inplace=True)
@@ -23,7 +23,7 @@ df['course_credits'] = df['course_credits'].str.extract('(\d+\.?\d*)').astype(fl
 # One-hot encode 'course_campus' and drop one category to avoid multicollinearity
 campus_dummies = pd.get_dummies(df['course_campus'], drop_first=True)
 
-# Combine all features for the model
+# Combine all features for the extra
 x = pd.concat([df[['is_bottleneck', 'is_gateway', 'course_level', 'course_coi', 'course_level_coi', 'curric_coi',
                    'percent_in_range', 'course_credits']], campus_dummies], axis=1)
 x = x.astype({'is_bottleneck': bool, 'is_gateway': bool, 'course_level': int, 'course_credits': int})
@@ -38,10 +38,10 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random
 pipeline = make_pipeline(StandardScaler(), LinearRegression())
 pipeline.fit(x_train, y_train)
 
-# Predict using the model
+# Predict using the extra
 y_pred = pipeline.predict(x_test)
 
-# Evaluate the model's performance
+# Evaluate the extra's performance
 mse = mean_squared_error(y_test, y_pred)
 rmse = math.sqrt(mse)
 mae = mean_absolute_error(y_test, y_pred)
@@ -53,7 +53,7 @@ print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
 print(f"Mean Absolute Error (MAE): {mae:.2f}")
 print(f"Coefficient of Determination (R² score): {r2:.2f}")
 
-# Extract model coefficients
+# Extract extra coefficients
 model = pipeline.named_steps['linearregression']
 coefficients = model.coef_
 features = x.columns

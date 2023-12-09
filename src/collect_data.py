@@ -119,16 +119,16 @@ def process_department_html(html_dict):
 #     pickle.dump(html_content, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 # For multiple runs just read from file
-with open('./files/department_html_content.pkl', 'rb') as handle:
+with open('files/department_html_content.pkl', 'rb') as handle:
     html_dict = pickle.load(handle)
 
 # Filter the department HTML to find the department keywords
 processed_departments = process_department_html(html_dict)
 
 # print(processed_departments)
-with open('./files/departments.pkl', 'wb') as handle:
+with open('files/departments.pkl', 'wb') as handle:
     pickle.dump(processed_departments, handle, protocol=pickle.HIGHEST_PROTOCOL)
-with open('./files/departments.pkl', 'rb') as handle:
+with open('files/departments.pkl', 'rb') as handle:
     html_dict = pickle.load(handle)
 print(html_dict)
 
@@ -142,7 +142,7 @@ cookie_jar = cookie.MozillaCookieJar("files/cookies.txt")
 cookie_jar.load()
 
 # Set up logging to a file
-log_file = open('./files/log', 'w')
+log_file = open('files/log', 'w')
 sys.stderr = log_file
 
 # Get the courses from each campus's top level JSON

@@ -122,31 +122,17 @@ Now that the data is collected, I must turn it into something usable. To start, 
 def remove_errors(data):
     # Remove courses from the dataset that contain a specific error pattern.
     # Searches for courses with an error message matching the pattern '.*Course.*'.
-    courses_to_remove = [course for course in data if re.search('.*Course.*', str(data[course]['error']))]
-    for course in courses_to_remove:
-        print(f'REMOVING COURSE: {course}')
-        del data[course]
     return data
 
 
 def remove_options(data):
     # If 'prereq_graph' is present, deletes the 'options' key from it.
-    for course, row in data.iterrows():
-        graph = row.get('prereq_graph', {})
-        if graph is not None:
-            print(f'REMOVING FOR COURSE: {course}')
-            del graph['x']['options']
     return data
 
 
 def get_gpa_courses(data):
     # Identifies courses 'gpa_distro' is empty or has a total count of 0.
     # Iterates through the dataset and deletes such courses.
-    courses_to_remove = [course for course in data if not data[course]['gpa_distro'] or
-                         sum(grade['count'] for grade in data[course]['gpa_distro']) == 0]
-    for course in courses_to_remove:
-        print(f'REMOVING COURSE: {course}')
-        del data[course]
     return data
 ```
 
@@ -157,15 +143,11 @@ The data cleaning and feature extraction for the course dataset involved steps t
 ```python
 def percent_mastered(data):
     # Calculate the percentage of high grades (GPA >= 3.0)
-    data['percent_mastered'] = data['gpa_distro'].apply(
-        lambda distro: sum(grade['count'] for grade in distro if int(grade['gpa']) >= 30) / sum(
-            grade['count'] for grade in distro) if distro else 0)  # Set to 0 if no distribution available
     return data
 
 
 def add_level(data):
     # Deduce course level from course_id and add as new column
-    data['course_level'] = data['course_id'].apply(lambda x: int(x[-3:]) // 100 * 100)  # Rounds down to nearest hundred
     return data
 ```
 
@@ -175,48 +157,20 @@ Subsequently, I flattened the 'coi_data' from each course, creating separate col
 def flatten_coi_data(data):
     # Extract complexity of information (COI) data and add as new columns
     # Initialize lists for each new column
-    course_coi, course_level_coi, curric_coi, percent_in_range = [], [], [], []
-    for index, row in data.iterrows():
-        coi_data = row.get('coi_data', {})
         # Append COI data, or None if missing
-        course_coi.append(coi_data.get('course_coi'))
-        course_level_coi.append(coi_data.get('course_level_coi'))
-        curric_coi.append(coi_data.get('curric_coi'))
-        percent_in_range.append(coi_data.get('percent_in_range'))
     # Add new columns to DataFrame
-    data['course_coi'], data['course_level_coi'], data['curric_coi'], data[
-        'percent_in_range'] = course_coi, course_level_coi, curric_coi, percent_in_range
     return data
 
 
 def flatten_concurrent_courses(data):
     # Create a set of concurrent courses, ensuring each key is space-free
-    courses = []
-    for index, row in data.iterrows():
-        concurrent_courses = row.get('concurrent_courses')
         # Create a set of courses without spaces, or None if missing
-        fixed_set = {key.replace(' ', '') for key in concurrent_courses.keys()} if concurrent_courses else None
-        courses.append(fixed_set)
-    data['concurrent_courses'] = courses
     return data
 
 
 def flatten_prereq(data):
     # Add prerequisite relationship data as new columns
-    has_prereq_of, is_prereq_for = [], []
-    for index, row in data.iterrows():
-        prereq_graph = row.get('prereq_graph')
-        self_course_id = row.get('course_id')
         # Generate sets for courses that are prerequisites or have this course as a prerequisite
-        has_set = {course.replace(' ', '') for course in
-                   prereq_graph.get('x', {}).get('edges', {}).get('from', {}).values() if
-                   course != self_course_id} if prereq_graph else None
-        is_set = {course.replace(' ', '') for course in
-                  prereq_graph.get('x', {}).get('edges', {}).get('to', {}).values() if
-                  course != self_course_id} if prereq_graph else None
-        has_prereq_of.append(has_set)
-        is_prereq_for.append(is_set)
-    data['has_prereq'], data['is_prereq'] = has_prereq_of, is_prereq_for
     return data
 ```
 
@@ -224,23 +178,7 @@ I then tackled the 'course_offered' data for each course. I added a new column, 
 ```python
 def flatten_course_offered(data):
     # Extract quarters when courses are offered and add as new column
-    offered, quarter_mapping = [], {'A': 'autumn', 'W': 'winter', 'Sp': 'spring', 'S': 'summer'}
-    for index in data.index:
-        line = data.loc[index]['course_offered']
-        quarter_set = set()
         # Map abbreviation to full quarter name, add None if missing
-        if line:
-            if 'jointly' in line:
-                line = line.split(';')[1].strip() if ';' in line else ''
-            for abbrev in quarter_mapping:
-                if abbrev in line:
-                    quarter_set.add(quarter_mapping[abbrev])
-            if not line:
-                quarter_set.add(None)
-        else:
-            quarter_set.add(None)
-        offered.append(quarter_set)
-    data['course_offered'] = offered
     return data
 ```
 
@@ -250,16 +188,7 @@ Next, I refined the 'course_description' for each course. I removed prepositions
 ```python
 def flatten_description(data):
     # Clean and process course descriptions
-    prepositions = {'aboard', 'about', 'above', ...}  # List of prepositions to exclude
-    for course in data.index:
-        course_description = data.loc[course, 'course_description']
-        if course_description:
-            # Remove punctuation, split into words, and filter based on length and type
-            words = set(word for word in course_description.split() if
-                        word.lower() not in prepositions and len(word) > 4 and not word.isdigit())
-        else:
-            words = {None}
-        data.at[course, 'course_description'] = words
+    # Remove punctuation, split into words, and filter based on length and type
     return data
 ```
 
@@ -268,22 +197,13 @@ Furthermore, I mapped each course to its respective departments using a pre-cons
 ```python
 def add_departments(data):
     # Map courses to their departments
-    with open('./files/departments.pkl', 'rb') as handle:
-        dep_dict = pickle.load(handle)
-    dep_list = []
-    for course in data.index:
-        key = data.loc[course, 'department_abbrev'].replace(' ', '')
     # Use department dictionary to map courses, add None if not found
-    dep_list.append(set(dep_dict.get(key, {None})))
-    data['departments'] = dep_list
     return data
 
 
 def remove_extra_columns(data):
     # Remove columns that are no longer needed from DataFrame
-    for column in ['coi_data', 'gpa_distro', 'prereq_graph', 'prereq_string']:
-        if column in data.columns:
-            del data[column]  # Delete column if it exists
+    # Delete column if it exists
     return data
 ```
 
@@ -341,7 +261,7 @@ df['course_title'] = df['course_title'].apply(lambda title: {word for word in ti
 new_columns_df = get_words(100)
 campus_dummies = pd.get_dummies(df['course_campus'], drop_first=True)
 
-# Combine all features for the model
+# Combine all features for the extra
 # Assign X
 x = df[['is_bottleneck', 'is_gateway', 'course_level', 'course_credits', 'offered_winter', 'offered_summer',
         'offered_spring', 'offered_autumn', 'has_prereq', 'is_stem', 'is_humanities', 'mean_concur_level', 'course_coi',
@@ -365,14 +285,14 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random
 pipeline = make_pipeline(StandardScaler(), LinearRegression())
 pipeline.fit(x_train, y_train)
 
-# Predict using the model
+# Predict using the extra
 y_pred = pipeline.predict(x_test)
 ```
 
 The model's performance is evaluated using several metrics. Mean Squared Error (MSE) and Root Mean Squared Error (RMSE) give an idea of the error magnitude. The MSE measures the average squared difference between the actual and predicted values. Squaring the errors gives more weight to larger errors. The RMSE is the square root of MSE. It brings the error metric back to the same scale as the dependent variable, making it more interpretable. Mean Absolute Error (MAE) is the average of the absolute differences between predicted and actual values. Unlike MSE, it treats all errors equally, regardless of their size. It provides a straightforward interpretation of the average prediction error. The coefficient of Determination, or R² score, indicates the proportion of the variance in the dependent variable that is predictable from the independent variables. A score of one means perfect prediction, while a score of zero indicates that the model is no better than a model that predicts the mean of the dependent variable for all observations.
 
 ```python
-# Evaluate the model's performance
+# Evaluate the extra's performance
 mse = mean_squared_error(y_test, y_pred)
 rmse = math.sqrt(mse)
 mae = mean_absolute_error(y_test, y_pred)

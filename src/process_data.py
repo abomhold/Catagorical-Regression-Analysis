@@ -202,7 +202,7 @@ def add_departments(data):
     # Add a new column 'departments' to the DataFrame, mapping each course to its department(s).
     # Uses a pre-loaded department dictionary to find department names for each course.
     # Handles cases where the department abbreviation is not found in the dictionary.
-    with open('./files/departments.pkl', 'rb') as handle:
+    with open('files/departments.pkl', 'rb') as handle:
         dep_dict = pickle.load(handle)
     dep_list = []
     for course in data.index:
@@ -267,7 +267,7 @@ entries = {}
 
 
 # read from disk and transpose data
-data = pd.read_pickle('./files/no_gpa_dataframe.pkl').T
+data = pd.read_pickle('files/no_gpa_dataframe.pkl').T
 
 # # Timing get_totals function
 # start_time = time.time()

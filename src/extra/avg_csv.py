@@ -29,7 +29,7 @@ def averages(course):
         return out
 
 
-data = pd.read_pickle('../complete/files/no_gpa_dataframe.pkl')
+data = pd.read_pickle('../files/no_gpa_dataframe.pkl')
 
 with open("files/gpa_history.csv", 'w') as file:
     file.write("PREFIX, NUMBER, SAMPLE SIZE, 0.0 - 0.9, 1.0 - 1.9, 2.0 - 2.9, 3.0 - 4.0 \n")
