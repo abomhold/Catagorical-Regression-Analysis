@@ -9,7 +9,7 @@ import math
 import matplotlib.pyplot as plt
 
 # Load the data
-df = pd.read_pickle('./files/clean_dataframe.pkl')
+df = pd.read_pickle('../complete/files/clean_dataframe.pkl')
 
 # Fill NaN values with the mean of each column
 df['course_coi'].fillna(df['course_coi'].mean(), inplace=True)
